@@ -45,6 +45,22 @@ Every fellow is responsible for three core deliverables by August 10:
 | [PRODUCT_FELLOW_MATCHING.md](./PRODUCT_FELLOW_MATCHING.md) | All 10 Anote products with repo links, descriptions, and fellow assignment column |
 | [RESEARCH_FELLOW_MATCHING.md](./RESEARCH_FELLOW_MATCHING.md) | All 25 research paper tracks (active + backlog) with fellow assignment column, deliverable checklist, and conference deadline guide |
 | [PRODUCT_MANAGER.md](./PRODUCT_MANAGER.md) | Full scope of work for the Fellowship PM — standups, speaker pipeline, onboarding, fellow support, marketing, playbook, and budget |
+| [FELLOW_ROSTER.md](./FELLOW_ROSTER.md) | Fellow cohort roster — names, schools, research tracks, product assignments, GitHub handles, and access checklist |
+| [ONBOARDING_CHECKLIST.md](./ONBOARDING_CHECKLIST.md) | Step-by-step PM checklist for onboarding every fellow before June 1, including orientation agenda |
+| [STEERING_COMMITTEE.md](./STEERING_COMMITTEE.md) | Steering committee member list, responsibilities, engagement calendar, and paper-to-mentor assignments |
+| [RECRUITMENT.md](./RECRUITMENT.md) | Application criteria, scoring rubric, interview process, sourcing channels, and cohort size guidance |
+
+---
+
+## Anote Alumni & Past Success
+
+The fellowship builds on a strong tradition of student researchers and engineers who have come through Anote. Many have gone on to roles at top AI companies, research labs, and PhD programs.
+
+Explore past Anote alumni, coffee chats, and where they've landed: **[community.anote.ai/community/coffeechats](https://community.anote.ai/community/coffeechats)**
+
+Past summer showcases that set the bar for what fellows can produce:
+- [Pale Blue Dot](https://anote.ai/palebluedot)
+- [Panacea](https://anote.ai/panacea)
 
 ---
 
@@ -55,6 +71,7 @@ Every fellow is responsible for three core deliverables by August 10:
 | Anote Website | [anote.ai](https://anote.ai) |
 | Anote GitHub | [github.com/anote-ai](https://github.com/orgs/anote-ai/repositories) |
 | Research Repo | [anote-ai/Research](https://github.com/anote-ai/Research) |
+| Anote Community & Alumni | [community.anote.ai/community/coffeechats](https://community.anote.ai/community/coffeechats) |
 | Anote Slides Template | [Google Slides](https://docs.google.com/presentation/d/1x4E2dwBnDImHjMOMaI8lLWcRNjVWlnsYEJ3WOwlhKuA/edit?usp=sharing) |
 | Past Showcase — Pale Blue Dot | [anote.ai/palebluedot](https://anote.ai/palebluedot) |
 | Past Showcase — Panacea | [anote.ai/panacea](https://anote.ai/panacea) |
