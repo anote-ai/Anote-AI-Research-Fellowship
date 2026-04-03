@@ -53,14 +53,66 @@ Use these criteria consistently across all applicants:
 
 ## Application Process
 
-### Step 1 — Application
-Applicants submit:
-- Resume / CV
-- Brief statement of interest (300–500 words): What research topic interests you and why? What product would you want to work on?
-- Links: GitHub, LinkedIn, any papers or projects
-- Availability confirmation (full 10 weeks, June 1–Aug 10)
+### Step 1 — Application Form
+Applicants apply via the official fellowship form:
+**[anote.ai/airesearchfellowship](https://anote.ai/airesearchfellowship)**
 
-### Step 2 — PM Screen (15 minutes)
+The form collects resume/CV, statement of interest, GitHub/LinkedIn links, and availability confirmation (full 10 weeks, June 1–Aug 10). PM reviews submissions on a rolling basis and advances strong candidates to Step 2.
+
+---
+
+### Step 2 — Take-Home Research Assignment
+
+Send the following email to candidates who pass the initial form review:
+
+---
+
+> **Subject:** Anote AI Research Fellowship — Take-Home Assignment
+>
+> Hi [Name],
+>
+> Thank you for applying to the Anote AI Research Fellowship.
+>
+> As a next step in the interview process, we'd love for you to complete a take-home research assignment.
+>
+> The purpose is to explore a research paper idea that could fit within Anote's broader work in evaluation and applied AI systems.
+>
+> **For the assignment, please prepare:**
+>
+> **1. Draft research paper idea**
+> - Core question
+> - Why it matters
+> - Proposed methodology
+> - Evaluation plan
+> - Anticipated contribution
+>
+> **2. Draft paper in LaTeX / Overleaf**
+> - A strong partial draft is fine
+>
+> **3. Code sample in a GitHub repository**
+>
+> **4. Short blog post**
+> - Explain the paper idea in a clear and engaging way for a broader audience
+>
+> After that, please schedule time with our team here:
+> **[calendly.com/natanvidra/anote](https://calendly.com/natanvidra/anote)**
+>
+> Looking forward to seeing your work!
+
+---
+
+**What to evaluate in the assignment:**
+- Is the research question original and well-scoped?
+- Does the methodology show real understanding of the problem?
+- Is the code clean and functional?
+- Is the blog post clear to a non-expert audience?
+- Does the candidate show initiative beyond the minimum requirements?
+
+Pass/fail decision. If pass, advance to Step 3.
+
+---
+
+### Step 3 — PM Screen (15 minutes)
 The PM conducts a brief screen to assess:
 - Communication and clarity
 - Genuine interest vs. resume-padding
@@ -69,16 +121,16 @@ The PM conducts a brief screen to assess:
 
 Pass/fail decision. If pass, advance to technical interview.
 
-### Step 3 — Technical Interview (30–45 minutes, with Natan or a senior Anote team member)
+### Step 4 — Technical Interview (30–45 minutes, with Natan or a senior Anote team member)
 Focus areas:
-- Walk us through a project or paper you've worked on
+- Walk us through your take-home assignment — what did you build and why?
 - How would you approach [a specific research question from our track list]?
 - What's a limitation of RAG / fine-tuning / LLM evaluation that you think is underexplored? (or another domain-specific question)
 - What Anote product would you pick and what would you improve first?
 
 Evaluate against the five criteria above. Score 1–5 on each.
 
-### Step 4 — Offer
+### Step 5 — Offer
 - Offers sent on a rolling basis — do not wait to fill all spots before sending offers
 - Include: stipend amount, start date, expectations, and a link to this repo
 - Confirm acceptance within 5 business days
