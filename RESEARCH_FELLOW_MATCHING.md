@@ -86,9 +86,44 @@ Every fellow must complete the following by **August 10, 2026**:
 | Master Tracker | `anote_fellowship_tracker.xlsx` in repo |
 | Code Examples | `researchcode/` in repo (RAG, Classification, Q&A, Object Detection) |
 | Reference Slides | `researchpresentations/` in repo |
-| arXiv Submission | [arxiv.org/submit](https://arxiv.org) |
-| AAAI 2027 | TBD — confirm submission deadline |
-| SIGIR 2027 | TBD — confirm submission deadline |
+| arXiv Submission | [arxiv.org](https://arxiv.org) — submit anytime |
+| Anote Slides Template | [Google Slides](https://docs.google.com/presentation/d/1x4E2dwBnDImHjMOMaI8lLWcRNjVWlnsYEJ3WOwlhKuA/edit?usp=sharing) |
+
+---
+
+## Target Conferences & Submission Deadlines
+
+Fellows should aim to submit their paper to **arXiv** plus at least one of the venues below.
+Deadlines marked **~** are estimated from historical patterns — always verify on the official site.
+
+### Actionable During or Right After the Fellowship
+
+| Conference | Full Name | Submission Deadline | Conference Date | Notes |
+|------------|-----------|---------------------|-----------------|-------|
+| **AAAI 2027** | AAAI Conference on Artificial Intelligence | **~Aug 2026** (TBC) | Feb 2027 | Primary target — deadline falls during the fellowship. Abstract typically due ~1 week before full paper. [aaai.org](https://aaai.org) |
+| **NeurIPS 2026 Workshops** | NeurIPS Workshops | **~Aug–Sep 2026** (TBC) | Dec 2026 | Workshop deadlines announced after main track. Lower bar than main track; great for early-stage work. [neurips.cc](https://neurips.cc) |
+| **ICLR 2027** | International Conference on Learning Representations | **~Sep–Oct 2026** (TBC) | Apr/May 2027 | Deadlines open right after fellowship ends. [iclr.cc](https://iclr.cc) |
+| **WSDM 2027** | ACM Web Search and Data Mining | **~Aug 2026** (TBC) | Mar 2027 | Good fit for retrieval and RAG papers. [wsdm-conference.org](https://www.wsdm-conference.org) |
+
+### Already Closed for 2026 (Plan Ahead for 2027 Cycles)
+
+| Conference | Deadline (2026) | Conference Date | Notes |
+|------------|----------------|-----------------|-------|
+| **NeurIPS 2026** | Abstract May 4 / Paper May 6, 2026 | Dec 2026 | Main track closed; target workshops instead. [neurips.cc/Conferences/2026](https://neurips.cc/Conferences/2026) |
+| **ICML 2026** | Jan 28, 2026 | Jul 6–11, 2026, Hamburg | Closed. Target ICML 2027 (~Jan 2027). [icml.cc](https://icml.cc) |
+| **EMNLP 2026** | ARR May 2026 cycle | Oct 24–29, 2026, Budapest | Uses ACL Rolling Review — next ARR cycles still open for EMNLP 2027. [2026.emnlp.org](https://2026.emnlp.org) |
+| **ACL 2026** | Jan 5, 2026 | Aug 2026 | Closed. Target ACL 2027 (~Jan 2027) via ARR. [aclrollingreview.org](https://aclrollingreview.org) |
+
+### Rolling / Year-Round Submissions
+
+| Venue | Notes |
+|-------|-------|
+| **arXiv** | Submit anytime. All fellows should post a preprint here. [arxiv.org](https://arxiv.org) |
+| **ACL Rolling Review (ARR)** | Monthly submission cycles feeding into ACL, EMNLP, NAACL, EACL, and others. [aclrollingreview.org](https://aclrollingreview.org) |
+| **IEEE Access / Transactions** | Open-access journals; good for applied AI and annotation work. [ieee.org](https://www.ieee.org) |
+| **ACM Digital Library Journals** | TOIS, TALLIP — good for retrieval and NLP work. [dl.acm.org](https://dl.acm.org) |
+
+> **Tip:** Even if a paper isn't fully polished by Aug 10, an arXiv preprint + a submitted abstract establishes priority and demonstrates real output from the fellowship. Aim to at minimum have an arXiv draft live by the last day.
 
 ---
 
