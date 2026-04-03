@@ -45,6 +45,10 @@ Every fellow is responsible for three core deliverables by August 10:
 | [PRODUCT_FELLOW_MATCHING.md](./PRODUCT_FELLOW_MATCHING.md) | All 10 Anote products with repo links, descriptions, and fellow assignment column |
 | [RESEARCH_FELLOW_MATCHING.md](./RESEARCH_FELLOW_MATCHING.md) | All 25 research paper tracks (active + backlog) with fellow assignment column, deliverable checklist, and conference deadline guide |
 | [PRODUCT_MANAGER.md](./PRODUCT_MANAGER.md) | Full scope of work for the Fellowship PM — standups, speaker pipeline, onboarding, fellow support, marketing, playbook, and budget |
+| [FELLOW_ROSTER.md](./FELLOW_ROSTER.md) | Fellow cohort roster — names, schools, research tracks, product assignments, GitHub handles, and access checklist |
+| [ONBOARDING_CHECKLIST.md](./ONBOARDING_CHECKLIST.md) | Step-by-step PM checklist for onboarding every fellow before June 1, including orientation agenda |
+| [STEERING_COMMITTEE.md](./STEERING_COMMITTEE.md) | Steering committee member list, responsibilities, engagement calendar, and paper-to-mentor assignments |
+| [RECRUITMENT.md](./RECRUITMENT.md) | Application criteria, scoring rubric, interview process, sourcing channels, and cohort size guidance |
 
 ---
 
