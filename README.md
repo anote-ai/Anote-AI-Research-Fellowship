@@ -52,6 +52,18 @@ Every fellow is responsible for three core deliverables by August 10:
 
 ---
 
+## Anote Alumni & Past Success
+
+The fellowship builds on a strong tradition of student researchers and engineers who have come through Anote. Many have gone on to roles at top AI companies, research labs, and PhD programs.
+
+Explore past Anote alumni, coffee chats, and where they've landed: **[community.anote.ai/community/coffeechats](https://community.anote.ai/community/coffeechats)**
+
+Past summer showcases that set the bar for what fellows can produce:
+- [Pale Blue Dot](https://anote.ai/palebluedot)
+- [Panacea](https://anote.ai/panacea)
+
+---
+
 ## Key Links
 
 | Resource | Link |
@@ -59,6 +71,7 @@ Every fellow is responsible for three core deliverables by August 10:
 | Anote Website | [anote.ai](https://anote.ai) |
 | Anote GitHub | [github.com/anote-ai](https://github.com/orgs/anote-ai/repositories) |
 | Research Repo | [anote-ai/Research](https://github.com/anote-ai/Research) |
+| Anote Community & Alumni | [community.anote.ai/community/coffeechats](https://community.anote.ai/community/coffeechats) |
 | Anote Slides Template | [Google Slides](https://docs.google.com/presentation/d/1x4E2dwBnDImHjMOMaI8lLWcRNjVWlnsYEJ3WOwlhKuA/edit?usp=sharing) |
 | Past Showcase — Pale Blue Dot | [anote.ai/palebluedot](https://anote.ai/palebluedot) |
 | Past Showcase — Panacea | [anote.ai/panacea](https://anote.ai/panacea) |
