@@ -13,7 +13,7 @@ Every fellow is expected to complete **three core deliverables** by the end of t
 | # | Deliverable | Description |
 |---|-------------|-------------|
 | 1 | **AI Research Paper** | Choose a topic from [Anote Research](https://github.com/anote-ai/Research) or propose your own. Publish to arXiv and submit to relevant journals/conferences. Research syncs are meant to support this work. |
-| 2 | **Final Presentation** | Present your summer's work (Aug 5). Format inspired by past Anote presentations ([Pale Blue Dot](https://anote.ai/palebluedot), [Panacea](https://anote.ai/panacea)). Use Moda or Gamma for formatting. Slides must follow the Anote theme — use the provided Google Slides template. |
+| 2 | **Final Presentation** | Present your summer's work (Aug 5). Format inspired by past Anote presentations ([Pale Blue Dot](https://anote.ai/palebluedot), [Panacea](https://anote.ai/panacea)). Use Moda or Gamma for formatting. Slides must follow the Anote theme — start from the [Anote Google Slides Template](https://docs.google.com/presentation/d/1x4E2dwBnDImHjMOMaI8lLWcRNjVWlnsYEJ3WOwlhKuA/edit?usp=sharing). |
 | 3 | **Product Ownership** | Take ownership of one Anote product. Use Claude Code or Codex to meaningfully improve it. Repos at [anote-ai on GitHub](https://github.com/orgs/anote-ai/repositories). Each fellow will be paired to a specific product. |
 
 > **Ad-hoc Projects:** Natan may loop specific fellows into customer engagements or go-to-market initiatives (e.g. proposals from the [GTM spreadsheet](https://docs.google.com/spreadsheets/d/1Yb3zE-xvDUHsfiRaR75ggmMmOmkkgiDhgJ3WaVtRp10/edit?usp=sharing)) on a case-by-case basis.
