@@ -71,7 +71,6 @@ Past summer showcases that set the bar for what fellows can produce:
 | Anote Website | [anote.ai](https://anote.ai) |
 | Anote GitHub | [github.com/anote-ai](https://github.com/orgs/anote-ai/repositories) |
 | Research Repo | [anote-ai/Research](https://github.com/anote-ai/Research) |
-| Anote Community & Alumni | [community.anote.ai/community/coffeechats](https://community.anote.ai/community/coffeechats) |
 | Anote Slides Template | [Google Slides](https://docs.google.com/presentation/d/1x4E2dwBnDImHjMOMaI8lLWcRNjVWlnsYEJ3WOwlhKuA/edit?usp=sharing) |
 | GTM Proposals | [Google Sheets](https://docs.google.com/spreadsheets/d/1Yb3zE-xvDUHsfiRaR75ggmMmOmkkgiDhgJ3WaVtRp10/edit?usp=sharing) |
 
