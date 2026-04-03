@@ -49,6 +49,7 @@ Every fellow is responsible for three core deliverables by August 10:
 | [ONBOARDING_CHECKLIST.md](./ONBOARDING_CHECKLIST.md) | Step-by-step PM checklist for onboarding every fellow before June 1, including orientation agenda |
 | [STEERING_COMMITTEE.md](./STEERING_COMMITTEE.md) | Steering committee member list, responsibilities, engagement calendar, and paper-to-mentor assignments |
 | [RECRUITMENT.md](./RECRUITMENT.md) | Application criteria, scoring rubric, interview process, sourcing channels, and cohort size guidance |
+| [WELCOME_PACKET.pdf](./WELCOME_PACKET.pdf) | Welcome packet with all the information about Anote's AI Research Fellowship. |
 
 ---
 
