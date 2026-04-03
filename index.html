@@ -1,0 +1,1674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anote AI Research Fellowship — Summer 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary:      #5B50F0;
+      --primary-dark: #3D35C8;
+      --accent:       #06C8D8;
+      --accent2:      #9B72F8;
+      --accent3:      #F472B6;
+      --bg:           #070710;
+      --bg2:          #0D0D1A;
+      --bg3:          #12122A;
+      --card:         #13131E;
+      --card-hover:   #1A1A2E;
+      --border:       #252540;
+      --border-light: #32325A;
+      --text:         #EFEFFA;
+      --muted:        #8080A8;
+      --highlight:    #C4B5FD;
+      --green:        #34D399;
+      --yellow:       #FCD34D;
+      --slate:        #94A3B8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── SCROLL PROGRESS BAR ── */
+    #scroll-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--primary), var(--accent), var(--accent2));
+      z-index: 9999;
+      transition: width 0.1s linear;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 500;
+      padding: 0 2rem;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    nav.scrolled {
+      background: rgba(7, 7, 16, 0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+      flex-shrink: 0;
+    }
+    .logo-icon {
+      width: 32px; height: 32px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, var(--primary), var(--accent2));
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: 16px; color: #fff;
+      box-shadow: 0 4px 16px rgba(91,80,240,0.5);
+      flex-shrink: 0;
+    }
+    .nav-logo .brand {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .nav-right { display: flex; align-items: center; gap: 2rem; }
+    .nav-links { display: flex; gap: 1.6rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: color 0.2s;
+      letter-spacing: 0.01em;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      background: linear-gradient(135deg, var(--primary), var(--accent2));
+      color: #fff !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+      box-shadow: 0 4px 16px rgba(91,80,240,0.35);
+      white-space: nowrap;
+    }
+    .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    /* hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--text); border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 68px; left: 0; right: 0;
+      background: rgba(7, 7, 16, 0.97);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 2rem;
+      flex-direction: column;
+      gap: 1rem;
+      z-index: 400;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: var(--text); text-decoration: none; font-size: 1rem; font-weight: 500;
+      padding: 0.4rem 0; border-bottom: 1px solid var(--border);
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+
+    @media(max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 6rem;
+      overflow: hidden;
+    }
+
+    /* Animated gradient mesh blobs */
+    .hero-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.25;
+      pointer-events: none;
+    }
+    .hero-blob-1 {
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, var(--primary), transparent 70%);
+      top: -200px; left: -150px;
+      animation: blob-move-1 18s ease-in-out infinite alternate;
+    }
+    .hero-blob-2 {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, var(--accent2), transparent 70%);
+      top: -100px; right: -150px;
+      animation: blob-move-2 22s ease-in-out infinite alternate;
+    }
+    .hero-blob-3 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, var(--accent), transparent 70%);
+      bottom: 0; left: 40%;
+      animation: blob-move-3 16s ease-in-out infinite alternate;
+    }
+    @keyframes blob-move-1 { 0%{transform:translate(0,0) scale(1);} 100%{transform:translate(80px, 60px) scale(1.15);} }
+    @keyframes blob-move-2 { 0%{transform:translate(0,0) scale(1);} 100%{transform:translate(-60px, 80px) scale(1.1);} }
+    @keyframes blob-move-3 { 0%{transform:translate(0,0) scale(1);} 100%{transform:translate(-40px, -50px) scale(1.2);} }
+
+    /* Grid overlay */
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(91,80,240,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(91,80,240,0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
+      pointer-events: none;
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 860px; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(91,80,240,0.12);
+      border: 1px solid rgba(91,80,240,0.35);
+      border-radius: 999px;
+      padding: 0.35rem 1.1rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--highlight);
+      margin-bottom: 1.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      animation: fade-up 0.6s ease both;
+    }
+    .badge-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 6px var(--accent);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(0.7); }
+    }
+
+    .hero h1 {
+      font-size: clamp(2.6rem, 7vw, 4.8rem);
+      font-weight: 900;
+      line-height: 1.08;
+      margin-bottom: 1.4rem;
+      letter-spacing: -0.02em;
+      animation: fade-up 0.6s 0.1s ease both;
+    }
+    .hero h1 .grad {
+      background: linear-gradient(135deg, #818CF8 0%, #06C8D8 45%, #9B72F8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      background-size: 200% 200%;
+      animation: grad-shift 6s ease infinite;
+    }
+    @keyframes grad-shift {
+      0%, 100% { background-position: 0% 50%; }
+      50%       { background-position: 100% 50%; }
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--muted);
+      max-width: 640px;
+      margin: 0 auto 2.8rem;
+      line-height: 1.7;
+      animation: fade-up 0.6s 0.2s ease both;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fade-up 0.6s 0.3s ease both;
+    }
+
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.82rem 2rem;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.25s;
+      letter-spacing: 0.01em;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--accent2));
+      color: #fff;
+      box-shadow: 0 6px 28px rgba(91,80,240,0.45);
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(91,80,240,0.6);
+    }
+    .btn-secondary {
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      border: 1px solid var(--border-light);
+      backdrop-filter: blur(8px);
+    }
+    .btn-secondary:hover {
+      border-color: var(--primary);
+      color: var(--highlight);
+      background: rgba(91,80,240,0.08);
+    }
+
+    /* Floating Apply button */
+    #float-apply {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 300;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.3s, transform 0.3s;
+      pointer-events: none;
+    }
+    #float-apply.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    #float-apply a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--primary), var(--accent2));
+      color: #fff;
+      padding: 0.7rem 1.4rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      box-shadow: 0 8px 32px rgba(91,80,240,0.5);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    #float-apply a:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(91,80,240,0.65); }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--bg2);
+    }
+    .stat-item {
+      flex: 1;
+      min-width: 130px;
+      text-align: center;
+      padding: 1.6rem 1rem;
+      border-right: 1px solid var(--border);
+      position: relative;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-item::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 20%; right: 20%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .stat-item:hover::after { opacity: 1; }
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--accent), var(--primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.02em;
+    }
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-top: 4px;
+      font-weight: 600;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem 2rem; }
+    .container { max-width: 1120px; margin: 0 auto; }
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin-bottom: 0.7rem;
+    }
+    .section-tag::before {
+      content: '';
+      display: inline-block;
+      width: 16px; height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+    .section-title {
+      font-size: clamp(2rem, 4.5vw, 2.8rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+    .section-sub {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 600px;
+      margin-bottom: 3.5rem;
+      line-height: 1.7;
+    }
+
+    /* Reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    @media(max-width: 720px) { .about-grid { grid-template-columns: 1fr; } }
+
+    .about-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .about-card:hover {
+      border-color: var(--border-light);
+      background: var(--card-hover);
+    }
+    .about-card-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+    .about-card-icon.indigo { background: rgba(91,80,240,0.15); }
+    .about-card-icon.cyan   { background: rgba(6,200,216,0.15); }
+    .about-card-icon.purple { background: rgba(155,114,248,0.15); }
+    .about-card-icon.pink   { background: rgba(244,114,182,0.15); }
+    .about-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.7rem;
+      color: var(--text);
+    }
+    .about-card p, .about-card li {
+      color: var(--muted);
+      font-size: 0.93rem;
+      line-height: 1.7;
+    }
+    .about-card ul { padding-left: 1.2rem; }
+    .about-card li { margin-bottom: 0.35rem; }
+
+    /* Past showcase chips */
+    .showcase-chips { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 0.8rem; }
+    .showcase-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.28rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid rgba(6,200,216,0.35);
+      color: var(--accent);
+      text-decoration: none;
+      background: rgba(6,200,216,0.07);
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .showcase-chip:hover { background: rgba(6,200,216,0.15); border-color: var(--accent); }
+
+    /* ── DELIVERABLES ── */
+    .deliverables-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    @media(max-width: 768px) { .deliverables-grid { grid-template-columns: 1fr; } }
+
+    .del-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .del-card:hover { border-color: var(--primary); transform: translateY(-6px); }
+    .del-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--accent), var(--accent2));
+    }
+    .del-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% -20%, rgba(91,80,240,0.07), transparent 70%);
+      pointer-events: none;
+    }
+    .del-number {
+      position: absolute;
+      top: 1.5rem; right: 1.5rem;
+      font-size: 3rem;
+      font-weight: 900;
+      color: rgba(91,80,240,0.08);
+      line-height: 1;
+    }
+    .del-icon {
+      width: 48px; height: 48px;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      background: rgba(91,80,240,0.12);
+      margin-bottom: 1rem;
+    }
+    .del-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+    .del-card p { color: var(--muted); font-size: 0.92rem; line-height: 1.65; }
+    .del-card strong { color: var(--text); }
+
+    /* ── RESEARCH TRACKS ── */
+    .tracks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 1.2rem;
+    }
+    .track-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      transition: border-color 0.25s, background 0.25s, transform 0.25s;
+      cursor: default;
+    }
+    .track-card:hover {
+      border-color: var(--accent2);
+      background: var(--card-hover);
+      transform: translateY(-3px);
+    }
+    .track-id {
+      background: linear-gradient(135deg, var(--primary), var(--accent2));
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 0.28rem 0.65rem;
+      border-radius: 8px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: 3px;
+      letter-spacing: 0.04em;
+    }
+    .track-info h4 {
+      font-size: 0.97rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+    .track-info p {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .track-domain {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--accent);
+      background: rgba(6,200,216,0.1);
+      border: 1px solid rgba(6,200,216,0.25);
+      border-radius: 999px;
+      padding: 0.12rem 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .backlog-note {
+      margin-top: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.9rem 1.4rem;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    .backlog-note strong { color: var(--text); }
+
+    /* ── PRODUCTS ── */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.2rem;
+    }
+    .product-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.4rem 1.5rem;
+      transition: border-color 0.25s, transform 0.25s;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .product-card:hover { border-color: var(--primary); transform: translateY(-4px); }
+    .product-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.5rem; }
+    .product-name { font-size: 0.95rem; font-weight: 700; line-height: 1.35; }
+    .status-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .status-production { background: rgba(52,211,153,0.12); color: var(--green); border: 1px solid rgba(52,211,153,0.25); }
+    .status-poc        { background: rgba(252,211,77,0.12); color: var(--yellow); border: 1px solid rgba(252,211,77,0.25); }
+    .status-dev        { background: rgba(148,163,184,0.1); color: var(--slate); border: 1px solid rgba(148,163,184,0.2); }
+    .product-url {
+      font-size: 0.76rem;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    /* ── TIMELINE ── */
+    @media(max-width: 900px) { .timeline-cols { grid-template-columns: 1fr !important; } }
+
+    .timeline { position: relative; padding-left: 2.2rem; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0.55rem; top: 8px; bottom: 8px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--primary) 0%, var(--accent) 50%, rgba(6,200,216,0.1) 100%);
+      border-radius: 2px;
+    }
+    .tl-item {
+      position: relative;
+      margin-bottom: 2.2rem;
+    }
+    .tl-item:last-child { margin-bottom: 0; }
+    .tl-dot {
+      position: absolute;
+      left: -1.8rem;
+      top: 0.3rem;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2px solid var(--primary);
+      box-shadow: 0 0 0 4px rgba(91,80,240,0.2);
+      transition: transform 0.2s;
+    }
+    .tl-item:hover .tl-dot {
+      transform: scale(1.3);
+      box-shadow: 0 0 0 6px rgba(91,80,240,0.2);
+    }
+    .tl-dot.highlight { background: var(--primary); }
+    .tl-date {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.15rem;
+    }
+    .tl-title { font-size: 0.97rem; font-weight: 700; margin-bottom: 0.2rem; }
+    .tl-desc  { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+    .recurring-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .recurring-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1rem 1.4rem;
+      transition: border-color 0.2s;
+    }
+    .recurring-row:hover { border-color: var(--border-light); }
+    .rec-day {
+      min-width: 70px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .rec-bar {
+      width: 3px;
+      height: 36px;
+      border-radius: 2px;
+      background: linear-gradient(to bottom, var(--primary), var(--accent));
+      flex-shrink: 0;
+    }
+    .rec-text h4 { font-size: 0.93rem; font-weight: 700; }
+    .rec-text p  { font-size: 0.82rem; color: var(--muted); }
+
+    .conf-chips { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 0.8rem; }
+    .conf-chip {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.22rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-light);
+      color: var(--muted);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .conf-chip:hover { border-color: var(--primary); color: var(--highlight); }
+
+    /* ── BENEFITS ── */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem;
+    }
+    .benefit-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.6rem;
+      text-align: center;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .benefit-card:hover { border-color: var(--border-light); transform: translateY(-4px); }
+    .benefit-icon-wrap {
+      width: 52px; height: 52px;
+      border-radius: 15px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      margin: 0 auto 1rem;
+      background: linear-gradient(135deg, rgba(91,80,240,0.15), rgba(6,200,216,0.1));
+      border: 1px solid rgba(91,80,240,0.2);
+    }
+    .benefit-card h4 { font-size: 0.97rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .benefit-card p  { font-size: 0.84rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── FAQ ── */
+    .faq-list { display: flex; flex-direction: column; gap: 0.8rem; max-width: 760px; }
+    .faq-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .faq-q {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 1.4rem;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.97rem;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      gap: 1rem;
+    }
+    .faq-q:hover { color: var(--highlight); }
+    .faq-arrow {
+      font-size: 0.75rem;
+      flex-shrink: 0;
+      color: var(--muted);
+      transition: transform 0.3s;
+    }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); color: var(--accent); }
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .faq-item.open .faq-a {
+      max-height: 300px;
+      padding: 0 1.4rem 1.2rem;
+    }
+
+    /* ── APPLY CTA ── */
+    .cta-section {
+      text-align: center;
+      padding: 7rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 70% at 50% 110%, rgba(91,80,240,0.22) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 50% at 80% 20%, rgba(155,114,248,0.1) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .cta-section h2 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+    .cta-section p {
+      color: var(--muted);
+      font-size: 1.1rem;
+      max-width: 560px;
+      margin: 0 auto 3rem;
+      line-height: 1.7;
+    }
+    .cta-details {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+    }
+    .cta-detail-item { text-align: center; }
+    .cta-detail-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.3rem;
+      font-weight: 600;
+    }
+    .cta-detail-value { font-size: 1.05rem; font-weight: 700; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      background: var(--bg2);
+      padding: 2.5rem 2rem;
+    }
+    .footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .footer-links { display: flex; gap: 1.4rem; flex-wrap: wrap; }
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--accent); }
+    footer p.copy { color: var(--muted); font-size: 0.82rem; }
+
+    /* ── UTILITIES ── */
+    .alt-bg { background: var(--bg2); }
+    .divider {
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+
+    @media(max-width: 600px) {
+      section { padding: 4rem 1.2rem; }
+      .cta-details { gap: 1.5rem; }
+      .timeline-right-col { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── SCROLL PROGRESS ── -->
+<div id="scroll-bar"></div>
+
+<!-- ── FLOATING APPLY ── -->
+<div id="float-apply">
+  <a href="https://anote.ai/airesearchfellowship" target="_blank">
+    ✦ Apply Now
+  </a>
+</div>
+
+<!-- ── NAV ── -->
+<nav id="navbar">
+  <a class="nav-logo" href="#">
+    <div class="logo-icon">A</div>
+    <span class="brand">Anote</span>&nbsp;Research Fellowship
+  </a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#deliverables">Deliverables</a></li>
+      <li><a href="#tracks">Research</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#timeline">Timeline</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a href="https://anote.ai/airesearchfellowship" target="_blank" class="nav-cta">Apply Now →</a>
+  </div>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#deliverables" onclick="closeMenu()">Deliverables</a>
+  <a href="#tracks" onclick="closeMenu()">Research Tracks</a>
+  <a href="#products" onclick="closeMenu()">Products</a>
+  <a href="#timeline" onclick="closeMenu()">Timeline</a>
+  <a href="#faq" onclick="closeMenu()">FAQ</a>
+  <a href="https://anote.ai/airesearchfellowship" target="_blank">Apply Now →</a>
+</div>
+
+<!-- ── HERO ── -->
+<header class="hero">
+  <div class="hero-blob hero-blob-1"></div>
+  <div class="hero-blob hero-blob-2"></div>
+  <div class="hero-blob hero-blob-3"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      Now Accepting Applications — Summer 2026
+    </div>
+    <h1>
+      The <span class="grad">Anote AI</span><br/>Research Fellowship
+    </h1>
+    <p>
+      A 10-week intensive fellowship for student researchers and engineers to
+      publish real AI research, ship product improvements, and join a community
+      of the next generation of AI builders — in New York City.
+    </p>
+    <div class="hero-cta">
+      <a href="https://anote.ai/airesearchfellowship" target="_blank" class="btn btn-primary">
+        Apply Now <span>→</span>
+      </a>
+      <a href="#about" class="btn btn-secondary">
+        Learn More
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ── STATS BAR ── -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-value" data-count="10">10</div>
+    <div class="stat-label">Weeks</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value" data-count="15">15</div>
+    <div class="stat-label">Fellows</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value" data-count="7">7</div>
+    <div class="stat-label">Research Tracks</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value" data-count="10">10</div>
+    <div class="stat-label">Products</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value" data-count="9">9</div>
+    <div class="stat-label">Expert Talks</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-value">NYC</div>
+    <div class="stat-label">Based</div>
+  </div>
+</div>
+
+<!-- ── ABOUT ── -->
+<section id="about">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">About the Program</div>
+      <h2 class="section-title">Real Research. Real Products.<br/>Real Impact.</h2>
+      <p class="section-sub">
+        The Anote AI Research Fellowship is a 10-week summer program running
+        <strong>June 1 – August 10, 2026</strong>, in New York City and virtually.
+        Fellows publish AI papers targeting top conferences and directly improve
+        Anote's products using cutting-edge AI tools.
+      </p>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-card reveal reveal-delay-1">
+        <div class="about-card-icon indigo">🏢</div>
+        <h3>About Anote</h3>
+        <p>
+          Anote is an applied AI research company based in NYC that builds AI technology
+          for high-quality datasets and evaluations — serving enterprises, federal clients,
+          and leading model providers. Our products span annotation, RAG, synthetic data,
+          and autonomous intelligence.
+        </p>
+      </div>
+      <div class="about-card reveal reveal-delay-2">
+        <div class="about-card-icon cyan">📍</div>
+        <h3>Format &amp; Location</h3>
+        <ul>
+          <li>In-person every <strong>Friday at WeWork NYC</strong></li>
+          <li>Virtual collaboration throughout the week</li>
+          <li>Weekly research &amp; product standups (Tue/Thu)</li>
+          <li>Friday Fellowship Talks with guest AI experts</li>
+          <li>Midpoint 1:1s in July with program director Natan</li>
+          <li>Final Presentations on August 5 — recorded &amp; published</li>
+        </ul>
+      </div>
+      <div class="about-card reveal reveal-delay-3">
+        <div class="about-card-icon purple">🎯</div>
+        <h3>Who Should Apply</h3>
+        <ul>
+          <li>Undergraduate juniors/seniors in CS, AI, ML, or Statistics</li>
+          <li>Master's or early PhD students</li>
+          <li>Strong research aptitude and engineering ability</li>
+          <li>Self-directed, strong communicators</li>
+          <li>Aligned with Anote's research agenda</li>
+          <li>Available for the full 10 weeks</li>
+        </ul>
+      </div>
+      <div class="about-card reveal reveal-delay-4">
+        <div class="about-card-icon pink">📚</div>
+        <h3>Past Showcases</h3>
+        <p>
+          Anote has a track record of publishing AI research and shipping real products.
+          Check out past fellow projects that set the bar for what fellows can produce:
+        </p>
+        <div class="showcase-chips">
+          <a href="https://anote.ai/palebluedot" target="_blank" class="showcase-chip">Pale Blue Dot →</a>
+          <a href="https://anote.ai/panacea" target="_blank" class="showcase-chip">Panacea →</a>
+          <a href="https://community.anote.ai/community/coffeechats" target="_blank" class="showcase-chip">Alumni Network →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── DELIVERABLES ── -->
+<section id="deliverables" class="alt-bg">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">Core Deliverables</div>
+      <h2 class="section-title">Three Things Every Fellow Ships</h2>
+      <p class="section-sub">By August 10, every fellow will have published research, presented publicly, and shipped a product improvement.</p>
+    </div>
+
+    <div class="deliverables-grid">
+      <div class="del-card reveal reveal-delay-1">
+        <div class="del-number">01</div>
+        <div class="del-icon">📄</div>
+        <h3>AI Research Paper</h3>
+        <p>
+          Publish an original AI research paper to <strong>arXiv</strong> and submit to a top-tier
+          conference — the primary target is <strong>AAAI 2027</strong>. Guided by weekly
+          milestones from topic selection through final submission, with Steering Committee review.
+        </p>
+      </div>
+      <div class="del-card reveal reveal-delay-2">
+        <div class="del-number">02</div>
+        <div class="del-icon">🎤</div>
+        <h3>Final Presentation</h3>
+        <p>
+          Present your work at the <strong>Final Presentations on August 5</strong> (5–10 PM EST).
+          Each presentation is recorded and published to Anote's YouTube channel and website —
+          a lasting portfolio piece using the <strong>Anote Slides Template</strong>.
+        </p>
+      </div>
+      <div class="del-card reveal reveal-delay-3">
+        <div class="del-number">03</div>
+        <div class="del-icon">🛠️</div>
+        <h3>Product Contribution</h3>
+        <p>
+          Own one of Anote's 10 products and ship a meaningful improvement using
+          <strong>Claude Code or Codex</strong>. Code gets merged into production repos on
+          the Anote GitHub organization — not toy projects.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── RESEARCH TRACKS ── -->
+<section id="tracks">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">Research Tracks</div>
+      <h2 class="section-title">Active Research Tracks — Summer 2026</h2>
+      <p class="section-sub">Seven priority tracks targeting AAAI 2027 and SIGIR 2027. Fellows are matched based on interests and background.</p>
+    </div>
+
+    <div class="tracks-grid">
+      <div class="track-card reveal reveal-delay-1">
+        <span class="track-id">T1a</span>
+        <div class="track-info">
+          <h4>AgenticEval</h4>
+          <p>Does BFCL rank predict enterprise trustworthiness for agentic systems?</p>
+          <span class="track-domain">Agent Evaluation</span>
+        </div>
+      </div>
+      <div class="track-card reveal reveal-delay-2">
+        <span class="track-id">T1b</span>
+        <div class="track-info">
+          <h4>EnterpriseSynth</h4>
+          <p>Can we generate agentic SFT data from API schemas without live execution?</p>
+          <span class="track-domain">Synthetic Data / Agents</span>
+        </div>
+      </div>
+      <div class="track-card reveal reveal-delay-3">
+        <span class="track-id">T2a</span>
+        <div class="track-info">
+          <h4>AnnotateBench</h4>
+          <p>How much labeled data do annotation strategies need across NLP tasks?</p>
+          <span class="track-domain">Data Annotation</span>
+        </div>
+      </div>
+      <div class="track-card reveal reveal-delay-1">
+        <span class="track-id">T2b</span>
+        <div class="track-info">
+          <h4>AnnotateROI</h4>
+          <p>How should enterprises measure annotation ROI quantitatively?</p>
+          <span class="track-domain">Annotation / Business</span>
+        </div>
+      </div>
+      <div class="track-card reveal reveal-delay-2">
+        <span class="track-id">T3</span>
+        <div class="track-info">
+          <h4>Human-AI Teaming</h4>
+          <p>How does human-AI collaboration protocol affect downstream model performance?</p>
+          <span class="track-domain">Human-AI Interaction</span>
+        </div>
+      </div>
+      <div class="track-card reveal reveal-delay-3">
+        <span class="track-id">T4</span>
+        <div class="track-info">
+          <h4>RAG Failure Propagation</h4>
+          <p>How do retrieval errors propagate through agentic RAG pipelines?</p>
+          <span class="track-domain">RAG / Agents</span>
+        </div>
+      </div>
+      <div class="track-card reveal reveal-delay-1">
+        <span class="track-id">T5</span>
+        <div class="track-info">
+          <h4>RetrievalBench</h4>
+          <p>Which retrieval strategy combination generalizes best across enterprise domains?</p>
+          <span class="track-domain">Retrieval / RAG</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="backlog-note reveal">
+      ✦ &nbsp;<span><strong>18 additional backlog tracks</strong> covering fine-tuning, multi-hop RAG, privacy, agent memory, hallucination mitigation, and more — fellows may also propose their own.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRODUCTS ── -->
+<section id="products" class="alt-bg">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">Product Assignments</div>
+      <h2 class="section-title">10 Anote Products — One Per Fellow</h2>
+      <p class="section-sub">Each fellow owns one product for the summer and ships at least one merged improvement using Claude Code or Codex.</p>
+    </div>
+
+    <div class="products-grid">
+      <div class="product-card reveal reveal-delay-1">
+        <div class="product-header">
+          <span class="product-name">MLOps Platform (OpenAnote)</span>
+          <span class="status-badge status-production">Production</span>
+        </div>
+        <div class="product-url">dashboard.anote.ai</div>
+      </div>
+      <div class="product-card reveal reveal-delay-2">
+        <div class="product-header">
+          <span class="product-name">Panacea (Autonomous Intelligence)</span>
+          <span class="status-badge status-production">Production</span>
+        </div>
+        <div class="product-url">chat.anote.ai</div>
+      </div>
+      <div class="product-card reveal reveal-delay-3">
+        <div class="product-header">
+          <span class="product-name">Armor (Community)</span>
+          <span class="status-badge status-production">Production</span>
+        </div>
+        <div class="product-url">community.anote.ai</div>
+      </div>
+      <div class="product-card reveal reveal-delay-1">
+        <div class="product-header">
+          <span class="product-name">AI Assisted Coding Tool</span>
+          <span class="status-badge status-production">Production</span>
+        </div>
+      </div>
+      <div class="product-card reveal reveal-delay-2">
+        <div class="product-header">
+          <span class="product-name">Model Leaderboard</span>
+          <span class="status-badge status-poc">POC</span>
+        </div>
+        <div class="product-url">anote.ai/leaderboard</div>
+      </div>
+      <div class="product-card reveal reveal-delay-3">
+        <div class="product-header">
+          <span class="product-name">Synthetic Data</span>
+          <span class="status-badge status-poc">POC</span>
+        </div>
+        <div class="product-url">anote.ai/syntheticdata</div>
+      </div>
+      <div class="product-card reveal reveal-delay-1">
+        <div class="product-header">
+          <span class="product-name">PrivateGPT Desktop</span>
+          <span class="status-badge status-poc">POC</span>
+        </div>
+        <div class="product-url">anote.ai/downloadprivategpt</div>
+      </div>
+      <div class="product-card reveal reveal-delay-2">
+        <div class="product-header">
+          <span class="product-name">Slackbot</span>
+          <span class="status-badge status-dev">In Development</span>
+        </div>
+      </div>
+      <div class="product-card reveal reveal-delay-3">
+        <div class="product-header">
+          <span class="product-name">AI RFPs</span>
+          <span class="status-badge status-dev">In Development</span>
+        </div>
+      </div>
+      <div class="product-card reveal reveal-delay-1">
+        <div class="product-header">
+          <span class="product-name">Upreach</span>
+          <span class="status-badge status-dev">In Development</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TIMELINE ── -->
+<section id="timeline">
+  <div class="container">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:3.5rem; align-items:start;" class="timeline-cols">
+
+      <!-- Key dates -->
+      <div>
+        <div class="reveal">
+          <div class="section-tag">Summer Schedule</div>
+          <h2 class="section-title">Key Dates &amp; Milestones</h2>
+          <p class="section-sub" style="margin-bottom:2.5rem;">A structured 10-week journey from orientation to final presentations, with clear milestones to keep research on track.</p>
+        </div>
+
+        <div class="timeline reveal">
+          <div class="tl-item">
+            <div class="tl-dot highlight"></div>
+            <div class="tl-date">Jun 1</div>
+            <div class="tl-title">Orientation Night</div>
+            <div class="tl-desc">6–8 PM EST — Welcome, program overview, tools walkthrough, fellow intros</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-date">Jun 6</div>
+            <div class="tl-title">First Friday Fellowship Talk</div>
+            <div class="tl-desc">Guest AI expert talk series begins — 9 talks over the summer</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-date">Jun 9</div>
+            <div class="tl-title">Research Topics Due</div>
+            <div class="tl-desc">All fellows confirm their research track and paper topic</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-date">Jun 23</div>
+            <div class="tl-title">Abstract &amp; Outline Draft</div>
+            <div class="tl-desc">First major paper milestone — abstract and structured outline submitted</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-date">Jul 1</div>
+            <div class="tl-title">Midpoint 1:1s with Natan</div>
+            <div class="tl-desc">5–10 PM EST — 20-minute slots for each fellow to review progress</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-date">Jul 14</div>
+            <div class="tl-title">Methodology &amp; Experiments</div>
+            <div class="tl-desc">Core research section complete with initial experimental results</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-date">Jul 21</div>
+            <div class="tl-title">Full Paper Draft</div>
+            <div class="tl-desc">Complete paper draft submitted for Steering Committee review</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-date">Jul 28</div>
+            <div class="tl-title">Revision Round</div>
+            <div class="tl-desc">Incorporate feedback, polish writing and experiments</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot highlight"></div>
+            <div class="tl-date">Aug 5</div>
+            <div class="tl-title">🎉 Final Presentations</div>
+            <div class="tl-desc">5–10 PM EST — All fellows present at WeWork NYC, recorded for YouTube</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot highlight"></div>
+            <div class="tl-date">Aug 7</div>
+            <div class="tl-title">🥳 Anote Summer Party</div>
+            <div class="tl-desc">7–10 PM — NYC celebration for fellows, team, and guests</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot highlight"></div>
+            <div class="tl-date">Aug 10</div>
+            <div class="tl-title">Last Day — Submit Everything</div>
+            <div class="tl-desc">arXiv upload, conference submission, all code and docs wrapped up</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recurring + Conferences -->
+      <div class="timeline-right-col">
+        <div class="reveal">
+          <div class="section-tag">Weekly Rhythm</div>
+          <h2 class="section-title" style="font-size:1.9rem;">Recurring Events</h2>
+          <p class="section-sub" style="margin-bottom:2rem;">Consistent weekly structure keeps everyone aligned and unblocked.</p>
+        </div>
+
+        <div class="recurring-grid reveal">
+          <div class="recurring-row">
+            <div class="rec-day">Every Tue</div>
+            <div class="rec-bar"></div>
+            <div class="rec-text">
+              <h4>Research Standup</h4>
+              <p>5–5:30 PM EST — All-hands research sync</p>
+            </div>
+          </div>
+          <div class="recurring-row">
+            <div class="rec-day">Every Thu</div>
+            <div class="rec-bar"></div>
+            <div class="rec-text">
+              <h4>Product Standup</h4>
+              <p>5–5:30 PM EST — Product milestone check-ins</p>
+            </div>
+          </div>
+          <div class="recurring-row">
+            <div class="rec-day">Every Fri</div>
+            <div class="rec-bar"></div>
+            <div class="rec-text">
+              <h4>Fellowship Talks</h4>
+              <p>1–2 PM EST at WeWork NYC — Guest AI expert talks (recorded)</p>
+            </div>
+          </div>
+          <div class="recurring-row">
+            <div class="rec-day">Monthly</div>
+            <div class="rec-bar"></div>
+            <div class="rec-text">
+              <h4>Steering Committee Review</h4>
+              <p>Academic oversight — paper feedback, research direction</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:2.5rem;" class="reveal">
+          <div class="section-tag">Target Conferences</div>
+          <h3 style="font-size:1.2rem; font-weight:700; margin-bottom:1rem;">Publishing Goals</h3>
+          <div class="conf-chips">
+            <span class="conf-chip">AAAI 2027 (primary)</span>
+            <span class="conf-chip">NeurIPS 2026 Workshops</span>
+            <span class="conf-chip">ICLR 2027</span>
+            <span class="conf-chip">WSDM 2027</span>
+            <span class="conf-chip">ACL Rolling Review</span>
+            <span class="conf-chip">SIGIR 2027</span>
+            <span class="conf-chip">arXiv (all fellows)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BENEFITS ── -->
+<section class="alt-bg">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">Fellow Benefits</div>
+      <h2 class="section-title">What You Get</h2>
+      <p class="section-sub">Everything you need to do great research and launch your AI career.</p>
+    </div>
+
+    <div class="benefits-grid">
+      <div class="benefit-card reveal reveal-delay-1">
+        <div class="benefit-icon-wrap">💰</div>
+        <h4>Stipend</h4>
+        <p>Competitive stipend for the full 10-week program</p>
+      </div>
+      <div class="benefit-card reveal reveal-delay-2">
+        <div class="benefit-icon-wrap">🤖</div>
+        <h4>Claude Code &amp; Codex</h4>
+        <p>Full access to Anthropic's Claude Code and OpenAI Codex for product work</p>
+      </div>
+      <div class="benefit-card reveal reveal-delay-3">
+        <div class="benefit-icon-wrap">📰</div>
+        <h4>Published Paper</h4>
+        <p>Your research published to arXiv and submitted to a top AI conference</p>
+      </div>
+      <div class="benefit-card reveal reveal-delay-4">
+        <div class="benefit-icon-wrap">🎥</div>
+        <h4>YouTube Presentation</h4>
+        <p>Recorded final presentation on Anote's YouTube — a lasting portfolio piece</p>
+      </div>
+      <div class="benefit-card reveal reveal-delay-1">
+        <div class="benefit-icon-wrap">🗽</div>
+        <h4>NYC Experience</h4>
+        <p>Weekly in-person sessions at WeWork NYC + summer party in the city</p>
+      </div>
+      <div class="benefit-card reveal reveal-delay-2">
+        <div class="benefit-icon-wrap">🧑‍🏫</div>
+        <h4>Expert Mentorship</h4>
+        <p>Direct mentorship from Natan and a Steering Committee of researchers</p>
+      </div>
+      <div class="benefit-card reveal reveal-delay-3">
+        <div class="benefit-icon-wrap">🌐</div>
+        <h4>Alumni Network</h4>
+        <p>Join the Anote alumni and AI community at community.anote.ai</p>
+      </div>
+      <div class="benefit-card reveal reveal-delay-4">
+        <div class="benefit-icon-wrap">🚀</div>
+        <h4>Real Product Impact</h4>
+        <p>Merged code into production repos — not toy projects</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section id="faq">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">FAQ</div>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-sub">Everything you need to know before applying.</p>
+    </div>
+
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Is this fully remote or in-person?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          The fellowship is hybrid. Fellows are expected to be in-person at WeWork NYC every Friday (1–2 PM for Fellowship Talks). All other sessions — Tuesday Research Standup, Thursday Product Standup, and weekly async work — are virtual. Remote-only fellows are welcome if they cannot attend Fridays.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do I need prior research experience?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          Prior research experience is a strong plus but not required. We look for strong curiosity, engineering ability, and willingness to learn. If you've done coursework in ML/AI and have built projects, that's a solid foundation. The program is structured to guide fellows through the full research process.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Can I propose my own research topic?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          Yes. Fellows can either choose from the 7 active tracks (T1a–T5), browse the 18 backlog tracks, or propose their own topic — as long as it aligns with Anote's research agenda (data annotation, RAG, agentic AI, synthetic data, human-AI teaming, etc.) and has a viable path to publication.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What is the stipend amount?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          Stipend details are discussed during the interview process and are competitive for a 10-week summer research fellowship. Please schedule a Calendly call with Natan for specifics.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What conferences are fellows targeting?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          The primary target conference is AAAI 2027. Fellows also target NeurIPS 2026 Workshops, ICLR 2027, WSDM 2027, SIGIR 2027, and ACL Rolling Review depending on their topic. All fellows will post to arXiv by August 10 regardless of conference submission status.
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How does product assignment work?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          Each of the 10 Anote products is assigned to one fellow based on interests, skills, and product needs. The matching is done before June 1 during onboarding. Fellows own the product for the full summer and are expected to ship at least one merged pull request using Claude Code or Codex.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── APPLY CTA ── -->
+<section id="apply" class="cta-section">
+  <div class="container">
+    <div class="section-tag" style="justify-content:center; display:flex;" class="reveal">Apply Now</div>
+    <h2 class="reveal">Ready to Do Real AI Research?</h2>
+    <p class="reveal">
+      Apply to the Anote AI Research Fellowship Summer 2026 cohort. We're looking
+      for curious, self-directed builders who want to publish research, ship products,
+      and grow as AI researchers.
+    </p>
+
+    <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-bottom:2rem;" class="reveal">
+      <a href="https://anote.ai/airesearchfellowship" target="_blank" class="btn btn-primary" style="font-size:1.05rem; padding:0.9rem 2.5rem;">
+        Apply at anote.ai/airesearchfellowship →
+      </a>
+      <a href="https://calendly.com/natanvidra/anote" target="_blank" class="btn btn-secondary">
+        Schedule an Interview
+      </a>
+    </div>
+
+    <div class="cta-details reveal">
+      <div class="cta-detail-item">
+        <div class="cta-detail-label">Program Dates</div>
+        <div class="cta-detail-value">June 1 – August 10, 2026</div>
+      </div>
+      <div class="cta-detail-item">
+        <div class="cta-detail-label">Location</div>
+        <div class="cta-detail-value">New York City + Virtual</div>
+      </div>
+      <div class="cta-detail-item">
+        <div class="cta-detail-label">Cohort Size</div>
+        <div class="cta-detail-value">Up to 15 Fellows</div>
+      </div>
+      <div class="cta-detail-item">
+        <div class="cta-detail-label">Format</div>
+        <div class="cta-detail-value">Hybrid (Fri in-person)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <a class="footer-brand" href="#">
+      <div class="logo-icon">A</div>
+      Anote AI Research Fellowship
+    </a>
+    <div class="footer-links">
+      <a href="https://anote.ai" target="_blank">anote.ai</a>
+      <a href="https://github.com/anote-ai" target="_blank">GitHub</a>
+      <a href="https://community.anote.ai" target="_blank">Community</a>
+      <a href="https://anote.ai/airesearchfellowship" target="_blank">Apply Now</a>
+    </div>
+    <p class="copy">© 2026 Anote AI. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  /* ── Scroll progress bar ── */
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    document.getElementById('scroll-bar').style.width = (scrollTop / docHeight * 100) + '%';
+  });
+
+  /* ── Nav scroll class ── */
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  /* ── Floating apply button ── */
+  const floatApply = document.getElementById('float-apply');
+  window.addEventListener('scroll', () => {
+    floatApply.classList.toggle('visible', window.scrollY > 600);
+  });
+
+  /* ── Reveal on scroll ── */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  /* ── FAQ accordion ── */
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  /* ── Hamburger menu ── */
+  function toggleMenu() {
+    document.getElementById('hamburger').classList.toggle('open');
+    document.getElementById('mobile-menu').classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('hamburger').classList.remove('open');
+    document.getElementById('mobile-menu').classList.remove('open');
+  }
+</script>
+</body>
+</html>
