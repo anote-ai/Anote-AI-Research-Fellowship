@@ -14,15 +14,15 @@ Each fellow is assigned to (or selects) one research paper topic. The goal is to
 
 Target conferences: **AAAI 2027**, **SIGIR 2027**
 
-| Track | Paper Title | Core Research Question | Domain | Target Venue | Assigned Fellow |
-|-------|-------------|----------------------|--------|--------------|-----------------|
-| **T1a** | AgenticEval | Does BFCL rank predict enterprise trustworthiness for agentic systems? | Agent Evaluation | AAAI 2027 | _TBD_ |
-| **T1b** | EnterpriseSynth | Can we generate agentic SFT data from API schemas without live execution? | Synthetic Data / Agents | AAAI 2027 | _TBD_ |
-| **T2a** | AnnotateBench | How much labeled data do annotation strategies need across NLP tasks? | Data Annotation | AAAI 2027 | _TBD_ |
-| **T2b** | AnnotateROI | How should enterprises measure annotation ROI? | Annotation / Business | AAAI 2027 | _TBD_ |
-| **T3** | Human-AI Teaming | How does human-AI collaboration protocol affect downstream model performance? | Human-AI Interaction | AAAI 2027 | _TBD_ |
-| **T4** | RAG Failure Propagation | How do retrieval errors propagate through agentic RAG pipelines? | RAG / Agents | AAAI 2027 | _TBD_ |
-| **T5** | RetrievalBench | Which retrieval strategy combination generalizes best across domains? | Retrieval / RAG | SIGIR 2027 | _TBD_ |
+| Track | Paper Title | Core Research Question | Domain | Target Venues | Submission Resources | Assigned Fellow |
+|-------|-------------|----------------------|--------|--------------|---------------------|-----------------|
+| **T1a** | AgenticEval | Does BFCL rank predict enterprise trustworthiness for agentic systems? | Agent Evaluation | AAAI 2027, ICLR 2027 | [AAAI](https://aaai.org) \| [LaTeX Template](https://github.com/anote-ai/Research/blob/main/researchpapers/main.tex) | _TBD_ |
+| **T1b** | EnterpriseSynth | Can we generate agentic SFT data from API schemas without live execution? | Synthetic Data / Agents | AAAI 2027, ICLR 2027 | [AAAI](https://aaai.org) \| [LaTeX Template](https://github.com/anote-ai/Research/blob/main/researchpapers/main.tex) | _TBD_ |
+| **T2a** | AnnotateBench | How much labeled data do annotation strategies need across NLP tasks? | Data Annotation | AAAI 2027, ACL ARR | [AAAI](https://aaai.org) \| [ACL ARR](https://aclrollingreview.org) \| [LaTeX Template](https://github.com/anote-ai/Research/blob/main/researchpapers/main.tex) | _TBD_ |
+| **T2b** | AnnotateROI | How should enterprises measure annotation ROI? | Annotation / Business | AAAI 2027, WSDM 2027 | [AAAI](https://aaai.org) \| [WSDM](https://www.wsdm-conference.org) \| [LaTeX Template](https://github.com/anote-ai/Research/blob/main/researchpapers/main.tex) | _TBD_ |
+| **T3** | Human-AI Teaming | How does human-AI collaboration protocol affect downstream model performance? | Human-AI Interaction | AAAI 2027, CSCW 2027 | [AAAI](https://aaai.org) \| [LaTeX Template](https://github.com/anote-ai/Research/blob/main/researchpapers/main.tex) | _TBD_ |
+| **T4** | RAG Failure Propagation | How do retrieval errors propagate through agentic RAG pipelines? | RAG / Agents | AAAI 2027, SIGIR 2027 | [AAAI](https://aaai.org) \| [SIGIR](https://sigir.org) \| [LaTeX Template](https://github.com/anote-ai/Research/blob/main/researchpapers/main.tex) | _TBD_ |
+| **T5** | RetrievalBench | Which retrieval strategy combination generalizes best across domains? | Retrieval / RAG | SIGIR 2027, WSDM 2027 | [SIGIR](https://sigir.org) \| [WSDM](https://www.wsdm-conference.org) \| [LaTeX Template](https://github.com/anote-ai/Research/blob/main/researchpapers/main.tex) | _TBD_ |
 
 ---
 
@@ -30,26 +30,26 @@ Target conferences: **AAAI 2027**, **SIGIR 2027**
 
 Fellows may also pick from the backlog below. Backlog papers are not yet assigned a target venue — the fellow and Natan will determine the best fit once scope is defined.
 
-| Track | Paper Title | Research Focus | Domain | Target Venue | Assigned Fellow |
+| Track | Paper Title | Research Focus | Domain | Target Venues | Submission Resources | Assigned Fellow |
 |-------|-------------|---------------|--------|--------------|-----------------|
-| **T6** | FineTuneBench | Fine-tuning vs. RAG trade-offs in domain-specific QA | Fine-tuning / RAG | TBD | _TBD_ |
-| **T7** | MultiHopRAG | Agent-based decomposition for multi-hop queries | RAG / Agents | TBD | _TBD_ |
-| **T8** | TableRAG | RAG adaptation for tabular and financial datasets | RAG / Finance | TBD | _TBD_ |
-| **T9** | EmbedBench | Cross-domain embedding model performance comparisons | Embeddings | TBD | _TBD_ |
-| **T10** | LLMClassifyBench | LLM vs. fine-tuned classifiers under domain shift | Classification | TBD | _TBD_ |
-| **T11** | PrivacyRAG | Sensitive entity protection in retrieval workflows | Privacy / RAG | TBD | _TBD_ |
-| **T12** | AgentMemory | Long-horizon memory architectures for agents | Agents / Memory | TBD | _TBD_ |
-| **T13** | SLMFineTune | PEFT methods for enterprise domain adaptation on small language models | Fine-tuning | TBD | _TBD_ |
-| **T14** | NERBench | Annotation requirements for specialized Named Entity Recognition | NER / Annotation | TBD | _TBD_ |
-| **T15** | ChunkingTheory | Automatic chunking strategy selection for RAG | RAG | TBD | _TBD_ |
-| **T16** | AgenticOrchestration | Multi-agent coordination patterns for enterprise tasks | Agents | TBD | _TBD_ |
-| **T17** | SyntheticEval | Reliability of synthetic evaluation datasets | Evaluation | TBD | _TBD_ |
-| **T18** | HallucinationRAG | Hallucination mitigation strategies in RAG systems | RAG / Reliability | TBD | _TBD_ |
-| **T19** | MultiDocRAG | Cross-document answer synthesis in retrieval pipelines | RAG | TBD | _TBD_ |
-| **T20** | PromptStability | LLM classifier sensitivity to prompt variation | Prompting | TBD | _TBD_ |
-| **T21** | ActiveRAG | Active learning for knowledge base curation in RAG | Active Learning / RAG | TBD | _TBD_ |
-| **T22** | LLMDataAug | Effectiveness of LLM-based data augmentation | Data Augmentation | TBD | _TBD_ |
-| **T23** | OntologyRAG | Domain ontologies for medical and legal retrieval | RAG / Domain Specialization | TBD | _TBD_ |
+| **T6** | FineTuneBench | Fine-tuning vs. RAG trade-offs in domain-specific QA | Fine-tuning / RAG | ICLR 2027, ACL ARR (TBD) | [ICLR](https://iclr.cc) \| [ACL ARR](https://aclrollingreview.org) \| [LaTeX Template](https://github.com/anote-ai/Research/blob/main/researchpapers/main.tex) | _TBD_ |
+| **T7** | MultiHopRAG | Agent-based decomposition for multi-hop queries | RAG / Agents | SIGIR 2027, ACL ARR (TBD) | [SIGIR](https://sigir.org) \| [ACL ARR](https://aclrollingreview.org) \| [LaTeX Template](https://github.com/anote-ai/Research/blob/main/researchpapers/main.tex) | _TBD_ |
+| **T8** | TableRAG | RAG adaptation for tabular and financial datasets | RAG / Finance | SIGIR 2027, WSDM 2027 (TBD) | [SIGIR](https://sigir.org) \| [WSDM](https://www.wsdm-conference.org) \| [LaTeX Template](https://github.com/anote-ai/Research/blob/main/researchpapers/main.tex) | _TBD_ |
+| **T9** | EmbedBench | Cross-domain embedding model performance comparisons | Embeddings | ICLR 2027, ACL ARR (TBD) | [ICLR](https://iclr.cc) \| [ACL ARR](https://aclrollingreview.org) \| [LaTeX Template](https://github.com/anote-ai/Research/blob/main/researchpapers/main.tex) | _TBD_ |
+| **T10** | LLMClassifyBench | LLM vs. fine-tuned classifiers under domain shift | Classification | AAAI 2027, ACL ARR (TBD) | [AAAI](https://aaai.org) \| [ACL ARR](https://aclrollingreview.org) \| [LaTeX Template](https://github.com/anote-ai/Research/blob/main/researchpapers/main.tex) | _TBD_ |
+| **T11** | PrivacyRAG | Sensitive entity protection in retrieval workflows | Privacy / RAG | AAAI 2027, IEEE Security & Privacy (TBD) | [AAAI](https://aaai.org) \| [LaTeX Template](https://github.com/anote-ai/Research/blob/main/researchpapers/main.tex) | _TBD_ |
+| **T12** | AgentMemory | Long-horizon memory architectures for agents | Agents / Memory | AAAI 2027, ICLR 2027 (TBD) | [AAAI](https://aaai.org) \| [ICLR](https://iclr.cc) \| [LaTeX Template](https://github.com/anote-ai/Research/blob/main/researchpapers/main.tex) | _TBD_ |
+| **T13** | SLMFineTune | PEFT methods for enterprise domain adaptation on small language models | Fine-tuning | ICLR 2027, NeurIPS 2026 Workshops | [ICLR](https://iclr.cc) \| [NeurIPS](https://neurips.cc) \| [LaTeX Template](https://github.com/anote-ai/Research/blob/main/researchpapers/main.tex) | _TBD_ |
+| **T14** | NERBench | Annotation requirements for specialized Named Entity Recognition | NER / Annotation | AAAI 2027, ACL ARR | [AAAI](https://aaai.org) \| [ACL ARR](https://aclrollingreview.org) \| [LaTeX Template](https://github.com/anote-ai/Research/blob/main/researchpapers/main.tex) | _TBD_ |
+| **T15** | ChunkingTheory | Automatic chunking strategy selection for RAG | RAG | SIGIR 2027, WSDM 2027 | [SIGIR](https://sigir.org) \| [WSDM](https://www.wsdm-conference.org) \| [LaTeX Template](https://github.com/anote-ai/Research/blob/main/researchpapers/main.tex) | _TBD_ |
+| **T16** | AgenticOrchestration | Multi-agent coordination patterns for enterprise tasks | Agents | AAAI 2027, AAMAS 2027 | [AAAI](https://aaai.org) \| [LaTeX Template](https://github.com/anote-ai/Research/blob/main/researchpapers/main.tex) | _TBD_ |
+| **T17** | SyntheticEval | Reliability of synthetic evaluation datasets | Evaluation | AAAI 2027, ICLR 2027 | [AAAI](https://aaai.org) \| [ICLR](https://iclr.cc) \| [LaTeX Template](https://github.com/anote-ai/Research/blob/main/researchpapers/main.tex) | _TBD_ |
+| **T18** | HallucinationRAG | Hallucination mitigation strategies in RAG systems | RAG / Reliability | SIGIR 2027, AAAI 2027 | [SIGIR](https://sigir.org) \| [AAAI](https://aaai.org) \| [LaTeX Template](https://github.com/anote-ai/Research/blob/main/researchpapers/main.tex) | _TBD_ |
+| **T19** | MultiDocRAG | Cross-document answer synthesis in retrieval pipelines | RAG | SIGIR 2027, WSDM 2027 | [SIGIR](https://sigir.org) \| [WSDM](https://www.wsdm-conference.org) \| [LaTeX Template](https://github.com/anote-ai/Research/blob/main/researchpapers/main.tex) | _TBD_ |
+| **T20** | PromptStability | LLM classifier sensitivity to prompt variation | Prompting | AAAI 2027, ACL ARR | [AAAI](https://aaai.org) \| [ACL ARR](https://aclrollingreview.org) \| [LaTeX Template](https://github.com/anote-ai/Research/blob/main/researchpapers/main.tex) | _TBD_ |
+| **T21** | ActiveRAG | Active learning for knowledge base curation in RAG | Active Learning / RAG | ICLR 2027, WSDM 2027 | [ICLR](https://iclr.cc) \| [WSDM](https://www.wsdm-conference.org) \| [LaTeX Template](https://github.com/anote-ai/Research/blob/main/researchpapers/main.tex) | _TBD_ |
+| **T22** | LLMDataAug | Effectiveness of LLM-based data augmentation | Data Augmentation | AAAI 2027, ACL ARR | [AAAI](https://aaai.org) \| [ACL ARR](https://aclrollingreview.org) \| [LaTeX Template](https://github.com/anote-ai/Research/blob/main/researchpapers/main.tex) | _TBD_ |
+| **T23** | OntologyRAG | Domain ontologies for medical and legal retrieval | RAG / Domain Specialization | SIGIR 2027, Biomedical NLP workshops | [SIGIR](https://sigir.org) \| [LaTeX Template](https://github.com/anote-ai/Research/blob/main/researchpapers/main.tex) | _TBD_ |
 
 ---
 
@@ -77,16 +77,39 @@ Every fellow must complete the following by **August 10, 2026**:
 
 ---
 
+## Venue & Template Resources
+
+### Conference Submission Portals
+
+| Venue | Portal | Submission Window (2026–2027) | Paper Format |
+|-------|--------|------------------------------|---------------|
+| **AAAI 2027** | [aaai.org/submissions](https://aaai.org) | ~Aug 2026 (TBC) | [AAAI Template](https://aaai.org/Conferences/AAAI-27/) |
+| **SIGIR 2027** | [sigir.org](https://sigir.org) | ~Aug 2026 (TBC) | [ACM SIG Template](https://www.acm.org/binaries/content/assets/megamentor/working_effectively_with_acm_master_template-2_0.docx) |
+| **ICLR 2027** | [iclr.cc](https://iclr.cc) | ~Sep–Oct 2026 (TBC) | [OpenReview Template](https://openreview.net/pdf/template.pdf) |
+| **WSDM 2027** | [wsdm-conference.org](https://www.wsdm-conference.org) | ~Aug 2026 (TBC) | [ACM SIG Template](https://www.acm.org/binaries/content/assets/megamentor/working_effectively_with_acm_master_template-2_0.docx) |
+| **NeurIPS 2026 Workshops** | [neurips.cc](https://neurips.cc) | ~Aug–Sep 2026 (TBC) | [NeurIPS Template](https://nips.cc/Conferences/2026/PaperInformation/StyleGuide) |
+| **ACL Rolling Review** | [aclrollingreview.org](https://aclrollingreview.org) | Monthly cycles (year-round) | [ACL Template](https://github.com/acl-org/acl-style-files) |
+| **AAMAS 2027** | [aamas2027.org](http://www.aamas-conference.org/) | ~Sep 2026 (TBC) | [AAMAS Template](http://www.aamas-conference.org/) |
+| **arXiv** | [arxiv.org/submit](https://arxiv.org/submit) | Anytime (recommended before official deadline) | [arXiv Guidelines](https://arxiv.org/help/submit) |
+
+### Paper & Presentation Templates
+
+| Resource | Link | Notes |
+|----------|------|-------|
+| Anote Research LaTeX Template | [researchpapers/main.tex](https://github.com/anote-ai/Research/blob/main/researchpapers/main.tex) | Default template for all fellowship papers |
+| ACL/EMNLP/NAACL Style Files | [github.com/acl-org/acl-style-files](https://github.com/acl-org/acl-style-files) | For ACL Rolling Review submissions |
+| Anote Presentation Template | [Google Slides](https://docs.google.com/presentation/d/1x4E2dwBnDImHjMOMaI8lLWcRNjVWlnsYEJ3WOwlhKuA/edit?usp=sharing) | For final presentations (Aug 5) |
+| Research Repo Code Examples | [researchcode/](https://github.com/anote-ai/Research/tree/main/researchcode) | Reference implementations (RAG, Classification, Q&A, Object Detection) |
+| Master Tracker | [anote_fellowship_tracker.xlsx](https://github.com/anote-ai/Research/blob/main/anote_fellowship_tracker.xlsx) | Track paper progress and deadlines |
+
 ## Resources
 
 | Resource | Link |
 |----------|------|
 | Research Repo | [github.com/anote-ai/Research](https://github.com/anote-ai/Research) |
-| LaTeX Template | `researchpapers/main.tex` in repo |
 | Master Tracker | `anote_fellowship_tracker.xlsx` in repo |
 | Code Examples | `researchcode/` in repo (RAG, Classification, Q&A, Object Detection) |
 | Reference Slides | `researchpresentations/` in repo |
-| arXiv Submission | [arxiv.org](https://arxiv.org) — submit anytime |
 | Anote Slides Template | [Google Slides](https://docs.google.com/presentation/d/1x4E2dwBnDImHjMOMaI8lLWcRNjVWlnsYEJ3WOwlhKuA/edit?usp=sharing) |
 
 ---
