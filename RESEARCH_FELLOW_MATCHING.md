@@ -31,7 +31,7 @@ Target conferences: **AAAI 2027**, **SIGIR 2027**
 Fellows may also pick from the backlog below. Backlog papers are not yet assigned a target venue — the fellow and Natan will determine the best fit once scope is defined.
 
 | Track | Paper Title | Research Focus | Domain | Target Venues | Submission Resources | Assigned Fellow |
-|-------|-------------|---------------|--------|--------------|-----------------|
+|-------|-------------|---------------|--------|--------------|-----------------|-----------------|
 | **T6** | FineTuneBench | Fine-tuning vs. RAG trade-offs in domain-specific QA | Fine-tuning / RAG | ICLR 2027, ACL ARR (TBD) | [ICLR](https://iclr.cc) \| [ACL ARR](https://aclrollingreview.org) \| [LaTeX Template](https://github.com/anote-ai/Research/blob/main/researchpapers/main.tex) | _TBD_ |
 | **T7** | MultiHopRAG | Agent-based decomposition for multi-hop queries | RAG / Agents | SIGIR 2027, ACL ARR (TBD) | [SIGIR](https://sigir.org) \| [ACL ARR](https://aclrollingreview.org) \| [LaTeX Template](https://github.com/anote-ai/Research/blob/main/researchpapers/main.tex) | _TBD_ |
 | **T8** | TableRAG | RAG adaptation for tabular and financial datasets | RAG / Finance | SIGIR 2027, WSDM 2027 (TBD) | [SIGIR](https://sigir.org) \| [WSDM](https://www.wsdm-conference.org) \| [LaTeX Template](https://github.com/anote-ai/Research/blob/main/researchpapers/main.tex) | _TBD_ |
