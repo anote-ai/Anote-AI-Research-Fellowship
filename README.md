@@ -27,8 +27,8 @@ Every fellow is responsible for three core deliverables by August 10:
 ## Program Highlights
 
 - **Orientation:** Monday, June 1 — 6:00–8:00 PM EST
-- **Weekly Research Standup:** Every Tuesday, 5:00–5:30 PM EST (virtual)
-- **Weekly Product Standup:** Every Thursday, 5:00–5:30 PM EST (virtual)
+- **Weekly Research Standup:** Every Tuesday, 5:30 PM EST - 6 PM EST (virtual)
+- **Weekly Product Standup:** Every Thursday, 5:30 PM EST - 6 PM EST (virtual)
 - **Friday Fellowship Talks:** Every Friday, 1:00–2:00 PM EST — guest AI experts, recorded (in-person at WeWork NYC + virtual)
 - **Midpoint Check-ins:** Wednesday, July 1 — one-on-one sessions with Natan (5:00–10:00 PM)
 - **Final Presentations:** Wednesday, August 5 — recorded and published (5:00–10:00 PM)
