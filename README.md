@@ -32,7 +32,7 @@ Every fellow is responsible for three core deliverables by August 10:
 - **Friday Fellowship Talks:** Every Friday, 1:00–2:00 PM EST — guest AI experts, recorded (in-person at WeWork NYC + virtual)
 - **Midpoint Check-ins:** Wednesday, July 1 — one-on-one sessions with Natan (5:00–10:00 PM)
 - **Final Presentations:** Wednesday, August 5 — recorded and published (5:00–10:00 PM)
-- **Anote Summer Party:** Friday, August 7 — celebrating the fellows in NYC (7:00–10:00 PM)
+- **Anote Summer Party:** Friday, August 7 — celebrating the fellows in NYC (6:00–9:00 PM)
 - **Last Day:** Monday, August 10 — clean up all work, document everything, submit papers
 
 ---
