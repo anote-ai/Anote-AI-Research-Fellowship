@@ -1,0 +1,84 @@
+# Anote AI Research Fellowship — Event Source of Truth
+# Edit this file and open a PR. The .ics file is auto-generated on merge.
+#
+# Date format: YYYY-MM-DDTHH:MM:SS (local time, assumed US/Eastern)
+# Recurrence: standard iCal RRULE string (optional)
+
+# ──────────────────────────────────────────────────────────────────────
+# RECURRING STANDUPS
+# ──────────────────────────────────────────────────────────────────────
+- title: "Weekly Research Standup"
+  start: "2026-06-02T10:00:00"
+  end: "2026-06-02T10:30:00"
+  recurrence: "RRULE:FREQ=WEEKLY;BYDAY=TU;UNTIL=20260828T235959Z"
+  description: "Tuesday research sync. Agenda template in pm-tools/WEEKLY_STANDUP_TEMPLATE.md"
+  location: "Zoom (link in Slack #research channel)"
+  category: standup
+
+- title: "Weekly Product Standup"
+  start: "2026-06-04T10:00:00"
+  end: "2026-06-04T10:30:00"
+  recurrence: "RRULE:FREQ=WEEKLY;BYDAY=TH;UNTIL=20260828T235959Z"
+  description: "Thursday product sync. Agenda template in pm-tools/WEEKLY_STANDUP_TEMPLATE.md"
+  location: "Zoom (link in Slack #product channel)"
+  category: standup
+
+# ──────────────────────────────────────────────────────────────────────
+# SPEAKER SESSIONS (add as confirmed)
+# ──────────────────────────────────────────────────────────────────────
+- title: "Speaker Session — TBD"
+  start: "2026-06-10T14:00:00"
+  end: "2026-06-10T15:00:00"
+  description: "Guest speaker TBD. See pm-tools/SPEAKER_PIPELINE_TRACKER.md for pipeline."
+  location: "Zoom"
+  category: speaker
+
+# ──────────────────────────────────────────────────────────────────────
+# FELLOW MILESTONES
+# ──────────────────────────────────────────────────────────────────────
+- title: "Milestone: Project Proposals Due"
+  start: "2026-06-12T23:59:00"
+  end: "2026-06-12T23:59:00"
+  description: "All fellows submit 1-page project proposal. See FELLOW_MILESTONE_TRACKER.md"
+  category: milestone
+
+- title: "Milestone: Mid-Fellowship Check-in"
+  start: "2026-07-10T10:00:00"
+  end: "2026-07-10T11:00:00"
+  description: "Progress presentations from all fellows (5 min each)"
+  location: "Zoom"
+  category: milestone
+
+- title: "Milestone: Final Presentations"
+  start: "2026-08-14T10:00:00"
+  end: "2026-08-14T13:00:00"
+  description: "End-of-fellowship demo day — open to Anote team and guests"
+  location: "Zoom"
+  category: milestone
+
+- title: "Fellowship End"
+  start: "2026-08-28T18:00:00"
+  end: "2026-08-28T18:00:00"
+  description: "Summer 2026 fellowship concludes"
+  category: milestone
+
+# ──────────────────────────────────────────────────────────────────────
+# CONFERENCE DEADLINES
+# ──────────────────────────────────────────────────────────────────────
+- title: "EMNLP 2026 Submission Deadline"
+  start: "2026-06-01T23:59:00"
+  end: "2026-06-01T23:59:00"
+  description: "EMNLP abstract/paper deadline. See pm-tools/CONFERENCE_SUBMISSION_TRACKER.md"
+  category: conference
+
+- title: "NeurIPS 2026 Abstract Deadline"
+  start: "2026-05-22T23:59:00"
+  end: "2026-05-22T23:59:00"
+  description: "NeurIPS abstract registration deadline"
+  category: conference
+
+- title: "NeurIPS 2026 Paper Deadline"
+  start: "2026-05-29T23:59:00"
+  end: "2026-05-29T23:59:00"
+  description: "NeurIPS full paper submission deadline"
+  category: conference

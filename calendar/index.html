@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anote AI Research Fellowship — Calendar</title>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 0; padding: 20px; background: #f8f9fa; }
+    h1 { color: #1a1a2e; margin-bottom: 4px; }
+    p.subtitle { color: #666; margin-top: 0; margin-bottom: 20px; }
+    #calendar { background: white; border-radius: 8px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .fc-event { cursor: pointer; }
+    .legend { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
+    .legend-item { display: flex; align-items: center; gap: 6px; font-size: 13px; }
+    .legend-dot { width: 12px; height: 12px; border-radius: 50%; }
+    #event-modal { display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%);
+      background:white; border-radius:10px; padding:24px; box-shadow:0 8px 32px rgba(0,0,0,0.18);
+      z-index:1000; min-width:300px; max-width:480px; }
+    #modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.3); z-index:999; }
+    #close-modal { float:right; cursor:pointer; font-size:20px; background:none; border:none; }
+  </style>
+</head>
+<body>
+  <h1>Anote AI Research Fellowship</h1>
+  <p class="subtitle">Summer 2026 &mdash; Live event calendar &middot;
+    <a href="fellowship.ics" download>Download .ics</a> &middot;
+    <a href="https://github.com/anote-ai/anote-ai-research-fellowship/blob/main/calendar/events.yaml">Edit events</a>
+  </p>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#3788d8"></div>Standup</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#8e44ad"></div>Speaker</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#e67e22"></div>Milestone</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#27ae60"></div>Conference</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#e91e8c"></div>Social</div>
+  </div>
+  <div id="calendar"></div>
+
+  <div id="modal-overlay" onclick="closeModal()"></div>
+  <div id="event-modal">
+    <button id="close-modal" onclick="closeModal()">&times;</button>
+    <h2 id="modal-title" style="margin-top:0"></h2>
+    <p id="modal-time" style="color:#666;margin:4px 0"></p>
+    <p id="modal-location" style="color:#444;margin:4px 0"></p>
+    <p id="modal-desc"></p>
+  </div>
+
+  <script>
+    const CATEGORY_COLORS = {
+      standup: '#3788d8',
+      speaker: '#8e44ad',
+      milestone: '#e67e22',
+      conference: '#27ae60',
+      social: '#e91e8c',
+    };
+
+    function closeModal() {
+      document.getElementById('event-modal').style.display = 'none';
+      document.getElementById('modal-overlay').style.display = 'none';
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      fetch('fellowship.ics')
+        .then(r => r.text())
+        .then(icsText => {
+          const events = parseICS(icsText);
+          const cal = new FullCalendar.Calendar(document.getElementById('calendar'), {
+            initialView: 'dayGridMonth',
+            headerToolbar: { left: 'prev,next today', center: 'title', right: 'dayGridMonth,timeGridWeek,listMonth' },
+            events: events,
+            eventClick: function(info) {
+              document.getElementById('modal-title').textContent = info.event.title;
+              const start = info.event.start ? info.event.start.toLocaleString() : '';
+              const end = info.event.end ? info.event.end.toLocaleString() : '';
+              document.getElementById('modal-time').textContent = end ? `${start} – ${end}` : start;
+              document.getElementById('modal-location').textContent = info.event.extendedProps.location || '';
+              document.getElementById('modal-desc').textContent = info.event.extendedProps.description || '';
+              document.getElementById('event-modal').style.display = 'block';
+              document.getElementById('modal-overlay').style.display = 'block';
+            },
+          });
+          cal.render();
+        })
+        .catch(() => {
+          // Fallback: no .ics yet, show placeholder
+          document.getElementById('calendar').innerHTML =
+            '<p style="color:#888;padding:40px;text-align:center">Calendar loading... if this persists, the .ics file may not be generated yet. <a href="https://github.com/anote-ai/anote-ai-research-fellowship/blob/main/calendar/README.md">See setup instructions.</a></p>';
+        });
+    });
+
+    // Minimal ICS parser — converts VEVENT blocks to FullCalendar event objects
+    function parseICS(text) {
+      const events = [];
+      const blocks = text.split('BEGIN:VEVENT').slice(1);
+      blocks.forEach(block => {
+        const get = key => {
+          const m = block.match(new RegExp(`${key}[^:]*:([^\\r\\n]+)`));
+          return m ? m[1].trim() : '';
+        };
+        const rawStart = get('DTSTART');
+        const rawEnd = get('DTEND');
+        const cat = get('CATEGORIES').toLowerCase();
+        events.push({
+          title: get('SUMMARY').replace(/\\,/g, ','),
+          start: icsDateToISO(rawStart),
+          end: icsDateToISO(rawEnd),
+          color: CATEGORY_COLORS[cat] || '#3788d8',
+          extendedProps: {
+            description: get('DESCRIPTION').replace(/\\,/g, ',').replace(/\\n/g, '\n'),
+            location: get('LOCATION').replace(/\\,/g, ','),
+          },
+        });
+      });
+      return events;
+    }
+
+    function icsDateToISO(s) {
+      if (!s) return null;
+      const clean = s.replace(/[TZ]/g, m => m === 'T' ? 'T' : '');
+      const m = clean.match(/(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})/);
+      if (!m) return null;
+      return `${m[1]}-${m[2]}-${m[3]}T${m[4]}:${m[5]}:${m[6]}`;
+    }
+  </script>
+</body>
+</html>
