@@ -1,0 +1,212 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: >-
+  Anote AI shared developer environment.
+  Launches a t3.large Ubuntu 22.04 EC2 instance with Docker, Node 18, Python 3.11,
+  Rust, and all Anote repos pre-cloned in /home/anote/repos/.
+  After launch, SSH in with your key and run: sudo passwd anote
+
+Parameters:
+  KeyPairName:
+    Type: AWS::EC2::KeyPair::KeyName
+    Description: >-
+      Name of an existing EC2 key pair for admin SSH access.
+      You need this to set the shared password after launch.
+
+  AllowSSHFrom:
+    Type: String
+    Default: '0.0.0.0/0'
+    Description: >-
+      CIDR range allowed to SSH in (port 22).
+      Restrict to your office IP for better security, e.g. 1.2.3.4/32.
+
+  InstanceType:
+    Type: String
+    Default: t3.large
+    AllowedValues: [t3.medium, t3.large, t3.xlarge, c5.xlarge]
+    Description: EC2 instance type (t3.large recommended — 2 vCPU, 8 GB)
+
+  VolumeSize:
+    Type: Number
+    Default: 50
+    MinValue: 30
+    MaxValue: 500
+    Description: Root EBS volume size in GB
+
+Mappings:
+  # Ubuntu 22.04 LTS AMI IDs (update if deploying to a different region)
+  AmiByRegion:
+    us-east-1:
+      ami: ami-0c7217cdde317cfec
+    us-east-2:
+      ami: ami-05fb0b8c1424f266b
+    us-west-1:
+      ami: ami-0ce2cb35386fc22e9
+    us-west-2:
+      ami: ami-008fe2fc65df48dac
+    eu-west-1:
+      ami: ami-0905a3c97561e0b69
+    eu-central-1:
+      ami: ami-06dd92ecc74fdfb36
+    ap-southeast-1:
+      ami: ami-078c1149d8ad719a7
+    ap-northeast-1:
+      ami: ami-0d52744d6551d851e
+
+Resources:
+
+  # ── Security Group ────────────────────────────────────────────────────────────
+AnoteDevSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: anote-dev-env-sg
+      GroupDescription: Anote shared dev environment - SSH access
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: !Ref AllowSSHFrom
+          Description: SSH
+        - IpProtocol: tcp
+          FromPort: 3000
+          ToPort: 3000
+          CidrIp: !Ref AllowSSHFrom
+          Description: Frontend dev server
+        - IpProtocol: tcp
+          FromPort: 8000
+          ToPort: 8000
+          CidrIp: !Ref AllowSSHFrom
+          Description: Backend dev server
+      Tags:
+        - Key: Name
+          Value: anote-dev-env-sg
+        - Key: Project
+          Value: anote-dev-environment
+
+  # ── EC2 Instance ───────────────────────────────────────────────────────────────
+  AnoteDevInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: !Ref InstanceType
+      ImageId: !FindInMap [AmiByRegion, !Ref 'AWS::Region', ami]
+      KeyName: !Ref KeyPairName
+      SecurityGroupIds:
+        - !Ref AnoteDevSecurityGroup
+      BlockDeviceMappings:
+        - DeviceName: /dev/sda1
+          Ebs:
+            VolumeSize: !Ref VolumeSize
+            VolumeType: gp3
+            DeleteOnTermination: true
+      Tags:
+        - Key: Name
+          Value: anote-dev-env
+        - Key: Project
+          Value: anote-dev-environment
+      UserData:
+        Fn::Base64: |
+          #!/bin/bash
+          set -euo pipefail
+          exec > /var/log/anote-setup.log 2>&1
+
+          GITHUB_ORG="anote-ai"
+          SHARED_USER="anote"
+          REPOS_DIR="/home/${SHARED_USER}/repos"
+
+          apt-get update -qq
+          apt-get install -y -qq \
+            git curl wget unzip tmux vim htop \
+            python3.11 python3.11-venv python3-pip \
+            build-essential pkg-config libssl-dev \
+            ca-certificates gnupg lsb-release
+
+          # Docker
+          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker.gpg
+          echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list
+          apt-get update -qq
+          apt-get install -y -qq docker-ce docker-ce-cli containerd.io docker-compose-plugin
+          systemctl enable --now docker
+
+          # Node 18
+          curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+          apt-get install -y -qq nodejs
+
+          # Rust
+          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
+          export PATH="/root/.cargo/bin:$PATH"
+
+          # Shared user
+          if ! id "${SHARED_USER}" &>/dev/null; then
+            useradd -m -s /bin/bash "${SHARED_USER}"
+          fi
+          usermod -aG docker "${SHARED_USER}"
+
+          # Copy Rust to user
+          cp -r /root/.cargo "/home/${SHARED_USER}/" 2>/dev/null || true
+          cp -r /root/.rustup "/home/${SHARED_USER}/.rustup" 2>/dev/null || true
+          chown -R "${SHARED_USER}:${SHARED_USER}" "/home/${SHARED_USER}/.cargo" "/home/${SHARED_USER}/.rustup" 2>/dev/null || true
+
+          # Enable password SSH
+          sed -i 's/^#\?PasswordAuthentication.*/PasswordAuthentication yes/' /etc/ssh/sshd_config
+          sed -i 's/^#\?ChallengeResponseAuthentication.*/ChallengeResponseAuthentication yes/' /etc/ssh/sshd_config
+          systemctl restart sshd
+
+          # Clone repos
+          mkdir -p "${REPOS_DIR}"
+          chown "${SHARED_USER}:${SHARED_USER}" "${REPOS_DIR}"
+
+          for repo in anote-product leaderboard synthetic-data autonomous-intelligence community slackbot privategpt openanote ai-rfps upreach ai-assisted-coding-tool anote-ai-research-fellowship; do
+            sudo -u "${SHARED_USER}" git clone \
+              "https://github.com/${GITHUB_ORG}/${repo}.git" \
+              "${REPOS_DIR}/${repo}" 2>/dev/null || true
+          done
+
+          # Shell profile
+          cat >> "/home/${SHARED_USER}/.bashrc" << 'PROFILE'
+          export PATH="$HOME/.cargo/bin:$PATH"
+          export REPOS="$HOME/repos"
+          alias repos="cd $REPOS"
+          echo ""
+          echo "Welcome to the Anote shared dev environment!"
+          echo "All repos are in ~/repos/ - run 'repos' to navigate there."
+          echo "Run ~/update-repos.sh to pull latest changes."
+          echo ""
+          PROFILE
+          chown "${SHARED_USER}:${SHARED_USER}" "/home/${SHARED_USER}/.bashrc"
+
+          # Update script
+          cat > "/home/${SHARED_USER}/update-repos.sh" << 'UPD'
+          #!/usr/bin/env bash
+          set -euo pipefail
+          REPOS_DIR="${HOME}/repos"
+          for repo in anote-product leaderboard synthetic-data autonomous-intelligence community slackbot privategpt openanote ai-rfps upreach ai-assisted-coding-tool anote-ai-research-fellowship; do
+            dir="${REPOS_DIR}/${repo}"
+            [ -d "${dir}/.git" ] && echo -n "${repo}: " && git -C "${dir}" pull --ff-only 2>&1 | tail -1 || true
+          done
+          UPD
+          chmod +x "/home/${SHARED_USER}/update-repos.sh"
+          chown "${SHARED_USER}:${SHARED_USER}" "/home/${SHARED_USER}/update-repos.sh"
+
+          # Signal completion
+          touch /var/log/anote-setup-complete
+          echo "Anote dev environment setup complete!"
+
+Outputs:
+  PublicIP:
+    Description: Public IP address of the Anote dev environment
+    Value: !GetAtt AnoteDevInstance.PublicIp
+
+  SSHAdminCommand:
+    Description: SSH command for admin (to set shared password)
+    Value: !Sub 'ssh -i ~/.ssh/${KeyPairName}.pem ubuntu@${AnoteDevInstance.PublicIp}'
+
+  SSHSharedCommand:
+    Description: SSH command for team members (after admin sets password)
+    Value: !Sub 'ssh anote@${AnoteDevInstance.PublicIp}'
+
+  SetupLogCommand:
+    Description: Command to tail the setup log (run as admin while waiting)
+    Value: !Sub 'ssh -i ~/.ssh/${KeyPairName}.pem ubuntu@${AnoteDevInstance.PublicIp} "tail -f /var/log/anote-setup.log"'
+
+  SetupCompleteCheck:
+    Description: Command to check if setup finished (exit 0 = done)
+    Value: !Sub 'ssh -i ~/.ssh/${KeyPairName}.pem ubuntu@${AnoteDevInstance.PublicIp} "test -f /var/log/anote-setup-complete && echo DONE || echo STILL RUNNING"'
