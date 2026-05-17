@@ -1,0 +1,107 @@
+#cloud-config
+# Paste this into the EC2 "User data" field when launching a new instance.
+# It runs setup.sh automatically on first boot (takes ~5-10 minutes).
+
+package_update: true
+package_upgrade: true
+
+packages:
+  - git
+  - curl
+
+write_files:
+  - path: /tmp/anote-setup.sh
+    permissions: '0755'
+    content: |
+      #!/usr/bin/env bash
+      set -euo pipefail
+
+      GITHUB_ORG="anote-ai"
+      SHARED_USER="anote"
+      REPOS_DIR="/home/${SHARED_USER}/repos"
+
+      apt-get update -qq
+      apt-get install -y -qq \
+        git curl wget unzip tmux vim htop \
+        python3.11 python3.11-venv python3-pip \
+        build-essential pkg-config libssl-dev \
+        ca-certificates gnupg lsb-release
+
+      # Docker
+      curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker.gpg
+      echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker.gpg] \
+      https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
+        > /etc/apt/sources.list.d/docker.list
+      apt-get update -qq
+      apt-get install -y -qq docker-ce docker-ce-cli containerd.io docker-compose-plugin
+      systemctl enable --now docker
+
+      # Node 18
+      curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+      apt-get install -y -qq nodejs
+
+      # Rust
+      curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
+      export PATH="/root/.cargo/bin:$PATH"
+
+      # Shared user
+      if ! id "${SHARED_USER}" &>/dev/null; then
+        useradd -m -s /bin/bash "${SHARED_USER}"
+      fi
+      usermod -aG docker "${SHARED_USER}"
+
+      # Copy Rust
+      cp -r /root/.cargo "/home/${SHARED_USER}/" 2>/dev/null || true
+      cp -r /root/.rustup "/home/${SHARED_USER}/.rustup" 2>/dev/null || true
+      chown -R "${SHARED_USER}:${SHARED_USER}" "/home/${SHARED_USER}/.cargo" "/home/${SHARED_USER}/.rustup" 2>/dev/null || true
+
+      # Password SSH
+      sed -i 's/^#\?PasswordAuthentication.*/PasswordAuthentication yes/' /etc/ssh/sshd_config
+      sed -i 's/^#\?ChallengeResponseAuthentication.*/ChallengeResponseAuthentication yes/' /etc/ssh/sshd_config
+      systemctl restart sshd
+
+      # Clone repos
+      mkdir -p "${REPOS_DIR}"
+      chown "${SHARED_USER}:${SHARED_USER}" "${REPOS_DIR}"
+
+      REPOS=(
+        anote-product leaderboard synthetic-data autonomous-intelligence
+        community slackbot privategpt openanote ai-rfps upreach
+        ai-assisted-coding-tool anote-ai-research-fellowship
+      )
+
+      for repo in "${REPOS[@]}"; do
+        sudo -u "${SHARED_USER}" git clone \
+          "https://github.com/${GITHUB_ORG}/${repo}.git" \
+          "${REPOS_DIR}/${repo}" 2>/dev/null || true
+      done
+
+      # Shell profile
+      cat >> "/home/${SHARED_USER}/.bashrc" << 'PROFILE'
+      export PATH="$HOME/.cargo/bin:$PATH"
+      export REPOS="$HOME/repos"
+      alias repos="cd $REPOS"
+      echo ""
+      echo "Welcome to the Anote shared dev environment!"
+      echo "All repos are in ~/repos/ — run 'repos' to navigate there."
+      echo ""
+      PROFILE
+      chown "${SHARED_USER}:${SHARED_USER}" "/home/${SHARED_USER}/.bashrc"
+
+      # Update script
+      cat > "/home/${SHARED_USER}/update-repos.sh" << 'UPD'
+      #!/usr/bin/env bash
+      set -euo pipefail
+      REPOS_DIR="${HOME}/repos"
+      for repo in anote-product leaderboard synthetic-data autonomous-intelligence community slackbot privategpt openanote ai-rfps upreach ai-assisted-coding-tool anote-ai-research-fellowship; do
+        dir="${REPOS_DIR}/${repo}"
+        [ -d "${dir}/.git" ] && git -C "${dir}" pull --ff-only 2>&1 | tail -1 || true
+      done
+      UPD
+      chmod +x "/home/${SHARED_USER}/update-repos.sh"
+      chown "${SHARED_USER}:${SHARED_USER}" "/home/${SHARED_USER}/update-repos.sh"
+
+      echo "Anote dev environment setup complete. Set password: sudo passwd ${SHARED_USER}"
+
+runcmd:
+  - bash /tmp/anote-setup.sh
