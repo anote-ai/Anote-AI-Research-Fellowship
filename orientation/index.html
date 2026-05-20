@@ -6,1152 +6,1147 @@
 <title>Anote AI Research Fellowship — Summer 2026 Orientation</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#111827;--white:#ffffff;--lime:#defe47;--blue:#28b2fb;
-  --s1:#1f2937;--s2:#374151;--g1:#6b7280;--g2:#9ca3af;
-  --font:'Inter',sans-serif;
+  --bg:#111827;--white:#fff;--lime:#defe47;--blue:#28b2fb;
+  --s1:#1f2937;--s2:#374151;--s3:#4b5563;
+  --g1:#6b7280;--g2:#9ca3af;--g3:#d1d5db;
+  --font:'Inter',sans-serif;--r:10px;
 }
 html,body{width:100%;height:100%;background:var(--bg);color:var(--white);font-family:var(--font);overflow:hidden}
 
-/* ── progress ── */
-#progress{position:fixed;top:0;left:0;height:3px;background:var(--lime);transition:width .35s ease;z-index:200}
+/* ── PROGRESS ── */
+#progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(to right,var(--lime),var(--blue));transition:width .3s;z-index:300}
 
-/* ── deck ── */
+/* ── SLIDES ── */
 .slide{
-  position:absolute;top:0;left:0;width:100%;height:100vh;
-  padding:52px 72px 64px;
+  position:absolute;inset:0;
+  padding:48px 72px 60px;
   display:flex;flex-direction:column;
-  opacity:0;pointer-events:none;transition:opacity .35s ease;
+  opacity:0;pointer-events:none;
+  transition:opacity .38s ease,transform .38s ease;
+  transform:translateY(12px);
   overflow:hidden;
 }
-.slide.active{opacity:1;pointer-events:all}
+.slide.active{opacity:1;pointer-events:all;transform:translateY(0)}
 
-/* ── nav ── */
+/* ── NAV ── */
 #nav{
-  position:fixed;bottom:0;left:0;right:0;height:48px;
-  background:rgba(17,24,39,.97);border-top:1px solid var(--s2);
+  position:fixed;bottom:0;left:0;right:0;height:46px;
+  background:rgba(17,24,39,.98);backdrop-filter:blur(8px);
+  border-top:1px solid var(--s2);
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 28px;z-index:200;
+  padding:0 24px;z-index:300;gap:16px;
 }
-#nav button{
+.nav-btn{
   background:none;border:1px solid var(--s2);color:var(--g2);
-  font-family:var(--font);font-size:12px;cursor:pointer;
-  padding:5px 14px;border-radius:6px;transition:all .15s;
+  font-family:var(--font);font-size:12px;font-weight:500;
+  cursor:pointer;padding:5px 14px;border-radius:6px;
+  transition:all .15s;white-space:nowrap;
 }
-#nav button:hover{color:var(--white);border-color:var(--g1)}
-#nav button:disabled{opacity:.25;cursor:default}
-#counter{font-size:12px;color:var(--g1);font-variant-numeric:tabular-nums}
-.slide-label{
-  position:absolute;top:20px;right:28px;
-  font-size:10px;font-weight:700;letter-spacing:.14em;
+.nav-btn:hover{color:var(--white);border-color:var(--s3);background:var(--s1)}
+.nav-btn:disabled{opacity:.2;cursor:default}
+#counter{font-size:12px;color:var(--g1);font-variant-numeric:tabular-nums;flex-shrink:0}
+#section-label{font-size:11px;color:var(--g1);letter-spacing:.06em;text-transform:uppercase;font-weight:600;flex:1;text-align:center}
+
+/* ── CHIP (top-right per-slide) ── */
+.chip{
+  position:absolute;top:18px;right:24px;
+  font-size:10px;font-weight:700;letter-spacing:.12em;
   text-transform:uppercase;color:var(--g1);
 }
 
-/* ── typography helpers ── */
-.eyebrow{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);margin-bottom:16px}
-h1.hero{font-size:68px;font-weight:900;line-height:1;color:var(--white)}
-h1.hero em{color:var(--lime);font-style:normal}
-.slide-h2{font-size:34px;font-weight:800;color:var(--white);padding-bottom:12px;border-bottom:2px solid var(--lime);display:inline-block;margin-bottom:28px}
-.slide-h2 em{color:var(--lime);font-style:normal}
-.lede{font-size:17px;color:var(--g2);line-height:1.65;max-width:700px}
-.lime{color:var(--lime)}
-.blue{color:var(--blue)}
-.hl{color:var(--lime);font-weight:700}
-.gray{color:var(--g2)}
-a{color:var(--blue);text-decoration:none}
+/* ── DOT GRID (decorative bg) ── */
+.dot-bg::after{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle,rgba(255,255,255,.045) 1px,transparent 1px);
+  background-size:30px 30px;pointer-events:none;z-index:0;
+}
+.dot-bg>*{position:relative;z-index:1}
 
-/* ── badge / tag ── */
-.badge{display:inline-block;padding:3px 9px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase}
-.b-lime{background:rgba(222,254,71,.12);color:var(--lime)}
-.b-blue{background:rgba(40,178,251,.12);color:var(--blue)}
-.b-gray{background:rgba(156,163,175,.1);color:var(--g2)}
-.b-prod{background:rgba(40,178,251,.15);color:var(--blue)}
+/* ── HELPERS ── */
+.flex1{flex:1;display:flex;flex-direction:column}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:28px;flex:1}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;flex:1}
+.lime{color:var(--lime)}.blue{color:var(--blue)}.gray{color:var(--g2)}
+.fw7{font-weight:700}.fw8{font-weight:800}
+a{color:var(--blue);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ── EYEBROW ── */
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);margin-bottom:14px}
+
+/* ── SLIDE TITLE ── */
+.slide-title{
+  font-size:34px;font-weight:800;color:var(--white);
+  padding-bottom:12px;margin-bottom:24px;
+  border-bottom:2px solid var(--lime);display:inline-block;
+}
+.slide-title em{color:var(--lime);font-style:normal}
+
+/* ── BADGE ── */
+.badge{display:inline-block;padding:3px 9px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;white-space:nowrap}
+.b-prod{background:rgba(40,178,251,.14);color:var(--blue)}
 .b-poc{background:rgba(222,254,71,.12);color:var(--lime)}
 .b-dev{background:rgba(156,163,175,.12);color:var(--g2)}
+.b-lime{background:rgba(222,254,71,.12);color:var(--lime)}
+.b-blue{background:rgba(40,178,251,.14);color:var(--blue)}
+.b-gray{background:rgba(156,163,175,.1);color:var(--g2)}
 
-/* ── layout helpers ── */
-.flex1{flex:1;display:flex;flex-direction:column}
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:32px;flex:1}
-.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;flex:1}
-.card{background:var(--s1);border-radius:10px;padding:22px;border:1px solid var(--s2)}
+/* ── CARD ── */
+.card{
+  background:var(--s1);border-radius:var(--r);
+  padding:22px;border:1px solid var(--s2);
+  transition:border-color .15s,box-shadow .15s;
+}
+.card:hover{border-color:var(--s3)}
 .card.bl{border-left:3px solid var(--lime)}
 .card.bb{border-left:3px solid var(--blue)}
+.card h3{font-size:15px;font-weight:700;color:var(--white);margin-bottom:10px}
+.card p,.card li{font-size:14px;color:var(--g2);line-height:1.6}
+.card ul{list-style:none;display:flex;flex-direction:column;gap:6px}
+.card ul li{padding-left:14px;position:relative}
+.card ul li::before{content:'→';position:absolute;left:0;color:var(--blue);font-size:12px;top:1px}
 
-/* ── cover slide ── */
+/* ── SECTION SLIDE ── */
+.slide--section{justify-content:center;background:var(--bg)}
+.sec-bg-num{
+  position:absolute;right:-20px;bottom:-60px;
+  font-size:280px;font-weight:900;
+  color:rgba(255,255,255,.025);
+  line-height:1;pointer-events:none;user-select:none;
+}
+.sec-kicker{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);margin-bottom:14px}
+.sec-h{font-size:56px;font-weight:900;line-height:1.05;margin-bottom:18px}
+.sec-h em{color:var(--lime);font-style:normal}
+.sec-sub{font-size:17px;color:var(--g2);max-width:540px;line-height:1.65}
+
+/* ── COVER ── */
 .slide--cover{justify-content:center;background:var(--bg)}
-.cover-stripe{position:absolute;right:0;top:0;bottom:0;width:6px;background:linear-gradient(to bottom,var(--lime),var(--blue))}
-.cover-meta{display:flex;gap:40px;margin-top:40px}
-.cm-item{display:flex;flex-direction:column;gap:3px}
-.cm-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--g1)}
-.cm-value{font-size:15px;font-weight:500;color:var(--white)}
+.cover-line{position:absolute;right:0;top:0;bottom:0;width:5px;background:linear-gradient(to bottom,var(--lime) 0%,var(--blue) 100%)}
+.cover-watermark{
+  position:absolute;right:72px;top:50%;transform:translateY(-50%);
+  font-size:200px;font-weight:900;letter-spacing:-.02em;
+  color:rgba(255,255,255,.025);pointer-events:none;user-select:none;line-height:1;
+}
+.cover-h1{font-size:72px;font-weight:900;line-height:1.0;color:var(--white);margin-bottom:6px}
+.cover-h1 em{color:var(--lime);font-style:normal}
+.cover-sub{font-size:20px;color:var(--g2);margin-top:18px;margin-bottom:36px;font-weight:400}
+.cover-meta{display:flex;gap:36px;flex-wrap:wrap}
+.cm{display:flex;flex-direction:column;gap:3px}
+.cm-l{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--g1)}
+.cm-v{font-size:14px;font-weight:500;color:var(--white)}
 
-/* ── deliverable cards ── */
-.del-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;flex:1}
-.del-card{background:var(--s1);border-radius:14px;padding:28px;border:1px solid var(--s2);display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden}
+/* ── DELIVERABLE CARDS ── */
+.del-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;flex:1}
+.del-card{
+  background:var(--s1);border-radius:14px;padding:28px;
+  border:1px solid var(--s2);display:flex;flex-direction:column;gap:14px;
+  position:relative;overflow:hidden;
+}
 .del-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
 .del-card:nth-child(1)::before{background:var(--lime)}
 .del-card:nth-child(2)::before{background:var(--blue)}
-.del-card:nth-child(3)::before{background:linear-gradient(to right,var(--lime),var(--blue))}
+.del-card:nth-child(3)::before{background:linear-gradient(90deg,var(--lime),var(--blue))}
 .del-num{font-size:44px;font-weight:900;color:var(--s2);line-height:1}
 .del-title{font-size:20px;font-weight:700;color:var(--white)}
-.del-body{font-size:13.5px;color:var(--g2);line-height:1.6;flex:1}
-.del-due{font-size:12px;font-weight:700;color:var(--lime)}
+.del-body{font-size:13.5px;color:var(--g2);line-height:1.65;flex:1}
+.del-due{font-size:11.5px;font-weight:700;color:var(--lime)}
 
-/* ── timeline ── */
-.timeline{display:flex;flex-direction:column;gap:0;flex:1}
-.tl-item{display:grid;grid-template-columns:88px 18px 1fr;gap:0 18px;align-items:start}
-.tl-date{font-size:11px;font-weight:700;color:var(--g1);text-align:right;padding-top:4px;letter-spacing:.03em}
+/* ── TIMELINE ── */
+.timeline{display:flex;flex-direction:column}
+.tl-item{display:grid;grid-template-columns:84px 20px 1fr;gap:0 16px;align-items:start}
+.tl-date{font-size:11px;font-weight:700;color:var(--g1);text-align:right;padding-top:4px;line-height:1.3}
 .tl-spine{display:flex;flex-direction:column;align-items:center}
-.tl-dot{width:10px;height:10px;border-radius:50%;background:var(--lime);margin-top:5px;flex-shrink:0}
-.tl-dot.b{background:var(--blue)}
-.tl-dot.star{width:13px;height:13px;background:var(--lime);border:2px solid var(--bg)}
-.tl-line{flex:1;width:2px;background:var(--s2);min-height:22px}
-.tl-content{padding-bottom:18px}
-.tl-title{font-size:14px;font-weight:600;color:var(--white)}
+.tl-dot{width:10px;height:10px;border-radius:50%;background:var(--s3);margin-top:5px;flex-shrink:0}
+.tl-dot.lime{background:var(--lime);box-shadow:0 0 8px rgba(222,254,71,.4)}
+.tl-dot.blue{background:var(--blue);box-shadow:0 0 8px rgba(40,178,251,.4)}
+.tl-line{flex:1;width:2px;background:var(--s2);min-height:20px}
+.tl-content{padding-bottom:16px}
+.tl-title{font-size:13.5px;font-weight:600;color:var(--white)}
 .tl-desc{font-size:12px;color:var(--g1);margin-top:2px}
 
-/* ── products overview grid ── */
+/* ── STAT BLOCKS ── */
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.stat{background:var(--s1);border-radius:var(--r);padding:22px 18px;border:1px solid var(--s2);text-align:center}
+.stat-n{font-size:44px;font-weight:900;color:var(--lime);line-height:1}
+.stat-l{font-size:12px;color:var(--g2);margin-top:8px;line-height:1.4}
+
+/* ── COMPARISON TABLE (what makes this different) ── */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:0;flex:1;border-radius:var(--r);overflow:hidden;border:1px solid var(--s2)}
+.compare-col{padding:28px}
+.compare-col:first-child{background:var(--s1);border-right:1px solid var(--s2)}
+.compare-col:last-child{background:rgba(222,254,71,.04)}
+.compare-col h3{font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--s2)}
+.compare-col:first-child h3{color:var(--g2)}
+.compare-col:last-child h3{color:var(--lime)}
+.compare-item{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid rgba(55,65,81,.3);align-items:flex-start;font-size:14px;line-height:1.5}
+.compare-item:last-child{border-bottom:none}
+.compare-col:first-child .compare-item{color:var(--g2)}
+.compare-col:last-child .compare-item{color:var(--white)}
+.ci-icon{flex-shrink:0;margin-top:1px;font-size:13px}
+
+/* ── PRODUCTS GRID (overview) ── */
 .prod-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;flex:1}
-.pg-card{background:var(--s1);border-radius:10px;padding:16px;border:1px solid var(--s2);display:flex;flex-direction:column;gap:8px}
+.pg{background:var(--s1);border-radius:var(--r);padding:16px;border:1px solid var(--s2);display:flex;flex-direction:column;gap:8px;transition:border-color .15s}
+.pg:hover{border-color:var(--blue)}
 .pg-num{font-size:10px;font-weight:700;color:var(--g1)}
 .pg-name{font-size:13px;font-weight:700;color:var(--white);line-height:1.3}
 .pg-desc{font-size:11.5px;color:var(--g2);line-height:1.4;flex:1}
 
-/* ── product detail slide ── */
-.prod-layout{display:grid;grid-template-columns:200px 1fr;gap:36px;flex:1;align-items:start}
-.prod-meta{display:flex;flex-direction:column;gap:14px}
+/* ── PRODUCT ECOSYSTEM ── */
+.eco-group{background:var(--s1);border-radius:var(--r);padding:18px;border:1px solid var(--s2)}
+.eco-group h3{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
+.eco-group:nth-child(1) h3{color:var(--blue)}
+.eco-group:nth-child(2) h3{color:var(--lime)}
+.eco-group:nth-child(3) h3{color:var(--g2)}
+.eco-product{display:flex;gap:8px;align-items:center;padding:7px 0;border-bottom:1px solid rgba(55,65,81,.4)}
+.eco-product:last-child{border-bottom:none}
+.eco-name{font-size:13px;font-weight:600;color:var(--white)}
+.eco-desc{font-size:12px;color:var(--g1)}
+
+/* ── PRODUCT DETAIL ── */
+.prod-layout{display:grid;grid-template-columns:190px 1fr;gap:32px;flex:1;align-items:start}
+.prod-meta{display:flex;flex-direction:column;gap:16px}
 .pm-item{display:flex;flex-direction:column;gap:2px}
-.pm-l{font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:var(--g1);font-weight:700}
+.pm-l{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--g1);font-weight:700}
 .pm-v{font-size:13px;color:var(--white);font-weight:500}
 .prod-body{display:flex;flex-direction:column;gap:18px}
-.pb-section h4{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.11em;color:var(--lime);margin-bottom:7px}
-.pb-section p{font-size:14.5px;color:var(--g2);line-height:1.6}
-.pb-section ul{list-style:none;display:flex;flex-direction:column;gap:5px}
-.pb-section ul li{font-size:13.5px;color:var(--g2);padding-left:16px;position:relative;line-height:1.5}
-.pb-section ul li::before{content:'—';position:absolute;left:0;color:var(--blue);font-weight:700}
-.gtm-pill{background:rgba(222,254,71,.07);border:1px solid rgba(222,254,71,.22);border-radius:8px;padding:9px 14px;font-size:13px;color:var(--lime);line-height:1.5}
-.gtm-pill b{font-weight:700}
+.pb-h{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.11em;color:var(--lime);margin-bottom:8px}
+.pb-p{font-size:14.5px;color:var(--g2);line-height:1.65}
+.pb-ul{list-style:none;display:flex;flex-direction:column;gap:6px}
+.pb-ul li{font-size:13.5px;color:var(--g2);padding-left:16px;position:relative;line-height:1.5}
+.pb-ul li::before{content:'—';position:absolute;left:0;color:var(--blue);font-weight:700}
+.gtm-pill{background:rgba(222,254,71,.07);border:1px solid rgba(222,254,71,.22);border-radius:8px;padding:10px 14px;font-size:13px;color:var(--lime);line-height:1.6}
+.gtm-pill b{font-weight:700;color:var(--lime)}
 
-/* ── research big picture ── */
+/* ── RESEARCH DOMAINS ── */
 .domain-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;flex:1}
-.domain-card{background:var(--s1);border-radius:12px;padding:22px;border:1px solid var(--s2);display:flex;flex-direction:column;gap:10px}
-.domain-card h3{font-size:16px;font-weight:700;color:var(--white)}
-.domain-tracks{font-size:12px;color:var(--blue);font-weight:600}
-.domain-gtm{font-size:13px;color:var(--g2);line-height:1.5}
-.domain-products{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+.domain{background:var(--s1);border-radius:var(--r);padding:22px;border:1px solid var(--s2);display:flex;flex-direction:column;gap:10px}
+.domain h3{font-size:16px;font-weight:700;color:var(--white)}
+.domain-tracks{font-size:12px;color:var(--blue);font-weight:600;letter-spacing:.04em}
+.domain-desc{font-size:13px;color:var(--g2);line-height:1.55;flex:1}
+.domain-prods{display:flex;gap:6px;flex-wrap:wrap}
 
-/* ── GTM mapping hero slide ── */
-.gtm-table{flex:1;display:flex;flex-direction:column;gap:0}
-.gtm-row{display:grid;grid-template-columns:170px 1fr 1fr;gap:0;padding:13px 0;border-bottom:1px solid var(--s2);align-items:start}
-.gtm-row:last-child{border-bottom:none}
-.gtr-track{font-size:13px;font-weight:700;color:var(--lime);line-height:1.4}
-.gtr-q{font-size:13px;color:var(--g2);line-height:1.5;padding-right:20px}
-.gtr-gtm{font-size:13px;color:var(--white);line-height:1.5;padding-left:20px;border-left:2px solid var(--s2)}
-.gtm-col-headers{display:grid;grid-template-columns:170px 1fr 1fr;gap:0;padding-bottom:10px;border-bottom:2px solid var(--s2);margin-bottom:4px}
-.gch{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--g1)}
-.gch:last-child{padding-left:20px}
+/* ── GTM HERO TABLE ── */
+.gtm-hdr{display:grid;grid-template-columns:175px 1fr 1fr;padding-bottom:10px;border-bottom:2px solid var(--s2);margin-bottom:2px}
+.gtm-hdr span{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--g1)}
+.gtm-hdr span:last-child{padding-left:20px}
+.gtm-rows{flex:1;display:flex;flex-direction:column}
+.gtr{display:grid;grid-template-columns:175px 1fr 1fr;padding:12px 0;border-bottom:1px solid rgba(55,65,81,.4);align-items:start}
+.gtr:last-child{border-bottom:none}
+.gtr-track{font-size:13px;font-weight:700;color:var(--lime);line-height:1.45}
+.gtr-q{font-size:13px;color:var(--g2);line-height:1.5;padding-right:18px;font-style:italic}
+.gtr-impact{font-size:13px;color:var(--white);line-height:1.5;padding-left:20px;border-left:2px solid var(--s2)}
 
-/* ── tracks table ── */
-table.tracks{width:100%;border-collapse:collapse;font-size:13px;flex:1}
-table.tracks thead th{text-align:left;padding:8px 12px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--g1);border-bottom:1px solid var(--s2)}
-table.tracks tbody td{padding:9px 12px;color:var(--g2);border-bottom:1px solid rgba(55,65,81,.4);vertical-align:top;line-height:1.45}
-table.tracks tbody tr:hover td{background:var(--s1)}
-table.tracks td strong{color:var(--white);font-weight:600}
-table.tracks td .t-track{color:var(--lime);font-weight:700}
-table.tracks td .t-venue{color:var(--blue);font-size:12px}
+/* ── TRACKS TABLE ── */
+table.t{width:100%;border-collapse:collapse;font-size:13px}
+table.t thead th{text-align:left;padding:8px 12px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--g1);border-bottom:1px solid var(--s2)}
+table.t tbody td{padding:9px 12px;color:var(--g2);border-bottom:1px solid rgba(55,65,81,.35);vertical-align:top;line-height:1.45}
+table.t tbody tr:hover td{background:var(--s1)}
+table.t td b{color:var(--white);font-weight:600}
+table.t td .tt{color:var(--lime);font-weight:700}
+table.t td .tv{color:var(--blue);font-size:11.5px}
 
-/* ── speaker series ── */
-.talk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;flex:1}
-.talk-card{background:var(--s1);border-radius:10px;padding:18px;border:1px solid var(--s2);display:flex;flex-direction:column;gap:6px}
-.tc-num{font-size:28px;font-weight:900;color:var(--lime);line-height:1}
-.tc-date{font-size:13px;font-weight:600;color:var(--white)}
-.tc-time{font-size:11px;color:var(--g1)}
-.tc-status{font-size:11px;color:var(--g2);margin-top:4px}
+/* ── SPEAKER SERIES ── */
+.talk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;flex:1}
+.talk{background:var(--s1);border-radius:var(--r);padding:16px;border:1px solid var(--s2);display:flex;flex-direction:column;gap:5px}
+.talk-n{font-size:26px;font-weight:900;color:var(--lime);line-height:1}
+.talk-date{font-size:13px;font-weight:600;color:var(--white)}
+.talk-time{font-size:11px;color:var(--g1)}
+.talk-note{font-size:11px;color:var(--g2);margin-top:3px}
 
-/* ── tools ── */
-.tools-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;flex:1}
-.tool-row{display:flex;gap:14px;background:var(--s1);border-radius:8px;padding:13px 16px;align-items:flex-start}
-.tr-name{font-size:14px;font-weight:700;color:var(--white);min-width:160px;flex-shrink:0}
-.tr-desc{font-size:13px;color:var(--g2);line-height:1.4}
-.tr-access{font-size:11px;color:var(--blue);margin-top:3px}
+/* ── TOOLS ── */
+.tools-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;flex:1}
+.tool{display:flex;gap:14px;background:var(--s1);border-radius:8px;padding:13px 16px;align-items:flex-start;border:1px solid var(--s2)}
+.tool-name{font-size:14px;font-weight:700;color:var(--white);min-width:155px;flex-shrink:0}
+.tool-desc{font-size:12.5px;color:var(--g2);line-height:1.45}
+.tool-access{font-size:11px;color:var(--blue);margin-top:3px;font-weight:500}
 
-/* ── checklist ── */
-.cl-list{display:flex;flex-direction:column;gap:8px;flex:1}
-.cl-item{display:flex;gap:14px;background:var(--s1);border-radius:8px;padding:13px 16px;align-items:flex-start}
-.cl-box{width:18px;height:18px;border-radius:4px;border:2px solid var(--s2);flex-shrink:0;margin-top:2px}
-.cl-text{font-size:14px;color:var(--g2);line-height:1.5}
-.cl-text strong{color:var(--white)}
-.cl-due{font-size:11px;color:var(--blue);margin-top:2px}
+/* ── MILESTONES ── */
+.ms-hdr{display:grid;grid-template-columns:105px 1fr 165px;padding-bottom:10px;border-bottom:2px solid var(--s2)}
+.ms-hdr span{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--g1)}
+.ms-rows{flex:1;display:flex;flex-direction:column}
+.msr{display:grid;grid-template-columns:105px 1fr 165px;padding:11px 0;border-bottom:1px solid rgba(55,65,81,.35);align-items:start}
+.msr:last-child{border-bottom:none}
+.ms-date{font-size:12px;font-weight:700;color:var(--lime)}
+.ms-item{font-size:14px;font-weight:500;color:var(--white)}
+.ms-sub{font-size:11.5px;color:var(--g1);margin-top:2px}
+.ms-where{font-size:12px;color:var(--blue)}
 
-/* ── how to succeed ── */
-.succeed-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;flex:1}
-.su-card{background:var(--s1);border-radius:12px;padding:24px;border:1px solid var(--s2)}
-.su-card h3{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--lime);margin-bottom:14px}
-.su-card ul{list-style:none;display:flex;flex-direction:column;gap:8px}
-.su-card ul li{font-size:13.5px;color:var(--g2);line-height:1.5;padding-left:14px;position:relative}
-.su-card ul li::before{content:'→';position:absolute;left:0;color:var(--blue);font-size:12px}
+/* ── SUCCEED ── */
+.succeed-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;flex:1}
+.su{background:var(--s1);border-radius:var(--r);padding:22px;border:1px solid var(--s2)}
+.su h3{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--lime);margin-bottom:14px}
+.su ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.su li{font-size:13.5px;color:var(--g2);line-height:1.5;padding-left:16px;position:relative}
+.su li::before{content:'→';position:absolute;left:0;color:var(--blue);font-size:12px;top:1px}
 
-/* ── 3 questions ── */
+/* ── 3 QUESTIONS ── */
 .q-list{display:flex;flex-direction:column;gap:16px;flex:1;justify-content:center}
-.q-item{background:var(--s1);border-radius:12px;padding:22px 26px;border:1px solid var(--s2);display:flex;gap:20px;align-items:flex-start}
-.q-num{font-size:32px;font-weight:900;color:var(--s2);flex-shrink:0;line-height:1}
-.q-body{}
-.q-body h3{font-size:16px;font-weight:700;color:var(--lime);margin-bottom:8px}
-.q-body p{font-size:14px;color:var(--g2);line-height:1.6}
+.q-item{background:var(--s1);border-radius:12px;padding:20px 24px;border:1px solid var(--s2);display:flex;gap:18px;align-items:flex-start}
+.q-n{font-size:30px;font-weight:900;color:var(--s2);flex-shrink:0;line-height:1;margin-top:2px}
+.q-h{font-size:16px;font-weight:700;color:var(--lime);margin-bottom:7px}
+.q-body{font-size:13.5px;color:var(--g2);line-height:1.6}
 
-/* ── key links ── */
-.links-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;flex:1}
-.lk-row{display:flex;justify-content:space-between;align-items:center;background:var(--s1);border-radius:8px;padding:12px 18px;border:1px solid var(--s2)}
+/* ── CHECKLIST ── */
+.cl-list{display:flex;flex-direction:column;gap:8px}
+.cl{display:flex;gap:12px;background:var(--s1);border-radius:8px;padding:12px 16px;align-items:flex-start;border:1px solid var(--s2)}
+.cl-box{width:17px;height:17px;border-radius:4px;border:2px solid var(--s2);flex-shrink:0;margin-top:2px}
+.cl-t{font-size:13.5px;color:var(--g2);line-height:1.5}
+.cl-t b{color:var(--white)}
+.cl-d{font-size:11px;color:var(--blue);margin-top:2px;font-weight:500}
+
+/* ── LINKS GRID ── */
+.links-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;flex:1}
+.lk{display:flex;justify-content:space-between;align-items:center;background:var(--s1);border-radius:8px;padding:12px 18px;border:1px solid var(--s2)}
 .lk-name{font-size:14px;font-weight:600;color:var(--white)}
 .lk-url{font-size:12px;color:var(--blue)}
 
-/* ── closing ── */
+/* ── CLOSING ── */
 .slide--closing{justify-content:center}
-.closing-quote{font-size:44px;font-weight:800;line-height:1.15;max-width:760px;margin-bottom:40px}
-.closing-quote em{color:var(--lime);font-style:normal}
-.closing-meta{font-size:15px;color:var(--g2);line-height:1.8}
-.closing-meta span{color:var(--white);font-weight:600}
+.closing-q{font-size:46px;font-weight:900;line-height:1.12;max-width:740px;margin-bottom:36px}
+.closing-q em{color:var(--lime);font-style:normal}
 
-/* ── section divider slide ── */
-.slide--section{justify-content:center}
-.sec-num{font-size:100px;font-weight:900;color:var(--s2);line-height:1;margin-bottom:-10px}
-.sec-title{font-size:52px;font-weight:800;color:var(--white)}
-.sec-title em{color:var(--lime);font-style:normal}
-.sec-desc{margin-top:16px;font-size:17px;color:var(--g2);max-width:520px;line-height:1.6}
+/* ── WHY PUBLISH ── */
+.why-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:14px;flex:1}
+.why-card{background:var(--s1);border-radius:var(--r);padding:22px;border:1px solid var(--s2);display:flex;flex-direction:column;gap:12px;border-top:3px solid var(--lime)}
+.why-card:nth-child(even){border-top-color:var(--blue)}
+.why-icon{font-size:28px}
+.why-h{font-size:15px;font-weight:700;color:var(--white)}
+.why-p{font-size:13px;color:var(--g2);line-height:1.6}
 
-/* ── milestones table ── */
-.milestone-table{flex:1;display:flex;flex-direction:column;gap:0}
-.ms-header{display:grid;grid-template-columns:110px 1fr 180px;gap:0;padding-bottom:10px;border-bottom:2px solid var(--s2);margin-bottom:4px}
-.ms-header span{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--g1)}
-.ms-row{display:grid;grid-template-columns:110px 1fr 180px;gap:0;padding:11px 0;border-bottom:1px solid rgba(55,65,81,.4);align-items:center}
-.ms-row:last-child{border-bottom:none}
-.ms-date{font-size:12px;font-weight:700;color:var(--lime)}
-.ms-item{font-size:14px;color:var(--white);font-weight:500}
-.ms-sub{font-size:12px;color:var(--g1);margin-top:2px}
-.ms-where{font-size:12px;color:var(--blue)}
+/* ── WEEKLY RHYTHM ── */
+.rhythm-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;flex:1}
+.rhythm-card{background:var(--s1);border-radius:var(--r);padding:24px;border:1px solid var(--s2);display:flex;flex-direction:column;gap:14px}
+.rc-day{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;margin-bottom:2px}
+.rc-time{font-size:28px;font-weight:800;line-height:1}
+.rc-name{font-size:17px;font-weight:700;color:var(--white)}
+.rc-format{font-size:13px;color:var(--g2)}
+.rc-purpose{font-size:13px;color:var(--g2);line-height:1.55;flex:1}
+.rc-tip{font-size:12px;color:var(--lime);font-weight:600;padding:8px 12px;background:rgba(222,254,71,.07);border-radius:6px}
 
-/* ── print ── */
+/* ── PRINT ── */
 @media print{
   html,body{overflow:visible;height:auto}
-  .slide{position:relative!important;opacity:1!important;pointer-events:all!important;page-break-after:always;height:100vh;break-after:page}
-  #nav,#progress,#key-hint{display:none}
+  .slide{position:relative!important;opacity:1!important;pointer-events:all!important;transform:none!important;page-break-after:always;height:100vh;break-after:page}
+  #nav,#progress{display:none}
 }
 </style>
 </head>
 <body>
-
 <div id="progress"></div>
 
 <main id="deck">
 
-<!-- ══════════════════════════════════════════════════════════
-     SLIDE 1 — COVER
-═══════════════════════════════════════════════════════════ -->
-<section class="slide slide--cover active">
-  <div class="cover-stripe"></div>
-  <div class="eyebrow">Summer 2026</div>
-  <h1 class="hero" style="margin-bottom:0">Anote AI<br>Research<br><em>Fellowship</em></h1>
-  <p class="lede" style="margin-top:24px">Orientation — June 1, 2026</p>
+<!-- ═══ 1. COVER ═══ -->
+<section class="slide slide--cover active" data-section="Welcome">
+  <div class="cover-line"></div>
+  <div class="cover-watermark">ANOTE</div>
+  <div class="eyebrow">Anote AI Research Fellowship — Summer 2026</div>
+  <h1 class="cover-h1">Research.<br>Products.<br><em>Real impact.</em></h1>
+  <p class="cover-sub">Orientation — June 1, 2026 · WeWork NYC + Zoom</p>
   <div class="cover-meta">
-    <div class="cm-item"><span class="cm-label">Date</span><span class="cm-value">June 1, 2026 · 6–8 PM EST</span></div>
-    <div class="cm-item"><span class="cm-label">Location</span><span class="cm-value">WeWork NYC + Zoom</span></div>
-    <div class="cm-item"><span class="cm-label">Program Lead</span><span class="cm-value">Natan</span></div>
-    <div class="cm-item"><span class="cm-label">Program Manager</span><span class="cm-value">Rajshri</span></div>
+    <div class="cm"><span class="cm-l">Duration</span><span class="cm-v">June 1 – August 10, 2026</span></div>
+    <div class="cm"><span class="cm-l">Program Lead</span><span class="cm-v">Natan</span></div>
+    <div class="cm"><span class="cm-l">Program Manager</span><span class="cm-v">Rajshri</span></div>
+    <div class="cm"><span class="cm-l">Cohort</span><span class="cm-v">Up to 15 Fellows</span></div>
+    <div class="cm"><span class="cm-l">Location</span><span class="cm-v">New York City</span></div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     SLIDE 2 — ABOUT ANOTE
-═══════════════════════════════════════════════════════════ -->
-<section class="slide">
-  <div class="slide-label">About Anote</div>
-  <div class="slide-h2">What We're Building</div>
+<!-- ═══ 2. WHAT MAKES THIS DIFFERENT ═══ -->
+<section class="slide" data-section="Welcome">
+  <div class="chip">Why This Fellowship</div>
+  <div class="slide-title">This Is Different</div>
+  <div class="compare flex1">
+    <div class="compare-col">
+      <h3>A Typical Internship</h3>
+      <div class="compare-item"><span class="ci-icon" style="color:var(--g1)">✗</span> Write CRUD features you'll never see again</div>
+      <div class="compare-item"><span class="ci-icon" style="color:var(--g1)">✗</span> Sit in meetings where you can't contribute</div>
+      <div class="compare-item"><span class="ci-icon" style="color:var(--g1)">✗</span> Build something that gets shelved after summer</div>
+      <div class="compare-item"><span class="ci-icon" style="color:var(--g1)">✗</span> Learn a stack in isolation, no research output</div>
+      <div class="compare-item"><span class="ci-icon" style="color:var(--g1)">✗</span> Leave with a few lines on your résumé</div>
+      <div class="compare-item"><span class="ci-icon" style="color:var(--g1)">✗</span> Work on problems nobody outside will see</div>
+    </div>
+    <div class="compare-col">
+      <h3>The Anote Fellowship</h3>
+      <div class="compare-item"><span class="ci-icon" style="color:var(--lime)">✓</span> Write a research paper <b>with your name on it</b></div>
+      <div class="compare-item"><span class="ci-icon" style="color:var(--lime)">✓</span> Own a production product from Day 1</div>
+      <div class="compare-item"><span class="ci-icon" style="color:var(--lime)">✓</span> Ship code real users interact with</div>
+      <div class="compare-item"><span class="ci-icon" style="color:var(--lime)">✓</span> Submit to AAAI, SIGIR, or ICLR — top AI venues</div>
+      <div class="compare-item"><span class="ci-icon" style="color:var(--lime)">✓</span> Leave with an arXiv paper + GitHub record + network</div>
+      <div class="compare-item"><span class="ci-icon" style="color:var(--lime)">✓</span> Present your work publicly on August 5 (recorded)</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 3. ANOTE AT A GLANCE ═══ -->
+<section class="slide" data-section="Welcome">
+  <div class="chip">About Anote</div>
+  <div class="slide-title">Anote at a Glance</div>
+  <div class="stat-row" style="margin-bottom:24px">
+    <div class="stat"><div class="stat-n">10</div><div class="stat-l">Products in the Anote ecosystem</div></div>
+    <div class="stat"><div class="stat-n">23</div><div class="stat-l">Open research tracks to publish on</div></div>
+    <div class="stat"><div class="stat-n">9</div><div class="stat-l">Friday expert talks across the summer</div></div>
+    <div class="stat"><div class="stat-n">10</div><div class="stat-l">Weeks to build something lasting</div></div>
+  </div>
   <div class="two-col">
-    <div style="display:flex;flex-direction:column;gap:20px">
-      <div class="card bl">
-        <div class="eyebrow" style="margin-bottom:8px">Mission</div>
-        <p style="font-size:15px;color:var(--g2);line-height:1.65">Make AI <span class="hl">accessible, reliable, and trustworthy</span> for the enterprise — covering the full lifecycle from raw data to deployed AI.</p>
-      </div>
-      <div class="card bb">
-        <div class="eyebrow" style="margin-bottom:8px">Where We Operate</div>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:7px">
-          <li style="font-size:14px;color:var(--g2);padding-left:14px;position:relative"><span style="position:absolute;left:0;color:var(--blue)">→</span> Enterprise teams moving AI from pilot to production</li>
-          <li style="font-size:14px;color:var(--g2);padding-left:14px;position:relative"><span style="position:absolute;left:0;color:var(--blue)">→</span> Organizations that need accurate, auditable AI workflows</li>
-          <li style="font-size:14px;color:var(--g2);padding-left:14px;position:relative"><span style="position:absolute;left:0;color:var(--blue)">→</span> Regulated industries requiring on-premise or private AI</li>
-        </ul>
-      </div>
+    <div class="card bl">
+      <h3>Mission</h3>
+      <p>Make AI <span class="lime fw7">accessible, reliable, and trustworthy</span> for the enterprise — covering the full lifecycle from raw data to deployed AI models and agents.</p>
     </div>
-    <div style="display:flex;flex-direction:column;gap:20px">
-      <div class="card" style="border-left:3px solid var(--lime);flex:1">
-        <div class="eyebrow" style="margin-bottom:8px">Why Research Matters Here</div>
-        <p style="font-size:15px;color:var(--g2);line-height:1.65;margin-bottom:14px">Every paper you publish is a <span class="hl">proof point that our products work</span> — and that our team knows how.</p>
-        <p style="font-size:15px;color:var(--g2);line-height:1.65">Our research <em style="color:var(--white);font-style:normal">is</em> our GTM differentiation. arXiv preprints become sales collateral. Conference acceptances become recruiting signals.</p>
-      </div>
-      <div style="background:rgba(222,254,71,.06);border:1px solid rgba(222,254,71,.2);border-radius:10px;padding:18px">
-        <p style="font-size:14px;color:var(--lime);font-weight:600;line-height:1.6">"This is not a lecture series. This is not a class.<br>This is a research lab with a product team attached."</p>
-      </div>
+    <div class="card bb">
+      <h3>Who We Sell To</h3>
+      <ul>
+        <li>Enterprise data &amp; ML teams moving AI from pilot to production</li>
+        <li>Organizations that need accurate, auditable AI workflows</li>
+        <li>Regulated industries (healthcare, legal, finance, government) requiring private AI</li>
+        <li>Sales and ops teams adopting AI-powered automation</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     SLIDE 3 — THREE DELIVERABLES
-═══════════════════════════════════════════════════════════ -->
-<section class="slide">
-  <div class="slide-label">Program Structure</div>
-  <div class="slide-h2">Three Deliverables. Ten Weeks.</div>
-  <div class="del-cards">
+<!-- ═══ 4. THREE DELIVERABLES ═══ -->
+<section class="slide" data-section="Program">
+  <div class="chip">Program Structure</div>
+  <div class="slide-title">Three Deliverables. Ten Weeks.</div>
+  <div class="del-grid">
     <div class="del-card">
       <div class="del-num">01</div>
       <div class="del-title">AI Research Paper</div>
-      <div class="del-body">Choose from 23 research tracks or propose your own. Write, iterate, and submit to <strong style="color:var(--white)">arXiv</strong> plus a top AI conference. This is original, publishable research — your name on a paper.</div>
-      <div class="del-due">Due: August 10 → arXiv + AAAI/SIGIR/ICLR 2027</div>
+      <div class="del-body">
+        Choose from 23 research tracks or propose your own. Conduct original research, iterate with the team, and submit to <b style="color:var(--white)">arXiv</b> + a top AI conference.<br><br>
+        Target venues: AAAI 2027, SIGIR 2027, ICLR 2027, WSDM 2027, ACL Rolling Review.
+      </div>
+      <div class="del-due">Aug 10 → arXiv + conference submitted</div>
     </div>
     <div class="del-card">
       <div class="del-num">02</div>
       <div class="del-title">Final Presentation</div>
-      <div class="del-body">Present your summer's work live on <strong style="color:var(--white)">August 5</strong>. 20-minute slot. Recorded and published to Anote YouTube. Use the Anote Google Slides template. Inspired by Pale Blue Dot &amp; Panacea showcases.</div>
-      <div class="del-due">Due: August 5 · 5–10 PM EST · WeWork NYC</div>
+      <div class="del-body">
+        Present your summer's work live on <b style="color:var(--white)">August 5</b>, 5–10 PM. 20-minute slot per fellow. Recorded and published to Anote's YouTube channel and website.<br><br>
+        Use the Anote Google Slides template. Inspired by past showcases: Pale Blue Dot, Panacea.
+      </div>
+      <div class="del-due">Aug 5 · 5–10 PM · WeWork NYC</div>
     </div>
     <div class="del-card">
       <div class="del-num">03</div>
       <div class="del-title">Product Ownership</div>
-      <div class="del-body">Own one of 10 Anote products for the summer. Ship features, fix bugs, improve docs — using <strong style="color:var(--white)">Claude Code</strong> or Codex. All PRs merged and documented by August 10.</div>
-      <div class="del-due">Ongoing → All merged by August 10</div>
+      <div class="del-body">
+        Own one Anote product from Day 1. Ship features, fix bugs, improve docs using <b style="color:var(--white)">Claude Code</b> or Codex. You pick 2–3 experiments with clear success criteria and execute them.<br><br>
+        All PRs merged, READMEs updated, handoff notes written by August 10.
+      </div>
+      <div class="del-due">Ongoing → fully closed Aug 10</div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     SLIDE 4 — SUMMER TIMELINE
-═══════════════════════════════════════════════════════════ -->
-<section class="slide">
-  <div class="slide-label">Calendar</div>
-  <div class="slide-h2">The Summer at a Glance</div>
+<!-- ═══ 5. SUMMER TIMELINE ═══ -->
+<section class="slide" data-section="Program">
+  <div class="chip">Calendar</div>
+  <div class="slide-title">The Summer Timeline</div>
   <div class="two-col">
     <div class="timeline">
-      <div class="tl-item">
-        <div class="tl-date">Jun 1</div>
-        <div class="tl-spine"><div class="tl-dot star"></div><div class="tl-line"></div></div>
-        <div class="tl-content"><div class="tl-title" style="color:var(--lime)">Orientation &amp; Kickoff</div><div class="tl-desc">WeWork NYC · 6–8 PM EST</div></div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date">Jun 9</div>
-        <div class="tl-spine"><div class="tl-dot"></div><div class="tl-line"></div></div>
-        <div class="tl-content"><div class="tl-title">Research topic confirmed</div><div class="tl-desc">Tuesday standup</div></div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date">Jun 23</div>
-        <div class="tl-spine"><div class="tl-dot"></div><div class="tl-line"></div></div>
-        <div class="tl-content"><div class="tl-title">Abstract &amp; outline due</div><div class="tl-desc">Share with team</div></div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date">Jul 1</div>
-        <div class="tl-spine"><div class="tl-dot b"></div><div class="tl-line"></div></div>
-        <div class="tl-content"><div class="tl-title" style="color:var(--blue)">Midpoint 1:1s with Natan</div><div class="tl-desc">20 min each · 5–10 PM</div></div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date">Jul 14</div>
-        <div class="tl-spine"><div class="tl-dot"></div><div class="tl-line"></div></div>
-        <div class="tl-content"><div class="tl-title">Methodology &amp; experiments done</div></div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date">Jul 21</div>
-        <div class="tl-spine"><div class="tl-dot"></div><div class="tl-line"></div></div>
-        <div class="tl-content"><div class="tl-title">Full draft shared for review</div></div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date">Jul 28</div>
-        <div class="tl-spine"><div class="tl-dot"></div><div class="tl-line"></div></div>
-        <div class="tl-content"><div class="tl-title">Revisions &amp; peer feedback done</div></div>
-      </div>
+      <div class="tl-item"><div class="tl-date">Jun 1</div><div class="tl-spine"><div class="tl-dot lime"></div><div class="tl-line"></div></div><div class="tl-content"><div class="tl-title" style="color:var(--lime)">Orientation &amp; Kickoff</div><div class="tl-desc">6–8 PM EST · WeWork NYC + Zoom</div></div></div>
+      <div class="tl-item"><div class="tl-date">Jun 9</div><div class="tl-spine"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-content"><div class="tl-title">Research topic confirmed</div><div class="tl-desc">Tuesday standup #2</div></div></div>
+      <div class="tl-item"><div class="tl-date">Jun 23</div><div class="tl-spine"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-content"><div class="tl-title">Abstract &amp; outline due</div><div class="tl-desc">Share with steering committee</div></div></div>
+      <div class="tl-item"><div class="tl-date">Jul 1</div><div class="tl-spine"><div class="tl-dot blue"></div><div class="tl-line"></div></div><div class="tl-content"><div class="tl-title" style="color:var(--blue)">Midpoint 1:1s with Natan</div><div class="tl-desc">20 min each · 5–10 PM EST</div></div></div>
+      <div class="tl-item"><div class="tl-date">Jul 14</div><div class="tl-spine"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-content"><div class="tl-title">Methodology + experiments complete</div></div></div>
+      <div class="tl-item"><div class="tl-date">Jul 21</div><div class="tl-spine"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-content"><div class="tl-title">Full draft shared for review</div></div></div>
+      <div class="tl-item"><div class="tl-date">Jul 28</div><div class="tl-spine"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-content"><div class="tl-title">Revisions done · submission target set</div></div></div>
     </div>
     <div class="timeline">
-      <div class="tl-item">
-        <div class="tl-date">Aug 4</div>
-        <div class="tl-spine"><div class="tl-dot"></div><div class="tl-line"></div></div>
-        <div class="tl-content"><div class="tl-title">Final polish · arXiv confirmed</div></div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date">Aug 5</div>
-        <div class="tl-spine"><div class="tl-dot star"></div><div class="tl-line"></div></div>
-        <div class="tl-content"><div class="tl-title" style="color:var(--lime)">Final Presentations</div><div class="tl-desc">5–10 PM · Recorded for YouTube</div></div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date">Aug 7</div>
-        <div class="tl-spine"><div class="tl-dot star"></div><div class="tl-line"></div></div>
-        <div class="tl-content"><div class="tl-title" style="color:var(--blue)">Anote Summer Party</div><div class="tl-desc">7–10 PM · NYC</div></div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date">Aug 10</div>
-        <div class="tl-spine"><div class="tl-dot star"></div><div class="tl-line"></div></div>
-        <div class="tl-content"><div class="tl-title" style="color:var(--lime)">Last Day</div><div class="tl-desc">Papers submitted · Code documented · PRs merged</div></div>
-      </div>
-      <div style="margin-top:24px;background:var(--s1);border-radius:10px;padding:18px;border:1px solid var(--s2)">
-        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--g1);margin-bottom:12px">Every Week</div>
-        <div style="display:flex;flex-direction:column;gap:8px">
-          <div style="display:flex;gap:10px;align-items:center"><span class="badge b-lime">Tue 5pm</span><span style="font-size:13px;color:var(--g2)">AI Research Standup — Virtual</span></div>
-          <div style="display:flex;gap:10px;align-items:center"><span class="badge b-blue">Thu 5pm</span><span style="font-size:13px;color:var(--g2)">AI Product Standup — Virtual</span></div>
-          <div style="display:flex;gap:10px;align-items:center"><span class="badge b-gray">Fri 1pm</span><span style="font-size:13px;color:var(--g2)">Fellowship Talk — WeWork NYC</span></div>
+      <div class="tl-item"><div class="tl-date">Aug 4</div><div class="tl-spine"><div class="tl-dot"></div><div class="tl-line"></div></div><div class="tl-content"><div class="tl-title">Final polish · arXiv preprint live</div></div></div>
+      <div class="tl-item"><div class="tl-date">Aug 5</div><div class="tl-spine"><div class="tl-dot lime"></div><div class="tl-line"></div></div><div class="tl-content"><div class="tl-title" style="color:var(--lime)">Final Presentations</div><div class="tl-desc">5–10 PM · Recorded for YouTube</div></div></div>
+      <div class="tl-item"><div class="tl-date">Aug 7</div><div class="tl-spine"><div class="tl-dot blue"></div><div class="tl-line"></div></div><div class="tl-content"><div class="tl-title" style="color:var(--blue)">Anote Summer Party</div><div class="tl-desc">7–10 PM · NYC venue TBD</div></div></div>
+      <div class="tl-item"><div class="tl-date">Aug 10</div><div class="tl-spine"><div class="tl-dot lime"></div><div class="tl-line"></div></div><div class="tl-content"><div class="tl-title" style="color:var(--lime)">Last Day</div><div class="tl-desc">Papers submitted · code documented · PRs merged</div></div></div>
+      <div style="margin-top:18px;background:var(--s1);border-radius:var(--r);padding:18px;border:1px solid var(--s2)">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--g1);margin-bottom:12px">Every week</div>
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <div style="display:flex;gap:10px;align-items:center"><span class="badge b-lime">Tue 5 PM</span><span style="font-size:13px;color:var(--g2)">AI Research Standup — Virtual</span></div>
+          <div style="display:flex;gap:10px;align-items:center"><span class="badge b-blue">Thu 5 PM</span><span style="font-size:13px;color:var(--g2)">AI Product Standup — Virtual</span></div>
+          <div style="display:flex;gap:10px;align-items:center"><span class="badge b-gray">Fri 1 PM</span><span style="font-size:13px;color:var(--g2)">Fellowship Talk — WeWork NYC</span></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     SLIDE 5 — SECTION: PRODUCTS
-═══════════════════════════════════════════════════════════ -->
-<section class="slide slide--section">
-  <div class="sec-num">01</div>
-  <div class="sec-title">The <em>Products</em></div>
-  <p class="sec-desc">Ten products. One per fellow. You own it for the summer — ship features, fix bugs, document everything, and leave the codebase better than you found it.</p>
-</section>
-
-<!-- ══════════════════════════════════════════════════════════
-     SLIDE 6 — PRODUCTS OVERVIEW
-═══════════════════════════════════════════════════════════ -->
-<section class="slide">
-  <div class="slide-label">Products</div>
-  <div class="slide-h2">10 Products to Own</div>
-  <div class="prod-grid">
-    <div class="pg-card" style="border-top:2px solid var(--blue)">
-      <div class="pg-num">01</div>
-      <div class="pg-name">MLOps Platform<br><span style="color:var(--g1);font-weight:400">(OpenAnote)</span></div>
-      <div class="pg-desc">Data labeling, fine-tuning, SDK, chatbot</div>
-      <span class="badge b-prod">Production</span>
+<!-- ═══ 6. WEEKLY RHYTHM ═══ -->
+<section class="slide" data-section="Program">
+  <div class="chip">How We Work</div>
+  <div class="slide-title">The Weekly Rhythm</div>
+  <div class="rhythm-grid">
+    <div class="rhythm-card" style="border-top:3px solid var(--lime)">
+      <div><div class="rc-day" style="color:var(--lime)">Tuesday</div><div class="rc-time" style="color:var(--lime)">5:00 PM</div></div>
+      <div class="rc-name">AI Research Standup</div>
+      <div class="rc-format">Virtual · 30 min · Scrum format</div>
+      <div class="rc-purpose">Each fellow shares: what they worked on, what's next, and any blockers. Peer feedback on paper progress. PM facilitates and escalates blockers to Natan.</div>
+      <div class="rc-tip">Come with your draft open. Expect feedback on your methodology and framing.</div>
     </div>
-    <div class="pg-card" style="border-top:2px solid var(--blue)">
-      <div class="pg-num">02</div>
-      <div class="pg-name">Panacea<br><span style="color:var(--g1);font-weight:400">(Autonomous Intelligence)</span></div>
-      <div class="pg-desc">Multi-agent orchestration framework</div>
-      <span class="badge b-prod">Production</span>
+    <div class="rhythm-card" style="border-top:3px solid var(--blue)">
+      <div><div class="rc-day" style="color:var(--blue)">Thursday</div><div class="rc-time" style="color:var(--blue)">5:00 PM</div></div>
+      <div class="rc-name">AI Product Standup</div>
+      <div class="rc-format">Virtual · 30 min · Sprint review format</div>
+      <div class="rc-purpose">Demo anything you shipped. Share what's in progress. Raise blockers. No slides — working software only. PM tracks sprint health and escalates blocking issues.</div>
+      <div class="rc-tip">If you have nothing to demo yet, bring a PR link or a clear plan for the week.</div>
     </div>
-    <div class="pg-card" style="border-top:2px solid var(--blue)">
-      <div class="pg-num">03</div>
-      <div class="pg-name">Armor<br><span style="color:var(--g1);font-weight:400">(Community)</span></div>
-      <div class="pg-desc">AI knowledge-sharing community hub</div>
-      <span class="badge b-prod">Production</span>
-    </div>
-    <div class="pg-card" style="border-top:2px solid var(--lime)">
-      <div class="pg-num">04</div>
-      <div class="pg-name">Model Leaderboard</div>
-      <div class="pg-desc">LLM rankings + expert evaluations</div>
-      <span class="badge b-poc">POC</span>
-    </div>
-    <div class="pg-card" style="border-top:2px solid var(--lime)">
-      <div class="pg-num">05</div>
-      <div class="pg-name">Synthetic Data</div>
-      <div class="pg-desc">Multi-modal synthetic dataset generation</div>
-      <span class="badge b-poc">POC</span>
-    </div>
-    <div class="pg-card" style="border-top:2px solid var(--lime)">
-      <div class="pg-num">06</div>
-      <div class="pg-name">Private Chatbot<br><span style="color:var(--g1);font-weight:400">(PrivateGPT Desktop)</span></div>
-      <div class="pg-desc">On-premise, zero-data-sharing AI chat</div>
-      <span class="badge b-poc">POC</span>
-    </div>
-    <div class="pg-card" style="border-top:2px solid var(--g2)">
-      <div class="pg-num">07</div>
-      <div class="pg-name">Slackbot</div>
-      <div class="pg-desc">Anote AI workflows inside Slack</div>
-      <span class="badge b-gray">In Dev</span>
-    </div>
-    <div class="pg-card" style="border-top:2px solid var(--g2)">
-      <div class="pg-num">08</div>
-      <div class="pg-name">AI RFPs</div>
-      <div class="pg-desc">Auto-generate &amp; manage RFP responses</div>
-      <span class="badge b-gray">In Dev</span>
-    </div>
-    <div class="pg-card" style="border-top:2px solid var(--g2)">
-      <div class="pg-num">09</div>
-      <div class="pg-name">Upreach</div>
-      <div class="pg-desc">AI-powered sales outreach platform</div>
-      <span class="badge b-gray">In Dev</span>
-    </div>
-    <div class="pg-card" style="border-top:2px solid var(--blue)">
-      <div class="pg-num">10</div>
-      <div class="pg-name">AI Assisted Coding Tool</div>
-      <div class="pg-desc">Claude Agent SDK · CLI + VS Code extension</div>
-      <span class="badge b-prod">Production</span>
+    <div class="rhythm-card" style="border-top:3px solid var(--g2)">
+      <div><div class="rc-day" style="color:var(--g2)">Friday</div><div class="rc-time" style="color:var(--g2)">1:00 PM</div></div>
+      <div class="rc-name">Fellowship Talk</div>
+      <div class="rc-format">In-Person (WeWork NYC) + Zoom · 1 hour</div>
+      <div class="rc-purpose">Guest AI researcher or practitioner. ~35 min talk + 20 min Q&amp;A. All recorded and published to YouTube. Social media spotlight post goes out each Monday beforehand.</div>
+      <div class="rc-tip">Show up in person. Come with one prepared question tied to your research track.</div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     SLIDES 7–16 — INDIVIDUAL PRODUCTS
-═══════════════════════════════════════════════════════════ -->
+<!-- ═══ 7. SECTION: PRODUCTS ═══ -->
+<section class="slide slide--section dot-bg" data-section="Products">
+  <div class="sec-bg-num">01</div>
+  <div class="sec-kicker">Section 01</div>
+  <div class="sec-h">The <em>Products</em></div>
+  <p class="sec-sub">Ten products across the Anote platform. Each fellow owns one for the entire summer — from first commit to final handoff. You don't just contribute; you drive it.</p>
+</section>
 
-<!-- PRODUCT 1 -->
-<section class="slide">
-  <div class="slide-label">Product 01</div>
-  <div class="slide-h2" style="margin-bottom:20px">MLOps Platform <span style="color:var(--g2);font-weight:500;font-size:24px">(OpenAnote)</span></div>
+<!-- ═══ 8. PRODUCTS OVERVIEW ═══ -->
+<section class="slide" data-section="Products">
+  <div class="chip">Products</div>
+  <div class="slide-title">10 Products, 3 Layers</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;flex:1">
+    <div class="eco-group">
+      <h3>Core Platform</h3>
+      <div class="eco-product"><span class="badge b-prod" style="flex-shrink:0">01</span><div><div class="eco-name">MLOps Platform (OpenAnote)</div><div class="eco-desc">Data labeling → fine-tuning → deploy</div></div></div>
+      <div class="eco-product"><span class="badge b-prod" style="flex-shrink:0">02</span><div><div class="eco-name">Panacea</div><div class="eco-desc">Multi-agent orchestration &amp; automation</div></div></div>
+      <div class="eco-product"><span class="badge b-poc" style="flex-shrink:0">05</span><div><div class="eco-name">Synthetic Data</div><div class="eco-desc">Multi-modal training data generation</div></div></div>
+      <div class="eco-product"><span class="badge b-poc" style="flex-shrink:0">06</span><div><div class="eco-name">Private Chatbot (PrivateGPT)</div><div class="eco-desc">On-premise, zero-data-leak AI chat</div></div></div>
+    </div>
+    <div class="eco-group" style="border-top:2px solid var(--lime)">
+      <h3>Growth &amp; Community</h3>
+      <div class="eco-product"><span class="badge b-prod" style="flex-shrink:0">03</span><div><div class="eco-name">Armor (Community)</div><div class="eco-desc">AI knowledge hub &amp; events platform</div></div></div>
+      <div class="eco-product"><span class="badge b-dev" style="flex-shrink:0">07</span><div><div class="eco-name">Slackbot</div><div class="eco-desc">Anote AI workflows inside Slack</div></div></div>
+      <div class="eco-product"><span class="badge b-dev" style="flex-shrink:0">08</span><div><div class="eco-name">AI RFPs</div><div class="eco-desc">AI-assisted proposal generation</div></div></div>
+      <div class="eco-product"><span class="badge b-dev" style="flex-shrink:0">09</span><div><div class="eco-name">Upreach</div><div class="eco-desc">AI-powered sales outreach platform</div></div></div>
+    </div>
+    <div class="eco-group" style="border-top:2px solid var(--blue)">
+      <h3>Evaluation &amp; Dev Tools</h3>
+      <div class="eco-product"><span class="badge b-poc" style="flex-shrink:0">04</span><div><div class="eco-name">Model Leaderboard</div><div class="eco-desc">LLM rankings + human eval scores</div></div></div>
+      <div class="eco-product"><span class="badge b-prod" style="flex-shrink:0">10</span><div><div class="eco-name">AI Assisted Coding Tool</div><div class="eco-desc">Claude SDK · CLI + VS Code extension</div></div></div>
+      <div style="margin-top:16px;padding:12px;background:rgba(255,255,255,.03);border-radius:8px;border:1px solid var(--s2)">
+        <div style="font-size:12px;color:var(--g2);line-height:1.6">All repos at <span class="blue fw7">github.com/anote-ai</span>. Claude Code provisioned at orientation. EC2 shared dev instance with all repos pre-cloned.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRODUCTS 9–18 ═══ -->
+
+<section class="slide" data-section="Products">
+  <div class="chip">Product 01</div>
+  <div class="slide-title" style="margin-bottom:18px">MLOps Platform <span style="color:var(--g2);font-weight:500;font-size:22px">(OpenAnote)</span></div>
   <div class="prod-layout">
     <div class="prod-meta">
-      <span class="badge b-prod" style="width:fit-content">Production</span>
+      <span class="badge b-prod">Production</span>
       <div class="pm-item"><div class="pm-l">Repo</div><div class="pm-v">anote-ai/OpenAnote</div></div>
       <div class="pm-item"><div class="pm-l">Live</div><div class="pm-v"><a href="https://dashboard.anote.ai">dashboard.anote.ai</a></div></div>
       <div class="pm-item"><div class="pm-l">Stack</div><div class="pm-v">Python + React</div></div>
       <div class="pm-item"><div class="pm-l">Setup</div><div class="pm-v">docker-compose up</div></div>
     </div>
     <div class="prod-body">
-      <div class="pb-section">
-        <h4>What It Does</h4>
-        <p>Anote's flagship platform. End-to-end MLOps for the enterprise — data labeling, model fine-tuning, an SDK for custom workflows, and a chatbot interface. The product most enterprise customers interact with first.</p>
-      </div>
-      <div class="pb-section">
-        <h4>Ship This Summer</h4>
-        <ul>
-          <li>Streaming labelbot responses — real-time predictions, &lt;100ms/token</li>
-          <li>Fine-tuning pipeline observability — dashboards, zero lost jobs</li>
-          <li>SDK documentation revamp — quickstart guide, working code examples</li>
-        </ul>
-      </div>
-      <div class="gtm-pill"><b>GTM:</b> Sold directly to enterprise data &amp; ML teams. The more reliable and observable the labeling pipeline, the faster deals close. Research tracks T2a + T2b provide the peer-reviewed proof of value.</div>
+      <div><div class="pb-h">What It Does</div><p class="pb-p">Anote's flagship platform — end-to-end MLOps for the enterprise. Data labeling workflows, model fine-tuning pipelines, an SDK for custom integrations, and a chatbot interface. This is the product most enterprise customers see first.</p></div>
+      <div><div class="pb-h">Ship This Summer</div><ul class="pb-ul"><li>Streaming labelbot responses — real-time label predictions, &lt;100ms per token</li><li>Fine-tuning pipeline observability — dashboards and logging, zero lost jobs</li><li>SDK documentation revamp — working quickstart, code examples, contributor guide</li></ul></div>
+      <div class="gtm-pill"><b>GTM:</b> Sold directly to enterprise data &amp; ML teams. Every reliability and observability improvement shortens the sales cycle. Research tracks T2a + T2b provide the peer-reviewed ROI case for annotation investment.</div>
     </div>
   </div>
 </section>
 
-<!-- PRODUCT 2 -->
-<section class="slide">
-  <div class="slide-label">Product 02</div>
-  <div class="slide-h2" style="margin-bottom:20px">Panacea <span style="color:var(--g2);font-weight:500;font-size:24px">(Autonomous Intelligence)</span></div>
+<section class="slide" data-section="Products">
+  <div class="chip">Product 02</div>
+  <div class="slide-title" style="margin-bottom:18px">Panacea <span style="color:var(--g2);font-weight:500;font-size:22px">(Autonomous Intelligence)</span></div>
   <div class="prod-layout">
     <div class="prod-meta">
-      <span class="badge b-prod" style="width:fit-content">Production</span>
+      <span class="badge b-prod">Production</span>
       <div class="pm-item"><div class="pm-l">Repo</div><div class="pm-v">anote-ai/Autonomous-Intelligence</div></div>
       <div class="pm-item"><div class="pm-l">Live</div><div class="pm-v"><a href="https://chat.anote.ai">chat.anote.ai</a></div></div>
       <div class="pm-item"><div class="pm-l">Stack</div><div class="pm-v">Python + React</div></div>
       <div class="pm-item"><div class="pm-l">Setup</div><div class="pm-v">docker-compose up</div></div>
     </div>
     <div class="prod-body">
-      <div class="pb-section">
-        <h4>What It Does</h4>
-        <p>Anote's multi-agent orchestration framework. Panacea coordinates multiple AI agents to complete complex, multi-step enterprise tasks — with full visibility into what each agent did and why.</p>
-      </div>
-      <div class="pb-section">
-        <h4>Ship This Summer</h4>
-        <ul>
-          <li>Agent failure recovery — graceful fallbacks, &lt;5% unrecovered failures</li>
-          <li>Multi-agent coordination patterns — round-robin allocation, 20% faster jobs</li>
-          <li>Agent audit trail — compliance logging of every tool call</li>
-        </ul>
-      </div>
-      <div class="gtm-pill"><b>GTM:</b> Targets enterprise automation buyers (ops, IT, finance). Audit trails and failure recovery are the trust signals that unlock procurement. Validated by research track T1a (AgenticEval).</div>
+      <div><div class="pb-h">What It Does</div><p class="pb-p">Anote's multi-agent orchestration framework. Panacea coordinates multiple AI agents to complete complex, multi-step enterprise tasks — with full visibility into every decision, tool call, and output. The agent platform for enterprises that need auditability alongside automation.</p></div>
+      <div><div class="pb-h">Ship This Summer</div><ul class="pb-ul"><li>Agent failure recovery — graceful fallbacks when tools fail mid-execution, &lt;5% unrecovered failures</li><li>Multi-agent coordination patterns — round-robin task allocation, 20% faster job completion</li><li>Agent audit trail — compliance log of every agent decision and tool call, 100% queryable</li></ul></div>
+      <div class="gtm-pill"><b>GTM:</b> Targets enterprise automation buyers in ops, IT, and finance. Audit trails and failure recovery are the exact trust signals that unlock enterprise procurement. Validated by research track T1a (AgenticEval).</div>
     </div>
   </div>
 </section>
 
-<!-- PRODUCT 3 -->
-<section class="slide">
-  <div class="slide-label">Product 03</div>
-  <div class="slide-h2" style="margin-bottom:20px">Armor <span style="color:var(--g2);font-weight:500;font-size:24px">(Community)</span></div>
+<section class="slide" data-section="Products">
+  <div class="chip">Product 03</div>
+  <div class="slide-title" style="margin-bottom:18px">Armor <span style="color:var(--g2);font-weight:500;font-size:22px">(Community)</span></div>
   <div class="prod-layout">
     <div class="prod-meta">
-      <span class="badge b-prod" style="width:fit-content">Production</span>
+      <span class="badge b-prod">Production</span>
       <div class="pm-item"><div class="pm-l">Repo</div><div class="pm-v">anote-ai/Community</div></div>
       <div class="pm-item"><div class="pm-l">Live</div><div class="pm-v"><a href="https://community.anote.ai">community.anote.ai</a></div></div>
       <div class="pm-item"><div class="pm-l">Stack</div><div class="pm-v">React</div></div>
       <div class="pm-item"><div class="pm-l">Setup</div><div class="pm-v">npm</div></div>
     </div>
     <div class="prod-body">
-      <div class="pb-section">
-        <h4>What It Does</h4>
-        <p>Anote's community and events hub — a place for AI practitioners to connect, share knowledge, attend talks, and access resources. Every fellowship talk that gets recorded and posted here extends Anote's reach.</p>
-      </div>
-      <div class="pb-section">
-        <h4>Ship This Summer</h4>
-        <ul>
-          <li>Semantic search over community posts — &lt;200ms latency, relevance +30%</li>
-          <li>Event registration automation — auto calendar invites, 90% RSVP rate</li>
-          <li>User onboarding flow redesign — &gt;70% first-time completion rate</li>
-        </ul>
-      </div>
-      <div class="gtm-pill"><b>GTM:</b> Community drives top-of-funnel brand awareness and inbound leads. Event engagement data surfaces high-intent prospects for the sales team.</div>
+      <div><div class="pb-h">What It Does</div><p class="pb-p">Anote's community hub — where AI practitioners connect, share knowledge, attend events, and access Anote resources. Every fellowship talk recorded and posted here. The front porch of the Anote brand and a critical top-of-funnel channel.</p></div>
+      <div><div class="pb-h">Ship This Summer</div><ul class="pb-ul"><li>Semantic search over community posts — vector DB indexing, &lt;200ms latency, +30% relevance</li><li>Event registration automation — auto calendar invites, reminder emails, 90% RSVP rate</li><li>User onboarding flow redesign — in-app walkthrough for first-time users, &gt;70% completion</li></ul></div>
+      <div class="gtm-pill"><b>GTM:</b> Community drives organic brand awareness and inbound leads. Event engagement data surfaces high-intent prospects. Fellowship talks posted here extend Anote's reach to every viewer.</div>
     </div>
   </div>
 </section>
 
-<!-- PRODUCT 4 -->
-<section class="slide">
-  <div class="slide-label">Product 04</div>
-  <div class="slide-h2" style="margin-bottom:20px">Model Leaderboard</div>
+<section class="slide" data-section="Products">
+  <div class="chip">Product 04</div>
+  <div class="slide-title" style="margin-bottom:18px">Model Leaderboard</div>
   <div class="prod-layout">
     <div class="prod-meta">
-      <span class="badge b-poc" style="width:fit-content">POC</span>
+      <span class="badge b-poc">POC</span>
       <div class="pm-item"><div class="pm-l">Repo</div><div class="pm-v">anote-ai/Leaderboard</div></div>
       <div class="pm-item"><div class="pm-l">Live</div><div class="pm-v"><a href="https://anote.ai/leaderboard">anote.ai/leaderboard</a></div></div>
       <div class="pm-item"><div class="pm-l">Stack</div><div class="pm-v">Python + React</div></div>
       <div class="pm-item"><div class="pm-l">Setup</div><div class="pm-v">docker-compose up</div></div>
     </div>
     <div class="prod-body">
-      <div class="pb-section">
-        <h4>What It Does</h4>
-        <p>An LLM performance leaderboard combining automated benchmarks with expert human evaluations. Goes beyond generic benchmarks by incorporating enterprise-relevant tasks and human-in-the-loop scoring.</p>
-      </div>
-      <div class="pb-section">
-        <h4>Ship This Summer</h4>
-        <ul>
-          <li>Continuous evaluation pipeline — zero manual eval runs, weekly auto-scoring</li>
-          <li>Leaderboard API — REST/GraphQL for third-party integrations</li>
-          <li>Side-by-side model comparison tool — +50% user engagement target</li>
-        </ul>
-      </div>
-      <div class="gtm-pill"><b>GTM:</b> Drives traffic from buyers evaluating models. Positions Anote as a trusted, neutral evaluator — opening conversations about custom evaluation and annotation services. Connected to research track T17 (SyntheticEval).</div>
+      <div><div class="pb-h">What It Does</div><p class="pb-p">An LLM performance leaderboard that goes beyond generic benchmarks — combining automated evaluations with expert human scoring on enterprise-relevant tasks. Helps buyers make informed model selection decisions.</p></div>
+      <div><div class="pb-h">Ship This Summer</div><ul class="pb-ul"><li>Continuous evaluation pipeline — auto-run evals on newly submitted models weekly, zero manual runs</li><li>Leaderboard API — REST/GraphQL endpoint for third-party integrations and embeds</li><li>Side-by-side model comparison — detailed analysis view, target +50% user engagement</li></ul></div>
+      <div class="gtm-pill"><b>GTM:</b> Drives traffic from enterprise AI buyers evaluating models. Positions Anote as a trusted, neutral evaluator — opening conversations about custom evaluation and annotation services. Connected to T17 (SyntheticEval).</div>
     </div>
   </div>
 </section>
 
-<!-- PRODUCT 5 -->
-<section class="slide">
-  <div class="slide-label">Product 05</div>
-  <div class="slide-h2" style="margin-bottom:20px">Synthetic Data</div>
+<section class="slide" data-section="Products">
+  <div class="chip">Product 05</div>
+  <div class="slide-title" style="margin-bottom:18px">Synthetic Data</div>
   <div class="prod-layout">
     <div class="prod-meta">
-      <span class="badge b-poc" style="width:fit-content">POC</span>
+      <span class="badge b-poc">POC</span>
       <div class="pm-item"><div class="pm-l">Repo</div><div class="pm-v">anote-ai/Synthetic-Data</div></div>
       <div class="pm-item"><div class="pm-l">Live</div><div class="pm-v"><a href="https://anote.ai/syntheticdata">anote.ai/syntheticdata</a></div></div>
       <div class="pm-item"><div class="pm-l">Stack</div><div class="pm-v">Python + React</div></div>
       <div class="pm-item"><div class="pm-l">Setup</div><div class="pm-v">docker-compose up</div></div>
     </div>
     <div class="prod-body">
-      <div class="pb-section">
-        <h4>What It Does</h4>
-        <p>Generate synthetic training datasets across modalities — text, image, audio, and beyond. Helps enterprises build training data without expensive human labeling or privacy-sensitive real data.</p>
-      </div>
-      <div class="pb-section">
-        <h4>Ship This Summer</h4>
-        <ul>
-          <li>Multimodal generation — video + 3D mesh support, 1000+ synthetic videos/week</li>
-          <li>Quality metrics dashboard — bias detection, distribution shift scoring on all datasets</li>
-          <li>Domain-specific templates — finance, healthcare, legal (5+ templates with examples)</li>
-        </ul>
-      </div>
-      <div class="gtm-pill"><b>GTM:</b> Pairs with OpenAnote — customers label real data, then generate synthetic augmentations at scale. Reduces time-to-model by 60–80%. Research track T1b (EnterpriseSynth) is the scientific foundation.</div>
+      <div><div class="pb-h">What It Does</div><p class="pb-p">Generate synthetic training datasets across modalities — text, image, audio, and beyond. Enables enterprises to build training data without expensive human labeling from scratch or risking exposure of sensitive production data.</p></div>
+      <div><div class="pb-h">Ship This Summer</div><ul class="pb-ul"><li>Multimodal generation — extend to video + 3D mesh, target 1,000+ synthetic assets/week</li><li>Quality metrics dashboard — automated bias detection and distribution shift scoring on every dataset</li><li>Domain-specific templates — finance, healthcare, legal with pre-built generation configs</li></ul></div>
+      <div class="gtm-pill"><b>GTM:</b> Pairs directly with OpenAnote — customers label seed data, then amplify at scale synthetically. Reduces time-to-model by 60–80%. Research track T1b (EnterpriseSynth) is the scientific foundation for this approach.</div>
     </div>
   </div>
 </section>
 
-<!-- PRODUCT 6 -->
-<section class="slide">
-  <div class="slide-label">Product 06</div>
-  <div class="slide-h2" style="margin-bottom:20px">Private Chatbot <span style="color:var(--g2);font-weight:500;font-size:24px">(PrivateGPT Desktop)</span></div>
+<section class="slide" data-section="Products">
+  <div class="chip">Product 06</div>
+  <div class="slide-title" style="margin-bottom:18px">Private Chatbot <span style="color:var(--g2);font-weight:500;font-size:22px">(PrivateGPT Desktop)</span></div>
   <div class="prod-layout">
     <div class="prod-meta">
-      <span class="badge b-poc" style="width:fit-content">POC</span>
+      <span class="badge b-poc">POC</span>
       <div class="pm-item"><div class="pm-l">Repo</div><div class="pm-v">anote-ai/PrivateGPT-Desktop</div></div>
       <div class="pm-item"><div class="pm-l">Live</div><div class="pm-v"><a href="https://anote.ai/downloadprivategpt">anote.ai/downloadprivategpt</a></div></div>
       <div class="pm-item"><div class="pm-l">Stack</div><div class="pm-v">Electron + Python</div></div>
       <div class="pm-item"><div class="pm-l">Setup</div><div class="pm-v">npm + pip</div></div>
     </div>
     <div class="prod-body">
-      <div class="pb-section">
-        <h4>What It Does</h4>
-        <p>Desktop app that runs AI chat entirely on-device or on-premise. Zero data leaves the building. Uses local models (Llama, Mistral) for regulated industries where cloud AI is off the table.</p>
-      </div>
-      <div class="pb-section">
-        <h4>Ship This Summer</h4>
-        <ul>
-          <li>Local model switching between LLMs — &lt;2 second model swap, no redownload</li>
-          <li>Chunking strategy optimization for legal/medical PDFs — +25% retrieval accuracy</li>
-          <li>Memory footprint reduction — app launches in &lt;3s on MacBook</li>
-        </ul>
-      </div>
-      <div class="gtm-pill"><b>GTM:</b> Opens doors in regulated verticals (healthcare, legal, government, finance) where cloud AI is blocked by compliance requirements. High-value enterprise contracts. Validated by research tracks T4 + T11.</div>
+      <div><div class="pb-h">What It Does</div><p class="pb-p">Desktop application that runs AI chat entirely on-device or on-premise using local LLMs (Llama, Mistral). Zero data leaves the building. Designed for regulated industries where cloud AI is blocked by data residency requirements.</p></div>
+      <div><div class="pb-h">Ship This Summer</div><ul class="pb-ul"><li>Local model switching — swap between LLMs in &lt;2 seconds without redownloading weights</li><li>Chunking strategy optimization for legal/medical PDFs — target +25% retrieval accuracy</li><li>Memory footprint reduction — app launches in &lt;3s on MacBook, 30% smaller footprint</li></ul></div>
+      <div class="gtm-pill"><b>GTM:</b> Opens high-value contracts in healthcare, legal, government, and finance — verticals where no cloud AI vendor can compete due to data residency rules. Validated by research tracks T4 (RAG Failure Propagation) and T11 (PrivacyRAG).</div>
     </div>
   </div>
 </section>
 
-<!-- PRODUCT 7 -->
-<section class="slide">
-  <div class="slide-label">Product 07</div>
-  <div class="slide-h2" style="margin-bottom:20px">Slackbot</div>
+<section class="slide" data-section="Products">
+  <div class="chip">Product 07</div>
+  <div class="slide-title" style="margin-bottom:18px">Slackbot</div>
   <div class="prod-layout">
     <div class="prod-meta">
-      <span class="badge b-gray" style="width:fit-content">In Dev</span>
+      <span class="badge b-dev">In Dev</span>
       <div class="pm-item"><div class="pm-l">Repo</div><div class="pm-v">anote-ai/Slackbot</div></div>
       <div class="pm-item"><div class="pm-l">Stack</div><div class="pm-v">Python</div></div>
       <div class="pm-item"><div class="pm-l">Setup</div><div class="pm-v">pip / docker</div></div>
+      <div class="pm-item"><div class="pm-l">Status</div><div class="pm-v" style="color:var(--lime)">Your build to ship</div></div>
     </div>
     <div class="prod-body">
-      <div class="pb-section">
-        <h4>What It Does</h4>
-        <p>Brings Anote AI workflows directly into Slack. Annotate, label, query knowledge bases, and run automations with slash commands — without leaving your main work tool. Adoption increases dramatically when tools meet users where they already are.</p>
-      </div>
-      <div class="pb-section">
-        <h4>Ship This Summer</h4>
-        <ul>
-          <li>Slash command registry — /label, /annotate, /feedback with 80% adoption target</li>
-          <li>Message threading — zero off-topic replies from the bot</li>
-          <li>Analytics dashboard — 10+ usage and satisfaction metrics tracked</li>
-        </ul>
-      </div>
-      <div class="gtm-pill"><b>GTM:</b> Embedded distribution channel — once the bot is in a customer's Slack, upsell and expansion conversations become much easier. Reduces friction to daily AI usage.</div>
+      <div><div class="pb-h">What It Does</div><p class="pb-p">Brings Anote's AI workflows directly into Slack via slash commands. Annotate, label, query knowledge bases, and trigger automations without leaving the tool your team already uses. Adoption increases dramatically when AI meets users where they work.</p></div>
+      <div><div class="pb-h">Ship This Summer</div><ul class="pb-ul"><li>Slash command registry — /label, /annotate, /feedback with pluggable architecture, target 80% adoption</li><li>Message threading — bot responses auto-threaded to reduce channel noise</li><li>Analytics dashboard — usage metrics, response quality scores, satisfaction ratings</li></ul></div>
+      <div class="gtm-pill"><b>GTM:</b> Embedded distribution channel. Once the bot is in a customer's Slack, daily usage creates habit, and habit creates upsell and expansion opportunities. Removes the biggest friction point to AI adoption: switching context.</div>
     </div>
   </div>
 </section>
 
-<!-- PRODUCT 8 -->
-<section class="slide">
-  <div class="slide-label">Product 08</div>
-  <div class="slide-h2" style="margin-bottom:20px">AI RFPs</div>
+<section class="slide" data-section="Products">
+  <div class="chip">Product 08</div>
+  <div class="slide-title" style="margin-bottom:18px">AI RFPs</div>
   <div class="prod-layout">
     <div class="prod-meta">
-      <span class="badge b-gray" style="width:fit-content">In Dev</span>
+      <span class="badge b-dev">In Dev</span>
       <div class="pm-item"><div class="pm-l">Repo</div><div class="pm-v">anote-ai/AI-RFPs</div></div>
       <div class="pm-item"><div class="pm-l">Stack</div><div class="pm-v">Python</div></div>
       <div class="pm-item"><div class="pm-l">Setup</div><div class="pm-v">pip</div></div>
+      <div class="pm-item"><div class="pm-l">Status</div><div class="pm-v" style="color:var(--lime)">Your build to ship</div></div>
     </div>
     <div class="prod-body">
-      <div class="pb-section">
-        <h4>What It Does</h4>
-        <p>AI-assisted tool for generating, managing, and responding to Requests for Proposals. Helps enterprise sales teams draft high-quality RFP responses in a fraction of the time — compliance checking built in.</p>
-      </div>
-      <div class="pb-section">
-        <h4>Ship This Summer</h4>
-        <ul>
-          <li>Auto-generation from requirements docs — 50% faster RFP creation</li>
-          <li>Semantic search over past RFP wins — find reusable sections, 20% faster completion</li>
-          <li>Compliance checker — SOC 2, GDPR scanning; zero non-compliant RFPs shipped</li>
-        </ul>
-      </div>
-      <div class="gtm-pill"><b>GTM:</b> A self-eating product — Anote uses it internally to win deals faster, and sells it to enterprise procurement and sales teams facing the same problem.</div>
+      <div><div class="pb-h">What It Does</div><p class="pb-p">AI-assisted tool for generating, managing, and responding to Requests for Proposals. Enterprise sales gated by RFP processes lose weeks to manual drafting. AI RFPs automates the heavy lifting — with compliance checking built in.</p></div>
+      <div><div class="pb-h">Ship This Summer</div><ul class="pb-ul"><li>RFP auto-generation from requirements docs — 50% faster creation from a customer brief</li><li>Semantic search over past RFP wins — surface reusable sections, 20% faster completion</li><li>Compliance checker — auto-scan for SOC 2, GDPR, and HIPAA clauses before sending</li></ul></div>
+      <div class="gtm-pill"><b>GTM:</b> A self-eating product — Anote uses it internally to win deals faster, and sells it to enterprise procurement and sales teams with the same problem. Every improvement you make is used in the next Anote proposal.</div>
     </div>
   </div>
 </section>
 
-<!-- PRODUCT 9 -->
-<section class="slide">
-  <div class="slide-label">Product 09</div>
-  <div class="slide-h2" style="margin-bottom:20px">Upreach</div>
+<section class="slide" data-section="Products">
+  <div class="chip">Product 09</div>
+  <div class="slide-title" style="margin-bottom:18px">Upreach</div>
   <div class="prod-layout">
     <div class="prod-meta">
-      <span class="badge b-gray" style="width:fit-content">In Dev</span>
+      <span class="badge b-dev">In Dev</span>
       <div class="pm-item"><div class="pm-l">Repo</div><div class="pm-v">anote-ai/Upreach</div></div>
       <div class="pm-item"><div class="pm-l">Stack</div><div class="pm-v">Python + React</div></div>
       <div class="pm-item"><div class="pm-l">Setup</div><div class="pm-v">docker-compose up</div></div>
+      <div class="pm-item"><div class="pm-l">Status</div><div class="pm-v" style="color:var(--lime)">Your build to ship</div></div>
     </div>
     <div class="prod-body">
-      <div class="pb-section">
-        <h4>What It Does</h4>
-        <p>AI-powered outbound sales engagement. Automates and personalizes prospect communication — from first touch to follow-up — using prospect profile data and conversation history.</p>
-      </div>
-      <div class="pb-section">
-        <h4>Ship This Summer</h4>
-        <ul>
-          <li>Personalized email sequences — +25% open rate vs. generic templates</li>
-          <li>Objection handling bot — detect objections in replies, suggest responses</li>
-          <li>Campaign ROI attribution — link outreach to closed deals, 100% deal attribution</li>
-        </ul>
-      </div>
-      <div class="gtm-pill"><b>GTM:</b> Directly powers Anote's own outbound motion. A fellow improving Upreach is improving Anote's pipeline — and simultaneously validating the product for the market.</div>
+      <div><div class="pb-h">What It Does</div><p class="pb-p">AI-powered outbound sales engagement platform. Automates and personalizes prospect communication at scale — from first touch through follow-up — using prospect profile data, company context, and conversation history.</p></div>
+      <div><div class="pb-h">Ship This Summer</div><ul class="pb-ul"><li>Personalized multi-email sequences — tailored to prospect profile, target +25% open rate vs. templates</li><li>Objection handling bot — detect objections in replies and suggest on-brand responses</li><li>Campaign ROI attribution — link outreach directly to closed deals, 100% deal attribution dashboard</li></ul></div>
+      <div class="gtm-pill"><b>GTM:</b> Directly powers Anote's own outbound motion. A fellow improving Upreach is improving Anote's sales pipeline in real time — and simultaneously building the product case for the market.</div>
     </div>
   </div>
 </section>
 
-<!-- PRODUCT 10 -->
-<section class="slide">
-  <div class="slide-label">Product 10</div>
-  <div class="slide-h2" style="margin-bottom:20px">AI Assisted Coding Tool</div>
+<section class="slide" data-section="Products">
+  <div class="chip">Product 10</div>
+  <div class="slide-title" style="margin-bottom:18px">AI Assisted Coding Tool</div>
   <div class="prod-layout">
     <div class="prod-meta">
-      <span class="badge b-prod" style="width:fit-content">Production</span>
+      <span class="badge b-prod">Production</span>
       <div class="pm-item"><div class="pm-l">Repo</div><div class="pm-v">anote-ai/AI-Assisted-Coding-Tool</div></div>
       <div class="pm-item"><div class="pm-l">Stack</div><div class="pm-v">Node + Python + Rust</div></div>
       <div class="pm-item"><div class="pm-l">Setup</div><div class="pm-v">npm + pip</div></div>
+      <div class="pm-item"><div class="pm-l">Built on</div><div class="pm-v" style="color:var(--lime)">Claude Agent SDK</div></div>
     </div>
     <div class="prod-body">
-      <div class="pb-section">
-        <h4>What It Does</h4>
-        <p>Production-grade AI coding assistant built on the <span class="hl">Claude Agent SDK</span> — CLI, Web UI, and VS Code extension. Full codebase access, file editing, and streaming responses. Anote's own Claude Code.</p>
-      </div>
-      <div class="pb-section">
-        <h4>Ship This Summer</h4>
-        <ul>
-          <li>Multi-language support — Python, Go, Rust, Java; 4+ languages tested and documented</li>
-          <li>Streaming code edits — &lt;500ms time-to-first-edit</li>
-          <li>Workspace dependency resolver — auto-parse package.json/requirements.txt into context</li>
-        </ul>
-      </div>
-      <div class="gtm-pill"><b>GTM:</b> Developer tools drive bottom-up adoption — individuals adopt, then evangelize to their teams. Proves Anote's Claude SDK expertise to enterprise engineering buyers.</div>
+      <div><div class="pb-h">What It Does</div><p class="pb-p">A production-grade AI coding assistant built on the <span class="lime fw7">Claude Agent SDK</span> — with a CLI, Web UI, and VS Code extension. Full codebase access, file editing, and streaming responses. Anote's answer to the developer tooling wave, proving Claude SDK expertise.</p></div>
+      <div><div class="pb-h">Ship This Summer</div><ul class="pb-ul"><li>Multi-language support — Python, Go, Rust, Java; 4+ languages with full test coverage</li><li>Streaming code edits — &lt;500ms time-to-first-edit for a better interactive feel</li><li>Workspace dependency resolver — auto-parse package.json / requirements.txt into context window</li></ul></div>
+      <div class="gtm-pill"><b>GTM:</b> Developer tools drive bottom-up adoption. Engineers adopt individually, then champion to their teams. Positions Anote in the fast-growing developer AI tooling market and demonstrates Claude SDK expertise to enterprise buyers.</div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     SLIDE 17 — SECTION: RESEARCH
-═══════════════════════════════════════════════════════════ -->
-<section class="slide slide--section">
-  <div class="sec-num">02</div>
-  <div class="sec-title">The <em>Research</em></div>
-  <p class="sec-desc">23 tracks. 7 active priority papers. Every track connects to a product and a sales conversation. Published research is how we prove our products work.</p>
+<!-- ═══ SECTION: RESEARCH ═══ -->
+<section class="slide slide--section dot-bg" data-section="Research">
+  <div class="sec-bg-num">02</div>
+  <div class="sec-kicker">Section 02</div>
+  <div class="sec-h">The <em>Research</em></div>
+  <p class="sec-sub">23 tracks. Original, publishable AI research. Every track is designed to produce a credible paper AND support a sales conversation. This is not academic research for its own sake.</p>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     SLIDE 18 — RESEARCH BIG PICTURE
-═══════════════════════════════════════════════════════════ -->
-<section class="slide">
-  <div class="slide-label">Research</div>
-  <div class="slide-h2">Research — The Big Picture</div>
+<!-- ═══ WHY WE PUBLISH ═══ -->
+<section class="slide" data-section="Research">
+  <div class="chip">Research Strategy</div>
+  <div class="slide-title">Why We Publish</div>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">📄</div>
+      <div class="why-h">Proof That Products Work</div>
+      <div class="why-p">A peer-reviewed paper on annotation ROI is more credible to an enterprise buyer than any marketing claim. Our research is the scientific case for our products.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🔍</div>
+      <div class="why-h">Inbound &amp; SEO</div>
+      <div class="why-p">arXiv preprints get indexed, cited, and shared. Every paper we publish extends Anote's reach to researchers and practitioners who become future customers, partners, or hires.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🎓</div>
+      <div class="why-h">Recruiting Signal</div>
+      <div class="why-p">Top AI engineers want to work somewhere doing serious research. Conference acceptances and arXiv papers signal to elite researchers that Anote is a place worth joining.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🗺️</div>
+      <div class="why-h">Product Roadmap Input</div>
+      <div class="why-p">Research findings flow directly back into the product. When we publish that retrieval strategy X outperforms Y, that becomes a product decision, not just a footnote.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ RESEARCH DOMAINS ═══ -->
+<section class="slide" data-section="Research">
+  <div class="chip">Research Tracks</div>
+  <div class="slide-title">Four Research Domains</div>
   <div class="domain-grid">
-    <div class="domain-card" style="border-top:2px solid var(--lime)">
+    <div class="domain" style="border-top:2px solid var(--lime)">
       <h3>Agent Evaluation &amp; Orchestration</h3>
       <div class="domain-tracks">T1a · T1b · T12 · T16</div>
-      <div class="domain-gtm">Does standard benchmarking predict enterprise readiness? How do agents coordinate at scale? How do agents retain long-horizon memory?</div>
-      <div class="domain-products"><span class="badge b-prod">Panacea</span><span class="badge b-prod">AI Coding Tool</span></div>
+      <div class="domain-desc">Does standard benchmarking predict enterprise agent readiness? How do agents coordinate at scale? How do they retain long-horizon memory? These papers challenge the gap between leaderboard scores and real-world deployment.</div>
+      <div class="domain-prods"><span class="badge b-prod">Panacea</span><span class="badge b-prod">AI Coding Tool</span></div>
     </div>
-    <div class="domain-card" style="border-top:2px solid var(--blue)">
+    <div class="domain" style="border-top:2px solid var(--blue)">
       <h3>Data Annotation &amp; Synthetic Data</h3>
       <div class="domain-tracks">T2a · T2b · T3 · T13 · T14 · T22</div>
-      <div class="domain-gtm">How much labeled data do enterprises actually need? What is annotation ROI? Does human-AI collaboration still beat fully automated pipelines?</div>
-      <div class="domain-products"><span class="badge b-prod">OpenAnote</span><span class="badge b-poc">Synthetic Data</span></div>
+      <div class="domain-desc">How much labeled data do enterprises actually need? What is annotation ROI? Does human-AI collaboration beat fully automated pipelines in the age of GPT-4? These papers answer the hardest objections in Anote's sales process.</div>
+      <div class="domain-prods"><span class="badge b-prod">OpenAnote</span><span class="badge b-poc">Synthetic Data</span></div>
     </div>
-    <div class="domain-card" style="border-top:2px solid var(--lime)">
+    <div class="domain" style="border-top:2px solid var(--lime)">
       <h3>Retrieval (RAG) &amp; Knowledge</h3>
       <div class="domain-tracks">T4 · T5 · T7 · T8 · T11 · T15 · T18 · T19 · T21 · T23</div>
-      <div class="domain-gtm">How do retrieval errors propagate through agent pipelines? Which strategies generalize across domains? How do we protect sensitive entities in retrieval?</div>
-      <div class="domain-products"><span class="badge b-poc">Private Chatbot</span><span class="badge b-prod">Panacea</span></div>
+      <div class="domain-desc">How do retrieval errors propagate through agent pipelines? Which strategies generalize across domains? How do we protect sensitive entities in retrieval workflows? The largest domain — RAG is core to both Private Chatbot and Panacea.</div>
+      <div class="domain-prods"><span class="badge b-poc">Private Chatbot</span><span class="badge b-prod">Panacea</span></div>
     </div>
-    <div class="domain-card" style="border-top:2px solid var(--blue)">
+    <div class="domain" style="border-top:2px solid var(--blue)">
       <h3>Evaluation &amp; Benchmarking</h3>
       <div class="domain-tracks">T6 · T9 · T10 · T17 · T20</div>
-      <div class="domain-gtm">Fine-tuning vs. RAG tradeoffs. Cross-domain embedding comparisons. Synthetic evaluation dataset reliability. Prompt stability under variation.</div>
-      <div class="domain-products"><span class="badge b-poc">Model Leaderboard</span><span class="badge b-prod">OpenAnote</span></div>
+      <div class="domain-desc">Fine-tuning vs. RAG tradeoffs. Cross-domain embedding comparisons. Synthetic evaluation reliability. Prompt stability under variation. These papers inform which models Anote recommends and how we measure them on the Leaderboard.</div>
+      <div class="domain-prods"><span class="badge b-poc">Model Leaderboard</span><span class="badge b-prod">OpenAnote</span></div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     SLIDE 19 — RESEARCH → GTM (THE KEY SLIDE)
-═══════════════════════════════════════════════════════════ -->
-<section class="slide">
-  <div class="slide-label">Research → GTM</div>
-  <div class="slide-h2">Research <em>Is</em> Our GTM</div>
-  <div class="gtm-col-headers">
-    <div class="gch">Research Track</div>
-    <div class="gch">Core Question</div>
-    <div class="gch">GTM Impact</div>
+<!-- ═══ RESEARCH → GTM ═══ -->
+<section class="slide" data-section="Research">
+  <div class="chip">Research → GTM</div>
+  <div class="slide-title">Research <em>Is</em> Our GTM</div>
+  <div class="gtm-hdr">
+    <span>Track</span><span>Research Question</span><span style="padding-left:20px">Customer Conversation It Unlocks</span>
   </div>
-  <div class="gtm-table">
-    <div class="gtm-row">
+  <div class="gtm-rows">
+    <div class="gtr">
       <div class="gtr-track">T2a AnnotateBench<br>T2b AnnotateROI</div>
-      <div class="gtr-q">How much labeled data do annotation strategies need? How should enterprises measure annotation ROI?</div>
-      <div class="gtr-gtm">When a prospect asks "why pay for data labeling?" — we have a peer-reviewed answer. These papers <em style="color:var(--lime);font-style:normal">are</em> the scientific case for OpenAnote.</div>
+      <div class="gtr-q">How much labeled data do annotation strategies actually need? How should enterprises measure annotation ROI?</div>
+      <div class="gtr-impact">When a prospect asks "why pay for data labeling in the age of LLMs?" — we have a peer-reviewed answer. These papers are the scientific case for OpenAnote.</div>
     </div>
-    <div class="gtm-row">
+    <div class="gtr">
       <div class="gtr-track">T1a AgenticEval</div>
-      <div class="gtr-q">Does BFCL benchmark rank predict real enterprise trustworthiness for agentic systems?</div>
-      <div class="gtr-gtm">Gives Panacea a defensible claim: "We benchmark on what enterprise agents actually need to do." Makes compliance and procurement conversations concrete.</div>
+      <div class="gtr-q">Does BFCL benchmark score predict enterprise trustworthiness for agentic systems?</div>
+      <div class="gtr-impact">Gives Panacea a defensible claim: "We benchmark on what enterprise agents actually need to do." Turns abstract capability into auditable trust for procurement teams.</div>
     </div>
-    <div class="gtm-row">
+    <div class="gtr">
       <div class="gtr-track">T1b EnterpriseSynth</div>
       <div class="gtr-q">Can we generate agentic SFT training data from API schemas without live execution?</div>
-      <div class="gtr-gtm">The scientific foundation of the Synthetic Data product. A published paper lets us sell synthetic data generation with academic credibility.</div>
+      <div class="gtr-impact">The scientific foundation of the Synthetic Data product. A published paper lets us sell synthetic data generation with academic credibility to enterprise ML teams.</div>
     </div>
-    <div class="gtm-row">
+    <div class="gtr">
       <div class="gtr-track">T4 RAG Failure Propagation<br>T5 RetrievalBench</div>
       <div class="gtr-q">How do retrieval errors cascade through agent pipelines? Which strategies generalize across domains?</div>
-      <div class="gtr-gtm">Regulated-industry buyers demand proof of reliability. T4 + T5 directly answer the top objections in Private Chatbot sales cycles.</div>
+      <div class="gtr-impact">Regulated-industry buyers need proof of reliability before procurement. T4 + T5 directly address the top reliability objections in Private Chatbot and Panacea sales cycles.</div>
     </div>
-    <div class="gtm-row">
+    <div class="gtr">
       <div class="gtr-track">T3 Human-AI Teaming</div>
-      <div class="gtr-q">How does the collaboration protocol between human and AI affect downstream model quality?</div>
-      <div class="gtr-gtm">Differentiates Anote's human-in-the-loop annotation. Answers "why human annotation still matters in the age of LLMs" — and why customers should pay for it.</div>
+      <div class="gtr-q">How does the collaboration protocol between human annotators and AI affect downstream model quality?</div>
+      <div class="gtr-impact">Differentiates Anote's human-in-the-loop annotation from fully automated pipelines. Answers "why does human annotation still matter?" — and why customers should pay for it.</div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     SLIDE 20 — ACTIVE RESEARCH TRACKS
-═══════════════════════════════════════════════════════════ -->
-<section class="slide">
-  <div class="slide-label">Research Tracks</div>
-  <div class="slide-h2">Active Priority Tracks — Summer 2026</div>
-  <p style="font-size:13px;color:var(--g1);margin-bottom:16px">Target: AAAI 2027 · SIGIR 2027 · ICLR 2027 &nbsp;|&nbsp; Abstract deadlines ~August 2026</p>
-  <table class="tracks" style="flex:1">
-    <thead>
-      <tr><th>Track</th><th>Title</th><th>Core Research Question</th><th>Target Venues</th></tr>
-    </thead>
+<!-- ═══ ACTIVE TRACKS ═══ -->
+<section class="slide" data-section="Research">
+  <div class="chip">Priority Tracks</div>
+  <div class="slide-title">Active Priority Tracks — Summer 2026</div>
+  <p style="font-size:12px;color:var(--g1);margin-bottom:14px">Targeting AAAI 2027, SIGIR 2027, ICLR 2027 &nbsp;·&nbsp; Abstract deadlines ~August 2026 &nbsp;·&nbsp; Confirm your track with Natan by June 9</p>
+  <table class="t" style="flex:1">
+    <thead><tr><th>Track</th><th>Title</th><th>Core Research Question</th><th>Target Venues</th></tr></thead>
     <tbody>
-      <tr><td><span class="t-track">T1a</span></td><td><strong>AgenticEval</strong></td><td>Does BFCL rank predict enterprise trustworthiness for agentic systems?</td><td><span class="t-venue">AAAI 2027 · ICLR 2027</span></td></tr>
-      <tr><td><span class="t-track">T1b</span></td><td><strong>EnterpriseSynth</strong></td><td>Can we generate agentic SFT data from API schemas without live execution?</td><td><span class="t-venue">AAAI 2027 · ICLR 2027</span></td></tr>
-      <tr><td><span class="t-track">T2a</span></td><td><strong>AnnotateBench</strong></td><td>How much labeled data do annotation strategies need across NLP tasks?</td><td><span class="t-venue">AAAI 2027 · ACL ARR</span></td></tr>
-      <tr><td><span class="t-track">T2b</span></td><td><strong>AnnotateROI</strong></td><td>How should enterprises measure annotation ROI?</td><td><span class="t-venue">AAAI 2027 · WSDM 2027</span></td></tr>
-      <tr><td><span class="t-track">T3</span></td><td><strong>Human-AI Teaming</strong></td><td>How does human-AI collaboration protocol affect downstream model performance?</td><td><span class="t-venue">AAAI 2027 · CSCW 2027</span></td></tr>
-      <tr><td><span class="t-track">T4</span></td><td><strong>RAG Failure Propagation</strong></td><td>How do retrieval errors propagate through agentic RAG pipelines?</td><td><span class="t-venue">AAAI 2027 · SIGIR 2027</span></td></tr>
-      <tr><td><span class="t-track">T5</span></td><td><strong>RetrievalBench</strong></td><td>Which retrieval strategy combination generalizes best across domains?</td><td><span class="t-venue">SIGIR 2027 · WSDM 2027</span></td></tr>
+      <tr><td><span class="tt">T1a</span></td><td><b>AgenticEval</b></td><td>Does BFCL rank predict enterprise trustworthiness for agentic systems?</td><td><span class="tv">AAAI 2027 · ICLR 2027</span></td></tr>
+      <tr><td><span class="tt">T1b</span></td><td><b>EnterpriseSynth</b></td><td>Generate agentic SFT data from API schemas without live execution?</td><td><span class="tv">AAAI 2027 · ICLR 2027</span></td></tr>
+      <tr><td><span class="tt">T2a</span></td><td><b>AnnotateBench</b></td><td>How much labeled data do annotation strategies need across NLP tasks?</td><td><span class="tv">AAAI 2027 · ACL ARR</span></td></tr>
+      <tr><td><span class="tt">T2b</span></td><td><b>AnnotateROI</b></td><td>How should enterprises measure annotation return on investment?</td><td><span class="tv">AAAI 2027 · WSDM 2027</span></td></tr>
+      <tr><td><span class="tt">T3</span></td><td><b>Human-AI Teaming</b></td><td>How does human-AI collaboration protocol affect downstream model quality?</td><td><span class="tv">AAAI 2027 · CSCW 2027</span></td></tr>
+      <tr><td><span class="tt">T4</span></td><td><b>RAG Failure Propagation</b></td><td>How do retrieval errors propagate through agentic RAG pipelines?</td><td><span class="tv">AAAI 2027 · SIGIR 2027</span></td></tr>
+      <tr><td><span class="tt">T5</span></td><td><b>RetrievalBench</b></td><td>Which retrieval strategy combination generalizes best across domains?</td><td><span class="tv">SIGIR 2027 · WSDM 2027</span></td></tr>
     </tbody>
   </table>
-  <p style="font-size:12px;color:var(--g1);margin-top:12px">Confirm your track with Natan by June 9. May also propose your own — bring it to Tuesday standup. Backlog tracks T6–T23 also available.</p>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     SLIDE 21 — SECTION: SPEAKER SERIES
-═══════════════════════════════════════════════════════════ -->
-<section class="slide slide--section">
-  <div class="sec-num">03</div>
-  <div class="sec-title">The <em>Speaker Series</em></div>
-  <p class="sec-desc">9 Friday talks. AI researchers, engineers, and practitioners from academia and industry — sharing their work directly with fellows. Every talk recorded and published.</p>
+<!-- ═══ BACKLOG TRACKS ═══ -->
+<section class="slide" data-section="Research">
+  <div class="chip">Backlog Tracks</div>
+  <div class="slide-title">Backlog Tracks — Available for Selection</div>
+  <p style="font-size:12px;color:var(--g1);margin-bottom:14px">No assigned venue yet — work with Natan to determine the best fit once scope is defined. All are viable paths to a strong publication.</p>
+  <table class="t" style="flex:1">
+    <thead><tr><th>Track</th><th>Title</th><th>Domain</th></tr></thead>
+    <tbody>
+      <tr><td><span class="tt">T6</span></td><td><b>FineTuneBench</b></td><td style="color:var(--g2)">Fine-tuning vs. RAG in domain-specific QA</td></tr>
+      <tr><td><span class="tt">T7</span></td><td><b>MultiHopRAG</b></td><td style="color:var(--g2)">Agent-based decomposition for multi-hop queries</td></tr>
+      <tr><td><span class="tt">T8</span></td><td><b>TableRAG</b></td><td style="color:var(--g2)">RAG for tabular and financial datasets</td></tr>
+      <tr><td><span class="tt">T9</span></td><td><b>EmbedBench</b></td><td style="color:var(--g2)">Cross-domain embedding model comparisons</td></tr>
+      <tr><td><span class="tt">T10</span></td><td><b>LLMClassifyBench</b></td><td style="color:var(--g2)">LLM vs. fine-tuned classifiers under domain shift</td></tr>
+      <tr><td><span class="tt">T11</span></td><td><b>PrivacyRAG</b></td><td style="color:var(--g2)">Sensitive entity protection in retrieval workflows</td></tr>
+      <tr><td><span class="tt">T12</span></td><td><b>AgentMemory</b></td><td style="color:var(--g2)">Long-horizon memory architectures for agents</td></tr>
+      <tr><td><span class="tt">T13</span></td><td><b>SLMFineTune</b></td><td style="color:var(--g2)">PEFT methods for enterprise domain adaptation on small LMs</td></tr>
+      <tr><td><span class="tt">T14</span></td><td><b>NERBench</b></td><td style="color:var(--g2)">Annotation requirements for specialized Named Entity Recognition</td></tr>
+      <tr><td><span class="tt">T15–T23</span></td><td><b>ChunkingTheory · AgenticOrchestration · SyntheticEval · HallucinationRAG · MultiDocRAG · PromptStability · ActiveRAG · LLMDataAug · OntologyRAG</b></td><td style="color:var(--g2)">RAG, Agents, Evaluation, NLP</td></tr>
+    </tbody>
+  </table>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     SLIDE 22 — SPEAKER SERIES
-═══════════════════════════════════════════════════════════ -->
-<section class="slide">
-  <div class="slide-label">Speaker Series</div>
-  <div class="slide-h2">Friday Fellowship Talks</div>
+<!-- ═══ SECTION: SPEAKER SERIES ═══ -->
+<section class="slide slide--section dot-bg" data-section="Speaker Series">
+  <div class="sec-bg-num">03</div>
+  <div class="sec-kicker">Section 03</div>
+  <div class="sec-h">The <em>Speaker Series</em></div>
+  <p class="sec-sub">9 Fridays. Guest AI researchers, engineers, and practitioners sharing work directly with fellows. Every talk recorded and published to YouTube within 48 hours.</p>
+</section>
+
+<!-- ═══ FRIDAY TALKS ═══ -->
+<section class="slide" data-section="Speaker Series">
+  <div class="chip">Speaker Series</div>
+  <div class="slide-title">Friday Fellowship Talks</div>
   <div class="two-col">
-    <div style="display:flex;flex-direction:column;gap:16px">
+    <div style="display:flex;flex-direction:column;gap:14px">
       <div class="card bl">
-        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--lime);margin-bottom:10px">Format</div>
-        <div style="display:flex;flex-direction:column;gap:7px">
-          <div style="font-size:14px;color:var(--g2)"><span class="hl">1:00–1:35pm</span> — Guest talk</div>
-          <div style="font-size:14px;color:var(--g2)"><span class="hl">1:35–1:55pm</span> — Q&amp;A with fellows</div>
-          <div style="font-size:14px;color:var(--g2)">Recorded → YouTube within 48 hrs</div>
-          <div style="font-size:14px;color:var(--g2)">Monday spotlight post on LinkedIn + Twitter</div>
+        <h3>Format</h3>
+        <div style="display:flex;flex-direction:column;gap:7px;font-size:14px;color:var(--g2)">
+          <div><span class="lime fw7">1:00–1:35 PM</span> — Guest talk (30–35 min)</div>
+          <div><span class="lime fw7">1:35–1:55 PM</span> — Q&amp;A with fellows (20 min)</div>
+          <div>Recorded → uploaded to YouTube within 48 hrs</div>
+          <div>Monday spotlight post on LinkedIn + Twitter</div>
+          <div>Talk notes + references shared in Slack</div>
         </div>
       </div>
       <div class="card bb">
-        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--blue);margin-bottom:10px">Speaker Profile</div>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:6px">
-          <li style="font-size:13px;color:var(--g2);padding-left:14px;position:relative"><span style="position:absolute;left:0;color:var(--blue)">→</span> AI researcher or ML engineer (PhD → faculty / senior)</li>
-          <li style="font-size:13px;color:var(--g2);padding-left:14px;position:relative"><span style="position:absolute;left:0;color:var(--blue)">→</span> Cornell Tech, NYU, Columbia, MIT, CMU, Stanford</li>
-          <li style="font-size:13px;color:var(--g2);padding-left:14px;position:relative"><span style="position:absolute;left:0;color:var(--blue)">→</span> Google, Meta, Microsoft, or high-growth AI startups</li>
-          <li style="font-size:13px;color:var(--g2);padding-left:14px;position:relative"><span style="position:absolute;left:0;color:var(--blue)">→</span> NLP, ML systems, AI safety, applied AI, AI products</li>
+        <h3>Speaker Profile</h3>
+        <ul>
+          <li>AI researcher, ML engineer, AI entrepreneur, or product leader</li>
+          <li>PhD student (advanced) through senior faculty / senior industry</li>
+          <li>Cornell Tech, NYU, Columbia, MIT, CMU, Stanford, or top AI companies</li>
+          <li>Topics: NLP, ML systems, AI safety, applied AI, AI products, computer vision</li>
+          <li>NYC preferred for in-person; remote accepted</li>
         </ul>
+      </div>
+      <div style="background:rgba(222,254,71,.06);border:1px solid rgba(222,254,71,.2);border-radius:var(--r);padding:14px">
+        <div style="font-size:12px;color:var(--lime);font-weight:700;margin-bottom:6px">HOW TO MAKE THE MOST OF Q&amp;A</div>
+        <div style="font-size:13px;color:var(--g2);line-height:1.6">Prepare one question before every talk. Tie it to your research track: <em style="color:var(--white)">"In your work on X, how did you handle Y — we're seeing a similar challenge in our RAG research."</em> Ask about failure modes, not just successes.</div>
       </div>
     </div>
     <div class="talk-grid">
-      <div class="talk-card"><div class="tc-num">01</div><div class="tc-date">Fri, Jun 6</div><div class="tc-time">1:00–2:00 PM · WeWork NYC</div><div class="tc-status">Speaker TBD</div></div>
-      <div class="talk-card"><div class="tc-num">02</div><div class="tc-date">Fri, Jun 13</div><div class="tc-time">1:00–2:00 PM · WeWork NYC</div><div class="tc-status">Speaker TBD</div></div>
-      <div class="talk-card"><div class="tc-num">03</div><div class="tc-date">Fri, Jun 20</div><div class="tc-time">1:00–2:00 PM · WeWork NYC</div><div class="tc-status">Speaker TBD</div></div>
-      <div class="talk-card"><div class="tc-num">04</div><div class="tc-date">Fri, Jun 27</div><div class="tc-time">1:00–2:00 PM · WeWork NYC</div><div class="tc-status">Speaker TBD</div></div>
-      <div class="talk-card"><div class="tc-num">05</div><div class="tc-date">Fri, Jul 3</div><div class="tc-time">1:00–2:00 PM · WeWork NYC</div><div class="tc-status" style="color:var(--lime)">Holiday weekend — confirm attendance</div></div>
-      <div class="talk-card"><div class="tc-num">06</div><div class="tc-date">Fri, Jul 10</div><div class="tc-time">1:00–2:00 PM · WeWork NYC</div><div class="tc-status">Speaker TBD</div></div>
-      <div class="talk-card"><div class="tc-num">07</div><div class="tc-date">Fri, Jul 17</div><div class="tc-time">1:00–2:00 PM · WeWork NYC</div><div class="tc-status">Speaker TBD</div></div>
-      <div class="talk-card"><div class="tc-num">08</div><div class="tc-date">Fri, Jul 24</div><div class="tc-time">1:00–2:00 PM · WeWork NYC</div><div class="tc-status">Speaker TBD</div></div>
-      <div class="talk-card"><div class="tc-num">09</div><div class="tc-date">Fri, Jul 31</div><div class="tc-time">1:00–2:00 PM · WeWork NYC</div><div class="tc-status">Last talk — before final week</div></div>
+      <div class="talk"><div class="talk-n">01</div><div class="talk-date">Fri, Jun 6</div><div class="talk-time">1:00–2:00 PM · WeWork NYC</div><div class="talk-note">Speaker TBD</div></div>
+      <div class="talk"><div class="talk-n">02</div><div class="talk-date">Fri, Jun 13</div><div class="talk-time">1:00–2:00 PM · WeWork NYC</div><div class="talk-note">Speaker TBD</div></div>
+      <div class="talk"><div class="talk-n">03</div><div class="talk-date">Fri, Jun 20</div><div class="talk-time">1:00–2:00 PM · WeWork NYC</div><div class="talk-note">Speaker TBD</div></div>
+      <div class="talk"><div class="talk-n">04</div><div class="talk-date">Fri, Jun 27</div><div class="talk-time">1:00–2:00 PM · WeWork NYC</div><div class="talk-note">Speaker TBD</div></div>
+      <div class="talk"><div class="talk-n">05</div><div class="talk-date">Fri, Jul 3</div><div class="talk-time">1:00–2:00 PM · WeWork NYC</div><div class="talk-note" style="color:var(--lime)">Holiday weekend — confirm attendance</div></div>
+      <div class="talk"><div class="talk-n">06</div><div class="talk-date">Fri, Jul 10</div><div class="talk-time">1:00–2:00 PM · WeWork NYC</div><div class="talk-note">Speaker TBD</div></div>
+      <div class="talk"><div class="talk-n">07</div><div class="talk-date">Fri, Jul 17</div><div class="talk-time">1:00–2:00 PM · WeWork NYC</div><div class="talk-note">Speaker TBD</div></div>
+      <div class="talk"><div class="talk-n">08</div><div class="talk-date">Fri, Jul 24</div><div class="talk-time">1:00–2:00 PM · WeWork NYC</div><div class="talk-note">Speaker TBD</div></div>
+      <div class="talk"><div class="talk-n">09</div><div class="talk-date">Fri, Jul 31</div><div class="talk-time">1:00–2:00 PM · WeWork NYC</div><div class="talk-note">Last talk before final week</div></div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     SLIDE 23 — SECTION: HOW WE WORK
-═══════════════════════════════════════════════════════════ -->
-<section class="slide slide--section">
-  <div class="sec-num">04</div>
-  <div class="sec-title">How We <em>Work</em></div>
-  <p class="sec-desc">Tools, milestones, and the operating rhythm that keeps 15 fellows moving in parallel without losing anyone.</p>
+<!-- ═══ SECTION: HOW WE WORK ═══ -->
+<section class="slide slide--section dot-bg" data-section="Operations">
+  <div class="sec-bg-num">04</div>
+  <div class="sec-kicker">Section 04</div>
+  <div class="sec-h">How We <em>Work</em></div>
+  <p class="sec-sub">Tools, milestones, and the operating rhythm that keeps fellows moving in parallel — without losing anyone along the way.</p>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     SLIDE 24 — TOOLS & ACCESS
-═══════════════════════════════════════════════════════════ -->
-<section class="slide">
-  <div class="slide-label">Tools</div>
-  <div class="slide-h2">Tools &amp; Access</div>
-  <p style="font-size:13px;color:var(--g1);margin-bottom:16px">Everything provisioned at or before orientation. Missing something? Ping Rajshri immediately.</p>
+<!-- ═══ TOOLS ═══ -->
+<section class="slide" data-section="Operations">
+  <div class="chip">Tools &amp; Access</div>
+  <div class="slide-title">Tools &amp; Access</div>
+  <p style="font-size:12px;color:var(--g1);margin-bottom:14px">Everything provisioned at or before orientation. Missing something? Ping Rajshri immediately — don't wait until standup.</p>
   <div class="tools-grid">
-    <div class="tool-row"><div><div class="tr-name">GitHub (anote-ai org)</div><div class="tr-desc">All product repos + Research repo. Write access to your assigned product.</div><div class="tr-access">Provisioned before Jun 1</div></div></div>
-    <div class="tool-row"><div><div class="tr-name">Claude Code</div><div class="tr-desc">Primary AI coding tool for product contributions. Full codebase access, file editing, streaming.</div><div class="tr-access">Provisioned at orientation</div></div></div>
-    <div class="tool-row"><div><div class="tr-name">Slack (#fellowship)</div><div class="tr-desc">Primary async communication. Standups, speaker links, blockers, announcements.</div><div class="tr-access">Join #fellowship immediately</div></div></div>
-    <div class="tool-row"><div><div class="tr-name">Zoom</div><div class="tr-desc">Tue/Thu standups + Friday talks (remote). Links in Google Calendar invites.</div><div class="tr-access">Links sent before Jun 1</div></div></div>
-    <div class="tool-row"><div><div class="tr-name">Overleaf + LaTeX Template</div><div class="tr-desc">Research paper writing. Use Anote LaTeX template in the Research repo.</div><div class="tr-access">Create your own account; template in anote-ai/Research</div></div></div>
-    <div class="tool-row"><div><div class="tr-name">arXiv</div><div class="tr-desc">Preprint submission for all papers. Create account by end of June so August submission is smooth.</div><div class="tr-access">arxiv.org — create by Jun 30</div></div></div>
-    <div class="tool-row"><div><div class="tr-name">Google Slides Template</div><div class="tr-desc">For Final Presentation (Aug 5). Anote-themed. Use Moda or Gamma for formatting.</div><div class="tr-access">Link shared at orientation</div></div></div>
-    <div class="tool-row"><div><div class="tr-name">EC2 Shared Instance</div><div class="tr-desc">All repos pre-cloned at /home/anote/repos/. Run docker compose up. Update: /home/anote/update-repos.sh</div><div class="tr-access">ssh credentials in Slack</div></div></div>
+    <div class="tool"><div><div class="tool-name">GitHub (anote-ai org)</div><div class="tool-desc">All product repos + Research repo. Write access to your assigned product and the Research repo.</div><div class="tool-access">Provisioned before Jun 1</div></div></div>
+    <div class="tool"><div><div class="tool-name">Claude Code</div><div class="tool-desc">Primary AI coding tool for product contributions. Full codebase access, file editing, streaming. Built on the same stack as Product 10.</div><div class="tool-access">Provisioned at orientation</div></div></div>
+    <div class="tool"><div><div class="tool-name">Slack</div><div class="tool-desc">Primary async comms. #fellowship for announcements, speaker links, blockers. DM Rajshri for urgent issues.</div><div class="tool-access">Join #fellowship now</div></div></div>
+    <div class="tool"><div><div class="tool-name">Zoom</div><div class="tool-desc">Tue/Thu standups + Friday talks (remote option). Calendar invites include links. Show up 2 min early.</div><div class="tool-access">Links in calendar invites</div></div></div>
+    <div class="tool"><div><div class="tool-name">Overleaf + LaTeX Template</div><div class="tool-desc">Paper writing. Use Anote's LaTeX template in the Research repo (researchpapers/main.tex) as your starting point.</div><div class="tool-access">anote-ai/Research on GitHub</div></div></div>
+    <div class="tool"><div><div class="tool-name">arXiv</div><div class="tool-desc">All papers submitted here as a preprint before or on Aug 10. Create your account by June 30 — don't leave it to the last minute.</div><div class="tool-access">Create account by Jun 30</div></div></div>
+    <div class="tool"><div><div class="tool-name">Google Slides Template</div><div class="tool-desc">For Final Presentation (Aug 5). Anote-branded. Use Moda or Gamma for visual polish. Link shared at orientation.</div><div class="tool-access">Shared at orientation</div></div></div>
+    <div class="tool"><div><div class="tool-name">EC2 Shared Instance</div><div class="tool-desc">All repos pre-cloned at /home/anote/repos/. Run docker compose up after copying .env.example → .env. Update all: /home/anote/update-repos.sh</div><div class="tool-access">SSH credentials in Slack</div></div></div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     SLIDE 25 — PAPER MILESTONES
-═══════════════════════════════════════════════════════════ -->
-<section class="slide">
-  <div class="slide-label">Research Milestones</div>
-  <div class="slide-h2">Paper Milestone Schedule</div>
-  <div class="milestone-table">
-    <div class="ms-header"><span>Deadline</span><span>Deliverable</span><span>Where</span></div>
-    <div class="ms-row"><div class="ms-date">Jun 9</div><div><div class="ms-item">Research topic confirmed with Natan</div></div><div class="ms-where">Slack DM + Tuesday Standup</div></div>
-    <div class="ms-row"><div class="ms-date">Jun 23</div><div><div class="ms-item">Abstract and outline drafted</div></div><div class="ms-where">Share in Tuesday Standup</div></div>
-    <div class="ms-row"><div class="ms-date">Jul 14</div><div><div class="ms-item">Methodology + experiments section complete</div></div><div class="ms-where">Share draft in standup</div></div>
-    <div class="ms-row"><div class="ms-date">Jul 21</div><div><div class="ms-item">Full paper draft shared with team for review</div></div><div class="ms-where">Email to Rajshri + Natan</div></div>
-    <div class="ms-row"><div class="ms-date">Jul 28</div><div><div class="ms-item">Revisions incorporated, peer feedback done</div></div><div class="ms-where">Ready for final polish</div></div>
-    <div class="ms-row"><div class="ms-date">Aug 4</div><div><div class="ms-item">Final polish — arXiv draft live</div></div><div class="ms-where">arXiv preprint URL in Slack</div></div>
-    <div class="ms-row"><div class="ms-date">Aug 10</div><div><div class="ms-item">Submitted to arXiv + at least one conference</div><div class="ms-sub">AAAI 2027 · SIGIR 2027 · ICLR 2027 · WSDM 2027 · ACL ARR</div></div><div class="ms-where">Link shared in Slack</div></div>
+<!-- ═══ PAPER MILESTONES ═══ -->
+<section class="slide" data-section="Operations">
+  <div class="chip">Research Milestones</div>
+  <div class="slide-title">Paper Milestone Schedule</div>
+  <div class="ms-hdr"><span>Deadline</span><span>Deliverable</span><span>Where</span></div>
+  <div class="ms-rows">
+    <div class="msr"><div class="ms-date">Jun 9</div><div><div class="ms-item">Research topic confirmed with Natan</div></div><div class="ms-where">Slack + Tuesday Standup</div></div>
+    <div class="msr"><div class="ms-date">Jun 23</div><div><div class="ms-item">Abstract and outline drafted</div><div class="ms-sub">Submit to steering committee for early feedback</div></div><div class="ms-where">Tuesday Standup #4</div></div>
+    <div class="msr"><div class="ms-date">Jul 14</div><div><div class="ms-item">Methodology + experiments section complete</div></div><div class="ms-where">Share draft in standup</div></div>
+    <div class="msr"><div class="ms-date">Jul 21</div><div><div class="ms-item">Full paper draft shared with team for review</div><div class="ms-sub">Steering committee provides written feedback within 1 week</div></div><div class="ms-where">Email to Rajshri + Natan</div></div>
+    <div class="msr"><div class="ms-date">Jul 28</div><div><div class="ms-item">Revisions incorporated, peer feedback done</div></div><div class="ms-where">Ready for final polish</div></div>
+    <div class="msr"><div class="ms-date">Aug 4</div><div><div class="ms-item">Final polish complete — arXiv preprint live</div></div><div class="ms-where">arXiv URL shared in Slack</div></div>
+    <div class="msr"><div class="ms-date">Aug 10</div><div><div class="ms-item">Submitted to arXiv + at least one conference</div><div class="ms-sub">AAAI 2027 · SIGIR 2027 · ICLR 2027 · WSDM 2027 · ACL ARR</div></div><div class="ms-where">Confirmation in Slack</div></div>
   </div>
-  <div class="gtm-pill" style="margin-top:16px">Minimum bar: an arXiv preprint live by Aug 10, even if the conference submission follows. A preprint establishes priority and demonstrates real output from the fellowship.</div>
+  <div class="gtm-pill" style="margin-top:14px">Minimum bar: arXiv preprint live by Aug 10, even if the conference submission follows. A preprint establishes priority and proves real output. A submitted abstract counts.</div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     SLIDE 26 — HOW TO SUCCEED
-═══════════════════════════════════════════════════════════ -->
-<section class="slide">
-  <div class="slide-label">How to Succeed</div>
-  <div class="slide-h2">How to Succeed Here</div>
+<!-- ═══ HOW TO SUCCEED ═══ -->
+<section class="slide" data-section="Operations">
+  <div class="chip">How to Succeed</div>
+  <div class="slide-title">How to Succeed Here</div>
   <div class="succeed-grid">
-    <div class="su-card">
+    <div class="su">
       <h3>On Research</h3>
       <ul>
-        <li>Pick a track that genuinely interests you — you'll live with it for 10 weeks</li>
-        <li>Start narrow; expand scope only after preliminary results</li>
-        <li>Read 5–10 recent papers before writing a single word</li>
-        <li>Surface blockers early — Tuesday standups exist for this</li>
+        <li>Pick a track that genuinely excites you — you'll live with it for 10 weeks</li>
+        <li>Start narrow; expand scope only after you have preliminary results</li>
+        <li>Read 5–10 recent papers before writing a single word of your own</li>
+        <li>Surface blockers at Tuesday standup — don't disappear for two weeks</li>
+        <li>The steering committee exists to help you, not grade you — use them early</li>
       </ul>
     </div>
-    <div class="su-card">
+    <div class="su">
       <h3>On Product</h3>
       <ul>
-        <li>Spend Week 1 reading code and issues — no feature code before you understand the codebase</li>
-        <li>Small, clean PRs beat one giant change every time</li>
-        <li>Write the README update as part of every PR, not after</li>
-        <li>Thursday standup = show demos, not slides</li>
+        <li>Spend all of Week 1 reading code and issues before writing a line of feature code</li>
+        <li>Small, clean, well-documented PRs beat one giant change every time</li>
+        <li>Write the README update as part of every PR, not as a separate task later</li>
+        <li>Thursday standup = demo working software, not slides or plans</li>
+        <li>Your handoff notes are as important as your code — write them</li>
       </ul>
     </div>
-    <div class="su-card">
-      <h3>On Friday Talks</h3>
+    <div class="su">
+      <h3>On Speaker Talks</h3>
       <ul>
-        <li>Show up every week, in person if at all possible</li>
-        <li>Prepare one question before every talk — write it down</li>
-        <li>Build relationships with speakers; they're future advisors and collaborators</li>
-        <li>Tie your question to your research track</li>
+        <li>Show up every Friday, in person whenever possible</li>
+        <li>Prepare one specific question before every talk — write it down</li>
+        <li>Tie your question to your research track — it shows depth and starts a real conversation</li>
+        <li>Speakers are future advisors, collaborators, and referrals — follow up</li>
       </ul>
     </div>
-    <div class="su-card">
-      <h3>On the Fellowship</h3>
+    <div class="su">
+      <h3>On the Fellowship Overall</h3>
       <ul>
-        <li>This is a rare window for focused research with a team behind you — treat it like one</li>
-        <li>If you're stuck, say so. We'd rather unblock you in Week 2 than Week 8</li>
-        <li>Your Final Presentation is a public record of your summer</li>
-        <li>Start thinking about your Aug 5 narrative from Day 1</li>
+        <li>This is a rare window for focused, supported research — treat it seriously</li>
+        <li>If you're stuck, say so. We'd rather unblock you in Week 2 than find out in Week 8</li>
+        <li>Your Final Presentation is a public record of your summer — make it something you'd share with a hiring manager</li>
+        <li>Start thinking about your Aug 5 story from Day 1</li>
       </ul>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     SLIDE 27 — THREE QUESTIONS
-═══════════════════════════════════════════════════════════ -->
-<section class="slide">
-  <div class="slide-label">Guiding Questions</div>
-  <div class="slide-h2">Three Questions That Drive Everything</div>
+<!-- ═══ THREE QUESTIONS ═══ -->
+<section class="slide" data-section="Operations">
+  <div class="chip">Guiding Principles</div>
+  <div class="slide-title">Three Questions That Drive Everything</div>
   <div class="q-list">
     <div class="q-item">
-      <div class="q-num">1</div>
-      <div class="q-body">
-        <h3>Does this research make an Anote product more credible to a customer?</h3>
-        <p>If a prospect asked "why should I trust your product for this use case?" — could you hand them this paper as part of the answer? If yes, you're on the right track.</p>
-      </div>
+      <div class="q-n">1</div>
+      <div><div class="q-h">Does this research make an Anote product more credible to a customer?</div><div class="q-body">If a prospect asked "why should I trust your product for this use case?" — could you hand them this paper as part of the answer? If yes, you're on the right track. If not, you're doing academic research in isolation.</div></div>
     </div>
     <div class="q-item">
-      <div class="q-num">2</div>
-      <div class="q-body">
-        <h3>Does this product improvement make a real user's life noticeably better?</h3>
-        <p>Not "is this technically interesting?" — but "would a user notice and care?" If yes, ship it. If not, scope it down or reprioritize.</p>
-      </div>
+      <div class="q-n">2</div>
+      <div><div class="q-h">Does this product improvement make a real user's life noticeably better?</div><div class="q-body">Not "is this technically interesting?" — but "would a user notice and care?" If yes, ship it. If not, scope it down or reprioritize. The goal is observable, measurable improvement — not clever code.</div></div>
     </div>
     <div class="q-item">
-      <div class="q-num">3</div>
-      <div class="q-body">
-        <h3>Can I explain what I built and why it matters in 20 minutes?</h3>
-        <p>Your Final Presentation is August 5. The best presentations connect research + product into a single coherent narrative. Start building that story from Day 1.</p>
-      </div>
+      <div class="q-n">3</div>
+      <div><div class="q-h">Can I explain what I built and why it matters in 20 minutes?</div><div class="q-body">Your Final Presentation is August 5. The best presentations connect research + product into one coherent narrative. A paper about RAG failure + a Private Chatbot improvement = a story about making enterprise AI trustworthy. Start building that story from Day 1.</div></div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     SLIDE 28 — WEEK 1 CHECKLIST
-═══════════════════════════════════════════════════════════ -->
-<section class="slide">
-  <div class="slide-label">Week 1</div>
-  <div class="slide-h2">Your First Week — Checklist</div>
+<!-- ═══ WEEK 1 CHECKLIST ═══ -->
+<section class="slide" data-section="Operations">
+  <div class="chip">Week 1</div>
+  <div class="slide-title">Your First Week — Checklist</div>
   <div class="two-col">
     <div>
-      <p style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--lime);margin-bottom:12px">By End of Day — June 1</p>
-      <div class="cl-list">
-        <div class="cl-item"><div class="cl-box"></div><div class="cl-text"><strong>Attend Orientation</strong> · 6–8 PM WeWork NYC + Zoom</div></div>
-        <div class="cl-item"><div class="cl-box"></div><div class="cl-text"><strong>Join Slack</strong> #fellowship channel</div></div>
-        <div class="cl-item"><div class="cl-box"></div><div class="cl-text"><strong>Confirm GitHub access</strong> to your assigned product repo</div></div>
-        <div class="cl-item"><div class="cl-box"></div><div class="cl-text"><strong>Confirm Claude Code access</strong></div></div>
+      <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.11em;color:var(--lime);margin-bottom:10px">By End of Day — June 1</p>
+      <div class="cl-list" style="margin-bottom:18px">
+        <div class="cl"><div class="cl-box"></div><div><div class="cl-t"><b>Attend Orientation</b> — 6–8 PM WeWork NYC + Zoom</div></div></div>
+        <div class="cl"><div class="cl-box"></div><div><div class="cl-t"><b>Join Slack</b> #fellowship channel</div></div></div>
+        <div class="cl"><div class="cl-box"></div><div><div class="cl-t"><b>Confirm GitHub access</b> to your assigned product repo</div></div></div>
+        <div class="cl"><div class="cl-box"></div><div><div class="cl-t"><b>Confirm Claude Code access</b> — ask Rajshri if not provisioned</div></div></div>
       </div>
-      <p style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--blue);margin-top:20px;margin-bottom:12px">By Research Standup — June 3</p>
+      <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.11em;color:var(--blue);margin-bottom:10px">By Research Standup — June 3</p>
       <div class="cl-list">
-        <div class="cl-item"><div class="cl-box"></div><div class="cl-text"><strong>Review all 23 research tracks</strong> in RESEARCH_FELLOW_MATCHING.md</div></div>
-        <div class="cl-item"><div class="cl-box"></div><div class="cl-text"><strong>Come with top 2–3 track preferences</strong> (or a proposal)</div></div>
-        <div class="cl-item"><div class="cl-box"></div><div class="cl-text"><strong>Intro ready:</strong> name, background, one question you want to answer this summer</div></div>
+        <div class="cl"><div class="cl-box"></div><div><div class="cl-t"><b>Review all 23 research tracks</b> in RESEARCH_FELLOW_MATCHING.md</div></div></div>
+        <div class="cl"><div class="cl-box"></div><div><div class="cl-t"><b>Prepare top 2–3 track preferences</b> (or a proposal) to share</div></div></div>
+        <div class="cl"><div class="cl-box"></div><div><div class="cl-t"><b>Intro ready:</b> name, background, one question you want to answer this summer</div></div></div>
       </div>
     </div>
     <div>
-      <p style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--blue);margin-bottom:12px">By Product Standup — June 5</p>
-      <div class="cl-list">
-        <div class="cl-item"><div class="cl-box"></div><div class="cl-text"><strong>Set up dev environment</strong> for your product (local or EC2)</div></div>
-        <div class="cl-item"><div class="cl-box"></div><div class="cl-text"><strong>Read the README and open issues</strong> in your product repo</div></div>
-        <div class="cl-item"><div class="cl-box"></div><div class="cl-text"><strong>Identify one quick win</strong> you can ship in Week 2</div></div>
+      <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.11em;color:var(--blue);margin-bottom:10px">By Product Standup — June 5</p>
+      <div class="cl-list" style="margin-bottom:18px">
+        <div class="cl"><div class="cl-box"></div><div><div class="cl-t"><b>Dev environment set up</b> for your product (local or EC2)</div></div></div>
+        <div class="cl"><div class="cl-box"></div><div><div class="cl-t"><b>README and open issues read</b> — understand what exists before writing anything</div></div></div>
+        <div class="cl"><div class="cl-box"></div><div><div class="cl-t"><b>Identify one quick win</b> you can ship in Week 2</div></div></div>
       </div>
-      <p style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--lime);margin-top:20px;margin-bottom:12px">By Research Standup — June 9</p>
+      <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.11em;color:var(--lime);margin-bottom:10px">By Research Standup — June 9</p>
       <div class="cl-list">
-        <div class="cl-item"><div class="cl-box"></div><div class="cl-text"><strong>Research track confirmed</strong> with Natan</div></div>
-        <div class="cl-item"><div class="cl-box"></div><div class="cl-text"><strong>5 key papers read</strong> in your research area</div></div>
-        <div class="cl-item"><div class="cl-box"></div><div class="cl-text"><strong>Product improvement plan:</strong> 2–3 experiments with success criteria</div></div>
-        <div class="cl-item"><div class="cl-box"></div><div class="cl-text"><strong>arXiv account created</strong></div></div>
+        <div class="cl"><div class="cl-box"></div><div><div class="cl-t"><b>Research track confirmed</b> with Natan</div></div></div>
+        <div class="cl"><div class="cl-box"></div><div><div class="cl-t"><b>5 key papers read</b> in your research area</div></div></div>
+        <div class="cl"><div class="cl-box"></div><div><div class="cl-t"><b>Product experiment plan:</b> 2–3 scoped experiments with success criteria</div></div></div>
+        <div class="cl"><div class="cl-box"></div><div><div class="cl-t"><b>arXiv account created</b></div></div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════════════════════
-     SLIDE 29 — CLOSING
-═══════════════════════════════════════════════════════════ -->
-<section class="slide slide--closing">
-  <div class="cover-stripe"></div>
-  <div class="eyebrow" style="margin-bottom:28px">Summer 2026</div>
-  <div class="closing-quote">
-    "I built something real,<br>and I can <em>prove it.</em>"
+<!-- ═══ KEY LINKS ═══ -->
+<section class="slide" data-section="Operations">
+  <div class="chip">Resources</div>
+  <div class="slide-title">Key Links</div>
+  <div class="links-grid">
+    <div class="lk"><span class="lk-name">All Product Repos</span><span class="lk-url">github.com/anote-ai</span></div>
+    <div class="lk"><span class="lk-name">Research Repo</span><span class="lk-url">github.com/anote-ai/Research</span></div>
+    <div class="lk"><span class="lk-name">MLOps Platform</span><span class="lk-url">dashboard.anote.ai</span></div>
+    <div class="lk"><span class="lk-name">Panacea Chat</span><span class="lk-url">chat.anote.ai</span></div>
+    <div class="lk"><span class="lk-name">Community Hub</span><span class="lk-url">community.anote.ai</span></div>
+    <div class="lk"><span class="lk-name">Anote Website</span><span class="lk-url">anote.ai</span></div>
+    <div class="lk"><span class="lk-name">Slides Template</span><span class="lk-url">Google Slides — link shared at orientation</span></div>
+    <div class="lk"><span class="lk-name">GTM Projects</span><span class="lk-url">Google Sheets — link shared at orientation</span></div>
+    <div class="lk"><span class="lk-name">LaTeX Template</span><span class="lk-url">anote-ai/Research / researchpapers/main.tex</span></div>
+    <div class="lk"><span class="lk-name">arXiv Submission</span><span class="lk-url">arxiv.org/submit</span></div>
+    <div class="lk"><span class="lk-name">Past Showcase — Pale Blue Dot</span><span class="lk-url">anote.ai/palebluedot</span></div>
+    <div class="lk"><span class="lk-name">Past Showcase — Panacea</span><span class="lk-url">anote.ai/panacea</span></div>
   </div>
-  <p style="font-size:16px;color:var(--g2);max-width:560px;line-height:1.7;margin-bottom:40px">
-    Ten weeks from now, you will have an arXiv paper, a GitHub contribution record, a recorded presentation on Anote's YouTube, and a network of researchers and engineers you built in New York City.
-  </p>
-  <div style="display:flex;gap:32px">
-    <div class="cm-item"><span class="cm-label">Website</span><span class="cm-value">anote.ai</span></div>
-    <div class="cm-item"><span class="cm-label">Community</span><span class="cm-value">community.anote.ai</span></div>
-    <div class="cm-item"><span class="cm-label">GitHub</span><span class="cm-value">github.com/anote-ai</span></div>
-    <div class="cm-item"><span class="cm-label">Slack</span><span class="cm-value">#fellowship</span></div>
-  </div>
-  <p style="margin-top:48px;font-size:28px;font-weight:800;color:var(--white)">Welcome. Now let's get to work.</p>
 </section>
 
-</main><!-- #deck -->
+<!-- ═══ CLOSING ═══ -->
+<section class="slide slide--closing" data-section="Welcome">
+  <div class="cover-line"></div>
+  <div class="eyebrow" style="margin-bottom:24px">Summer 2026 · June 1 – August 10</div>
+  <div class="closing-q">
+    "I built something real,<br>and I can <em>prove it.</em>"
+  </div>
+  <p style="font-size:16px;color:var(--g2);max-width:580px;line-height:1.75;margin-bottom:36px">
+    Ten weeks from now you will have an arXiv paper, a GitHub contribution record, a recorded presentation published on Anote's YouTube, and a network of AI researchers and engineers built in New York City.
+  </p>
+  <div style="display:flex;gap:32px;flex-wrap:wrap;margin-bottom:40px">
+    <div class="cm"><span class="cm-l">Website</span><span class="cm-v">anote.ai</span></div>
+    <div class="cm"><span class="cm-l">Community</span><span class="cm-v">community.anote.ai</span></div>
+    <div class="cm"><span class="cm-l">GitHub</span><span class="cm-v">github.com/anote-ai</span></div>
+    <div class="cm"><span class="cm-l">Slack</span><span class="cm-v">#fellowship</span></div>
+    <div class="cm"><span class="cm-l">Program Lead</span><span class="cm-v">Natan</span></div>
+    <div class="cm"><span class="cm-l">Program Manager</span><span class="cm-v">Rajshri</span></div>
+  </div>
+  <p style="font-size:30px;font-weight:900;color:var(--white)">Welcome. Now let's get to work.</p>
+</section>
+
+</main>
 
 <nav id="nav">
-  <button id="btn-prev" disabled>← Prev</button>
-  <span id="counter">1 / 29</span>
-  <button id="btn-next">Next →</button>
+  <button class="nav-btn" id="btn-prev" disabled>← Prev</button>
+  <span id="section-label"></span>
+  <span id="counter">1 / 36</span>
+  <button class="nav-btn" id="btn-next">Next →</button>
 </nav>
 
-<div id="key-hint" style="position:fixed;bottom:64px;right:24px;font-size:11px;color:var(--g1);display:flex;gap:6px;align-items:center">
-  <kbd style="background:var(--s1);border:1px solid var(--s2);border-radius:3px;padding:2px 6px;font-family:var(--font);font-size:11px;color:var(--g2)">←</kbd>
-  <kbd style="background:var(--s1);border:1px solid var(--s2);border-radius:3px;padding:2px 6px;font-family:var(--font);font-size:11px;color:var(--g2)">→</kbd>
-  <span style="margin-left:2px">to navigate</span>
-</div>
-
 <script>
-const slides = document.querySelectorAll('.slide');
+const slides = [...document.querySelectorAll('.slide')];
 const total = slides.length;
 let cur = 0;
 
-const progress = document.getElementById('progress');
-const counter = document.getElementById('counter');
-const btnPrev = document.getElementById('btn-prev');
-const btnNext = document.getElementById('btn-next');
+const progress    = document.getElementById('progress');
+const counter     = document.getElementById('counter');
+const secLabel    = document.getElementById('section-label');
+const btnPrev     = document.getElementById('btn-prev');
+const btnNext     = document.getElementById('btn-next');
 
 function go(n) {
+  if (n === cur) return;
   slides[cur].classList.remove('active');
   cur = Math.max(0, Math.min(total - 1, n));
   slides[cur].classList.add('active');
-  counter.textContent = (cur + 1) + ' / ' + total;
+  counter.textContent  = (cur + 1) + ' / ' + total;
+  secLabel.textContent = slides[cur].dataset.section || '';
   progress.style.width = ((cur + 1) / total * 100) + '%';
   btnPrev.disabled = cur === 0;
   btnNext.disabled = cur === total - 1;
@@ -1161,18 +1156,22 @@ btnPrev.addEventListener('click', () => go(cur - 1));
 btnNext.addEventListener('click', () => go(cur + 1));
 
 document.addEventListener('keydown', e => {
+  if (['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) return;
   if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); go(cur + 1); }
   if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')                    { e.preventDefault(); go(cur - 1); }
   if (e.key === 'Home') go(0);
   if (e.key === 'End')  go(total - 1);
+  if (e.key === 'f' || e.key === 'F') {
+    if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(()=>{});
+    else document.exitFullscreen();
+  }
 });
 
-// touch swipe
 let tx = 0;
 document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
 document.addEventListener('touchend',   e => {
   const dx = e.changedTouches[0].clientX - tx;
-  if (Math.abs(dx) > 50) go(dx < 0 ? cur + 1 : cur - 1);
+  if (Math.abs(dx) > 48) go(dx < 0 ? cur + 1 : cur - 1);
 }, { passive: true });
 
 go(0);
